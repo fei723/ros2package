@@ -1,3 +1,4 @@
+import yaml 
 import os
 import csv
 import numpy as np
@@ -16,7 +17,7 @@ import threading
 import sys
 import time
 import re
-
+from ament_index_python.packages import get_package_share_directory
 
 processed_files = set()
 observer = None
@@ -332,7 +333,19 @@ def score_csv(input_file, output_file):
 
 def main():
     print("ROS Bag处理工具 - 交互式参数设置")
-    
+    # 读取配置文件
+    package_share_directory = get_package_share_directory('ros2bag_ana')
+    config_path = os.path.join(package_share_directory, 'config', 'default_joints.yaml')
+    try:
+        with open(config_path, 'r') as f:
+            config = yaml.safe_load(f)
+            default_tf_joints = config.get('default_tf_joints', [])
+            default_angle_regex = config.get('default_angle_joints_regex', '')
+    except Exception as e:
+        print(f"警告：无法读取配置文件 {config_path}，使用默认值: {str(e)}")
+        default_tf_joints = ['r_wrist_camera2_color_mujoco_frame', 'l_wrist_camera2_color_mujoco_frame']
+        default_angle_regex = '_arm'
+    # 后续代码保持不变
     # 选择模式
     while True:
         print("\n请选择运行模式：")
@@ -358,14 +371,14 @@ def main():
         os.makedirs(output_dir)
     
     # 设置tf_joints参数
-    tf_joints = ['r_wrist_camera2_color_mujoco_frame', 'l_wrist_camera2_color_mujoco_frame']
+    tf_joints = default_tf_joints.copy()
     modify_tf = input(f"当前tf_joints参数为：{tf_joints}\n是否修改？(Y/N): ").lower()
     if modify_tf == 'y':
         new_joints = input("请输入新的tf_joints（用逗号分隔）：").split(',')
         tf_joints = [joint.strip() for joint in new_joints]
-    
+
     # 设置angle_joints_regex参数
-    angle_joints_regex = r'_arm'
+    angle_joints_regex = default_angle_regex
     modify_regex = input(f"当前angle_joints正则表达式为：{angle_joints_regex}\n是否修改？(Y/N): ").lower()
     if modify_regex == 'y':
         angle_joints_regex = input("请输入新的正则表达式：")

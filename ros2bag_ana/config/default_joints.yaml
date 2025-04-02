@@ -1,0 +1,7 @@
+# 默认TF关节名称（列表格式）
+default_tf_joints:
+  - r_wrist_camera2_color_mujoco_frame
+  - l_wrist_camera2_color_mujoco_frame
+
+# 默认关节角度正则表达式
+default_angle_joints_regex: _arm
