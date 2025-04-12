@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"
+  name="fourier_hand">
+  <xacro:include filename="$(find human_description)/robot_hands/common/utils.xacro" />
+  <xacro:include filename="$(find human_description)/robot_hands/common/fourier_hand.xacro"/>
+  <xacro:include filename="$(find human_description)/robot_hands/fourier_hand/fourier_hand_arguments.xacro"/>
+
+  <xacro:fourier_hand connected_to="$(arg connection)"
+    robot_id="$(arg robot_id)"
+    hand_id="$(arg hand_id)"
+    inertials="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/inertials.yaml')}"
+    joint_limits="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/joint_limits.yaml')}"
+    kinematics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/kinematics.yaml')}"
+    dynamics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/dynamics.yaml')}"
+    gazebo="$(arg gazebo)"
+    prefix="$(arg prefix)"
+    joint_fixed="$(arg joint_fixed)"
+    description_pkg="$(arg description_pkg)"
+    with_sc="$(arg with_sc)"
+    ros2_control_plugin="$(arg ros2_control_plugin)">
+  </xacro:fourier_hand>
+
+</robot>

@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"
+  name="M92U0">
+
+  <xacro:include filename="$(find human_description)/robots/common/humanoid_robot.xacro" />
+
+  <!-- Name for this robot -->
+  <xacro:arg name="robot_id"
+    default="M92U0" />
+
+  <!-- Name for this robot hand-->
+  <!-- inspire_hand  fourier_hand -->
+  <xacro:arg name="hand_id"
+    default="m92u_hand" />
+
+
+  <!-- Should self-collision be enabled? -->
+  <xacro:arg name="with_sc"
+    default="false" />
+
+  <!-- Is the robot being controlled with ros2_control?" -->
+  <xacro:arg name="ros2_control"
+    default="true" />
+
+  <!-- The ros2_control plugin that should be loaded for the manipulator ('fake', 'gazebo',
+  'webots', 'mujoco', 'isaac', 'real' or custom) -->
+  <xacro:arg name="ros2_control_plugin"
+    default="gazebo" />
+  <!-- The output control command interface provided by ros2_control ('position', 'velocity',
+  'effort' or certain combinations 'stiffness,damping') -->
+  <xacro:arg name="command_interface"
+    default="['position', 'velocity']" />
+
+  <xacro:arg name="load_groups"
+    default="['left_leg', 'right_leg', 'waist', 'head', 'left_arm', 'right_arm', 'left_hand', 'right_hand', 'sensors']" />
+
+  <!-- Should the robot be spawned in Gazebo with effort interfaces?" -->
+  <xacro:arg name="gazebo_effort"
+    default="false" />
+
+  <xacro:arg name="finger_joint_fixed"
+    default="false" />
+
+  <xacro:arg name="head_joint_fixed"
+    default="false" />
+
+  <xacro:arg name="base_parent_link"
+    default="" />
+
+  <xacro:arg name="base_position"
+    default="0 0 0.938" />
+
+  <xacro:humanoid_robot robot_id="$(arg robot_id)"
+    hand_id="$(arg hand_id)"
+    base_parent_link="$(arg base_parent_link)"
+    xyz="$(arg base_position)"
+    finger_joint_fixed="$(arg finger_joint_fixed)"
+    head_joint_fixed="$(arg head_joint_fixed)"
+    mesh_scale='1e-3 1e-3 1e-3'
+    head_connected_to="trunk_link"
+    left_arm_connected_to="trunk_link"
+    right_arm_connected_to="trunk_link"
+    left_hand_connected_to="l_arm_force_sensor_link"
+    right_hand_connected_to="r_arm_force_sensor_link"
+    joint_limits="${xacro.load_yaml('$(find human_description)/robots/$(arg robot_id)/joint_limits.yaml')}"
+    inertials="${xacro.load_yaml('$(find human_description)/robots/$(arg robot_id)/inertials.yaml')}"
+    kinematics="${xacro.load_yaml('$(find human_description)/robots/$(arg robot_id)/kinematics.yaml')}"
+    dynamics="${xacro.load_yaml('$(find human_description)/robots/$(arg robot_id)/dynamics.yaml')}"
+    initial_positions="${xacro.load_yaml('$(find human_description)/robots/$(arg robot_id)/initial_positions.yaml')}"
+    sensors_config="${xacro.load_yaml('$(find human_description)/robots/$(arg robot_id)/sensors_config.yaml')}"
+    with_sc="$(arg with_sc)"
+    ros2_control="$(arg ros2_control)"
+    ros2_control_plugin="$(arg ros2_control_plugin)"
+    command_interface="$(arg command_interface)"
+    load_groups="$(arg load_groups)"
+    gazebo_effort="$(arg gazebo_effort)">
+  </xacro:humanoid_robot>
+
+</robot>

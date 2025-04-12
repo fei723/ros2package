@@ -1,0 +1,221 @@
+#### left hand ####
+l_thumb_mcp_yaw_joint:
+  limit:
+    lower: -100.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_thumb_mcp_pitch_joint:
+  limit:
+    lower: -3.0
+    upper: 70.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_thumb_dip_joint:
+  limit:
+    lower: -3.0
+    upper: 70.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_index_mcp_joint:
+  limit:
+    lower: -90.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_index_dip_joint:
+  limit:
+    lower: -90.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_middle_mcp_joint:
+  limit:
+    lower: -90.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_middle_dip_joint:
+  limit:
+    lower: -90.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_ring_mcp_joint:
+  limit:
+    lower: -90.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_ring_dip_joint:
+  limit:
+    lower: -90.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_pinky_mcp_joint:
+  limit:
+    lower: -90.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_pinky_dip_joint:
+  limit:
+    lower: -90.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+#### right hand ####
+r_thumb_mcp_yaw_joint:
+  limit:
+    lower: -100.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_thumb_mcp_pitch_joint:
+  limit:
+    lower: -3.0
+    upper: 70.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_thumb_dip_joint:
+  limit:
+    lower: -3.0
+    upper: 70.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_index_mcp_joint:
+  limit:
+    lower: -90.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_index_dip_joint:
+  limit:
+    lower: -90.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_middle_mcp_joint:
+  limit:
+    lower: -90.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_middle_dip_joint:
+  limit:
+    lower: -90.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_ring_mcp_joint:
+  limit:
+    lower: -90.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_ring_dip_joint:
+  limit:
+    lower: -90.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_pinky_mcp_joint:
+  limit:
+    lower: -90.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_pinky_dip_joint:
+  limit:
+    lower: -90.0
+    upper: 3.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0

@@ -1,0 +1,508 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+  <xacro:macro name="humanoid_robot"
+    params="robot_id 
+            hand_id
+            load_groups
+            joint_limits
+            kinematics
+            inertials
+            dynamics
+            sensors_config
+            finger_joint_fixed:=false
+            head_joint_fixed:=false
+            with_sc:=false
+            mesh_scale:='1 1 1'
+            base_end_link:='base_link'
+            waist_connected_to:='base_link'
+            head_connected_to:='trunk_link'
+            left_arm_connected_to:='trunk_link'
+            right_arm_connected_to:='trunk_link'
+            left_hand_connected_to:='l_end_effector_link'
+            right_hand_connected_to:='r_end_effector_link'
+            initial_positions
+            base_parent_link:=''
+            xyz:='0 0 0'
+            rpy:='0 0 0'
+            ros2_control_plugin:='gazebo'
+            ros2_control:=false
+            command_interface:='effort'
+            transmission_type:='simple'
+            gazebo_effort:=false">
+    <xacro:include filename="$(find human_description)/robots/common/utils.xacro" />
+    <xacro:include filename="$(find human_description)/robots/common/robot_simulation.xacro" />
+
+    <xacro:include filename="$(find human_description)/robots/$(arg robot_id)/robot_base.xacro" />
+    <xacro:include filename="$(find human_description)/robots/$(arg robot_id)/robot_leg.xacro" />
+    <xacro:include
+      filename="$(find human_description)/robots/$(arg robot_id)/robot_leg.ros2_control.xacro" />
+    <xacro:include filename="$(find human_description)/robots/$(arg robot_id)/robot_waist.xacro" />
+    <xacro:include
+      filename="$(find human_description)/robots/$(arg robot_id)/robot_waist.ros2_control.xacro" />
+    <xacro:include filename="$(find human_description)/robots/$(arg robot_id)/robot_head.xacro" />
+    <xacro:include
+      filename="$(find human_description)/robots/$(arg robot_id)/robot_head.ros2_control.xacro" />
+    <xacro:include filename="$(find human_description)/robots/$(arg robot_id)/robot_arm.xacro" />
+    <xacro:include
+      filename="$(find human_description)/robots/$(arg robot_id)/robot_arm.ros2_control.xacro" />
+    <xacro:include filename="$(find human_description)/robots/$(arg robot_id)/robot_sensors.xacro" />
+    <xacro:include
+      filename="$(find human_description)/robots/$(arg robot_id)/robot_sensors.ros2_control.xacro" />
+    <xacro:include
+      filename="$(find human_description)/robots/$(arg robot_id)/robot_body.ros2_control.xacro" />
+
+    <xacro:property name="ros2_controller_parameters"
+      default="$(find human_description)/config/${robot_id}/ros2_controllers.yaml" />
+
+    <!-- Gazebo requires a joint to a link called "world" for statically mounted robots -->
+    <xacro:property name="hand"
+      value="$(eval 'true' if 'left_hand' in load_groups or 'right_hand' in load_groups else 'false')" />
+
+    <xacro:robot_base robot_id="${robot_id}"
+      xyz="${xyz}"
+      rpy="${rpy}"
+      connected_to="${base_parent_link}"
+      mesh_scale="${mesh_scale}"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}"
+      ros2_control_plugin="${ros2_control_plugin}" />
+
+    <!-- leg -->
+    <xacro:if value="${'one_legged' in load_groups}">
+      <xacro:robot_leg robot_id="${robot_id}"
+        prefix=""
+        connected_to="${base_end_link}"
+        mesh_scale="${mesh_scale}"
+        joint_limits="${joint_limits}"
+        kinematics="${kinematics}"
+        inertials="${inertials}"
+        dynamics="${dynamics}"
+        ros2_control_plugin="${ros2_control_plugin}" />
+
+      <xacro:if value="${ros2_control}">
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+          <xacro:robot_leg_ros2_control plugin="${ros2_control_plugin}"
+            name="leg_system"
+            prefix=""
+            command_interface="${command_interface}"
+            transmission_type="${transmission_type}"
+            initial_positions="${initial_positions}" />
+        </xacro:unless>
+      </xacro:if>
+    </xacro:if>
+
+    <!-- left leg -->
+    <xacro:if value="${'left_leg' in load_groups}">
+      <xacro:robot_leg robot_id="${robot_id}"
+        prefix="l_"
+        connected_to="${base_end_link}"
+        mesh_scale="${mesh_scale}"
+        joint_limits="${joint_limits}"
+        kinematics="${kinematics}"
+        inertials="${inertials}"
+        dynamics="${dynamics}"
+        ros2_control_plugin="${ros2_control_plugin}" />
+
+      <xacro:if value="${ros2_control}">
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+          <xacro:robot_leg_ros2_control plugin="${ros2_control_plugin}"
+            name="l_leg_system"
+            prefix="l_"
+            command_interface="${command_interface}"
+            transmission_type="${transmission_type}"
+            initial_positions="${initial_positions}" />
+        </xacro:unless>
+      </xacro:if>
+    </xacro:if>
+
+
+    <!-- right leg -->
+    <xacro:if value="${'right_leg' in load_groups}">
+      <xacro:robot_leg robot_id="${robot_id}"
+        prefix="r_"
+        connected_to="${base_end_link}"
+        mesh_scale="${mesh_scale}"
+        joint_limits="${joint_limits}"
+        kinematics="${kinematics}"
+        inertials="${inertials}"
+        dynamics="${dynamics}"
+        ros2_control_plugin="${ros2_control_plugin}" />
+
+      <xacro:if value="${ros2_control}">
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+          <xacro:robot_leg_ros2_control plugin="${ros2_control_plugin}"
+            name="r_leg_system"
+            prefix="r_"
+            command_interface="${command_interface}"
+            transmission_type="${transmission_type}"
+            initial_positions="${initial_positions}" />
+        </xacro:unless>
+      </xacro:if>
+    </xacro:if>
+
+    <!-- waist -->
+    <xacro:if value="${'waist' in load_groups}">
+      <xacro:robot_waist robot_id="${robot_id}"
+        prefix=""
+        connected_to="${waist_connected_to}"
+        mesh_scale="${mesh_scale}"
+        joint_limits="${joint_limits}"
+        kinematics="${kinematics}"
+        inertials="${inertials}"
+        dynamics="${dynamics}"
+        ros2_control_plugin="${ros2_control_plugin}" />
+
+      <xacro:if value="${ros2_control}">
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+          <xacro:robot_waist_ros2_control plugin="${ros2_control_plugin}"
+            name="waist_system"
+            command_interface="${command_interface}"
+            transmission_type="${transmission_type}"
+            initial_positions="${initial_positions}" />
+        </xacro:unless>
+      </xacro:if>
+    </xacro:if>
+
+    <!-- head -->
+    <xacro:if value="${'head' in load_groups}">
+      <xacro:robot_head robot_id="${robot_id}"
+        prefix=""
+        connected_to="${head_connected_to}"
+        mesh_scale="${mesh_scale}"
+        joint_limits="${joint_limits}"
+        kinematics="${kinematics}"
+        inertials="${inertials}"
+        dynamics="${dynamics}"
+        joint_fixed="${head_joint_fixed}"
+        ros2_control_plugin="${ros2_control_plugin}" />
+
+      <xacro:if value="${ros2_control}">
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+          <xacro:robot_head_ros2_control plugin="${ros2_control_plugin}"
+            name="head_system"
+            command_interface="${command_interface}"
+            transmission_type="${transmission_type}"
+            initial_positions="${initial_positions}" />
+        </xacro:unless>
+      </xacro:if>
+    </xacro:if>
+
+    <!-- left arm -->
+    <xacro:if value="${'left_arm' in load_groups}">
+      <xacro:robot_arm robot_id="${robot_id}"
+        prefix="l_"
+        connected_to="${left_arm_connected_to}"
+        mesh_scale="${mesh_scale}"
+        joint_limits="${joint_limits}"
+        kinematics="${kinematics}"
+        inertials="${inertials}"
+        dynamics="${dynamics}"
+        ros2_control_plugin="${ros2_control_plugin}" />
+
+      <xacro:if value="${ros2_control}">
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+          <xacro:robot_arm_ros2_control plugin="${ros2_control_plugin}"
+            name="l_arm_system"
+            prefix="l_"
+            command_interface="${command_interface}"
+            transmission_type="${transmission_type}"
+            initial_positions="${initial_positions}" />
+        </xacro:unless>
+      </xacro:if>
+    </xacro:if>
+
+    <!-- right arm -->
+    <xacro:if value="${'right_arm' in load_groups}">
+      <xacro:robot_arm robot_id="${robot_id}"
+        prefix="r_"
+        connected_to="${right_arm_connected_to}"
+        mesh_scale="${mesh_scale}"
+        joint_limits="${joint_limits}"
+        kinematics="${kinematics}"
+        inertials="${inertials}"
+        dynamics="${dynamics}"
+        ros2_control_plugin="${ros2_control_plugin}" />
+
+      <xacro:if value="${ros2_control}">
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+          <xacro:robot_arm_ros2_control plugin="${ros2_control_plugin}"
+            name="r_arm_system"
+            prefix="r_"
+            command_interface="${command_interface}"
+            transmission_type="${transmission_type}"
+            initial_positions="${initial_positions}" />
+        </xacro:unless>
+      </xacro:if>
+    </xacro:if>
+
+    <xacro:if value="${hand}">
+      <xacro:include filename="$(find human_description)/robot_hands/common/$(arg hand_id).xacro" />
+      <xacro:include filename="$(find human_description)/robot_hands/common/utils.xacro" />
+      <xacro:include
+        filename="$(find human_description)/robot_hands/$(arg hand_id)/$(arg hand_id)_arguments.xacro" />
+      <xacro:include
+        filename="$(find human_description)/robot_hands/$(arg hand_id)/$(arg hand_id).ros2_control.xacro" />
+
+      <!-- left hand -->
+      <xacro:if value="${'left_hand' in load_groups}">
+        <xacro:if value="${hand_id == 'fourier_hand'}">
+          <xacro:fourier_hand connected_to="${left_hand_connected_to}"
+            robot_id="${robot_id}"
+            hand_id="${hand_id}"
+            inertials="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/inertials.yaml')}"
+            joint_limits="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/joint_limits.yaml')}"
+            kinematics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/kinematics.yaml')}"
+            dynamics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/dynamics.yaml')}"
+            prefix="l_"
+            joint_fixed="${finger_joint_fixed}"
+            ros2_control_plugin="$(arg ros2_control_plugin)">
+          </xacro:fourier_hand>
+
+          <xacro:if value="${ros2_control}">
+            <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+              <xacro:fourier_hand_ros2_control plugin="${ros2_control_plugin}"
+                name="l_hand_system"
+                prefix="l_"
+                command_interface="${command_interface}"
+                transmission_type="${transmission_type}"
+                initial_positions="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/initial_positions.yaml')}" />
+            </xacro:unless>
+          </xacro:if>
+        </xacro:if>
+
+        <xacro:if value="${hand_id == 'inspire_hand'}">
+          <xacro:inspire_hand connected_to="${left_hand_connected_to}"
+            robot_id="${robot_id}"
+            hand_id="${hand_id}"
+            inertials="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/inertials.yaml')}"
+            joint_limits="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/joint_limits.yaml')}"
+            kinematics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/kinematics.yaml')}"
+            dynamics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/dynamics.yaml')}"
+            prefix="l_"
+            joint_fixed="${finger_joint_fixed}"
+            ros2_control_plugin="$(arg ros2_control_plugin)">
+          </xacro:inspire_hand>
+
+          <xacro:if value="${ros2_control}">
+            <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+              <xacro:inspire_hand_ros2_control plugin="${ros2_control_plugin}"
+                name="l_hand_system"
+                prefix="l_"
+                command_interface="${command_interface}"
+                transmission_type="${transmission_type}"
+                initial_positions="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/initial_positions.yaml')}" />
+            </xacro:unless>
+          </xacro:if>
+        </xacro:if>
+
+        <xacro:if value="${hand_id == 'm92c_hand'}">
+          <xacro:m92c_hand connected_to="${left_hand_connected_to}"
+            robot_id="${robot_id}"
+            hand_id="${hand_id}"
+            mesh_scale="${mesh_scale}"
+            inertials="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/inertials.yaml')}"
+            joint_limits="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/joint_limits.yaml')}"
+            kinematics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/kinematics.yaml')}"
+            dynamics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/dynamics.yaml')}"
+            prefix="l_"
+            joint_fixed="${finger_joint_fixed}"
+            ros2_control_plugin="$(arg ros2_control_plugin)">
+          </xacro:m92c_hand>
+
+          <xacro:if value="${ros2_control}">
+            <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+              <xacro:m92c_hand_ros2_control plugin="${ros2_control_plugin}"
+                name="l_hand_system"
+                prefix="l_"
+                command_interface="${command_interface}"
+                transmission_type="${transmission_type}"
+                initial_positions="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/initial_positions.yaml')}" />
+            </xacro:unless>
+          </xacro:if>
+        </xacro:if>
+
+        <xacro:if value="${hand_id == 'm92u_hand'}">
+          <xacro:m92u_hand connected_to="${left_hand_connected_to}"
+            robot_id="${robot_id}"
+            hand_id="${hand_id}"
+            mesh_scale="${mesh_scale}"
+            inertials="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/inertials.yaml')}"
+            joint_limits="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/joint_limits.yaml')}"
+            kinematics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/kinematics.yaml')}"
+            dynamics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/dynamics.yaml')}"
+            prefix="l_"
+            joint_fixed="${finger_joint_fixed}"
+            ros2_control_plugin="$(arg ros2_control_plugin)">
+          </xacro:m92u_hand>
+
+          <xacro:if value="${ros2_control}">
+            <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+              <xacro:m92u_hand_ros2_control plugin="${ros2_control_plugin}"
+                name="l_hand_system"
+                prefix="l_"
+                command_interface="${command_interface}"
+                transmission_type="${transmission_type}"
+                initial_positions="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/initial_positions.yaml')}" />
+            </xacro:unless>
+          </xacro:if>
+        </xacro:if>
+
+      </xacro:if>
+
+      <!-- right hand -->
+      <xacro:if value="${'right_hand' in load_groups}">
+        <xacro:if value="${hand_id == 'fourier_hand'}">
+          <xacro:fourier_hand connected_to="${right_hand_connected_to}"
+            robot_id="${robot_id}"
+            hand_id="${hand_id}"
+            inertials="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/inertials.yaml')}"
+            joint_limits="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/joint_limits.yaml')}"
+            kinematics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/kinematics.yaml')}"
+            dynamics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/dynamics.yaml')}"
+            prefix="r_"
+            joint_fixed="${finger_joint_fixed}"
+            ros2_control_plugin="$(arg ros2_control_plugin)">
+          </xacro:fourier_hand>
+
+          <xacro:if value="${ros2_control}">
+            <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+              <xacro:fourier_hand_ros2_control plugin="${ros2_control_plugin}"
+                name="r_hand_system"
+                prefix="r_"
+                command_interface="${command_interface}"
+                transmission_type="${transmission_type}"
+                initial_positions="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/initial_positions.yaml')}" />
+            </xacro:unless>
+          </xacro:if>
+        </xacro:if>
+        <xacro:if value="${hand_id == 'inspire_hand'}">
+          <xacro:inspire_hand connected_to="${right_hand_connected_to}"
+            robot_id="${robot_id}"
+            hand_id="${hand_id}"
+            inertials="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/inertials.yaml')}"
+            joint_limits="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/joint_limits.yaml')}"
+            kinematics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/kinematics.yaml')}"
+            dynamics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/dynamics.yaml')}"
+            prefix="r_"
+            joint_fixed="${finger_joint_fixed}"
+            ros2_control_plugin="$(arg ros2_control_plugin)">
+          </xacro:inspire_hand>
+
+          <xacro:if value="${ros2_control}">
+            <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+              <xacro:inspire_hand_ros2_control plugin="${ros2_control_plugin}"
+                name="r_hand_system"
+                prefix="r_"
+                command_interface="${command_interface}"
+                transmission_type="${transmission_type}"
+                initial_positions="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/initial_positions.yaml')}" />
+            </xacro:unless>
+          </xacro:if>
+        </xacro:if>
+
+        <xacro:if value="${hand_id == 'm92c_hand'}">
+          <xacro:m92c_hand connected_to="${right_hand_connected_to}"
+            robot_id="${robot_id}"
+            hand_id="${hand_id}"
+            mesh_scale="${mesh_scale}"
+            inertials="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/inertials.yaml')}"
+            joint_limits="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/joint_limits.yaml')}"
+            kinematics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/kinematics.yaml')}"
+            dynamics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/dynamics.yaml')}"
+            prefix="r_"
+            joint_fixed="${finger_joint_fixed}"
+            ros2_control_plugin="$(arg ros2_control_plugin)">
+          </xacro:m92c_hand>
+
+          <xacro:if value="${ros2_control}">
+            <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+              <xacro:m92c_hand_ros2_control plugin="${ros2_control_plugin}"
+                name="r_hand_system"
+                prefix="r_"
+                command_interface="${command_interface}"
+                transmission_type="${transmission_type}"
+                initial_positions="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/initial_positions.yaml')}" />
+            </xacro:unless>
+          </xacro:if>
+        </xacro:if>
+
+        <xacro:if value="${hand_id == 'm92u_hand'}">
+          <xacro:m92u_hand connected_to="${right_hand_connected_to}"
+            robot_id="${robot_id}"
+            hand_id="${hand_id}"
+            mesh_scale="${mesh_scale}"
+            inertials="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/inertials.yaml')}"
+            joint_limits="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/joint_limits.yaml')}"
+            kinematics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/kinematics.yaml')}"
+            dynamics="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/dynamics.yaml')}"
+            prefix="r_"
+            joint_fixed="${finger_joint_fixed}"
+            ros2_control_plugin="$(arg ros2_control_plugin)">
+          </xacro:m92u_hand>
+
+          <xacro:if value="${ros2_control}">
+            <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+              <xacro:m92u_hand_ros2_control plugin="${ros2_control_plugin}"
+                name="r_hand_system"
+                prefix="r_"
+                command_interface="${command_interface}"
+                transmission_type="${transmission_type}"
+                initial_positions="${xacro.load_yaml('$(find human_description)/robot_hands/$(arg hand_id)/initial_positions.yaml')}" />
+            </xacro:unless>
+          </xacro:if>
+        </xacro:if>
+      </xacro:if>
+    </xacro:if>
+
+    <xacro:if value="${ros2_control}">
+      <xacro:if value="${ros2_control_plugin == 'isaac'}">
+        <xacro:robot_body_ros2_control plugin="${ros2_control_plugin}"
+          name="body_system"
+          command_interface="${command_interface}"
+          transmission_type="${transmission_type}"
+          initial_positions="${initial_positions}" />
+      </xacro:if>
+    </xacro:if>
+
+    <!-- sensors -->
+    <xacro:if value="${'sensors' in load_groups}">
+      <xacro:robot_sensors robot_id="${robot_id}"
+        connected_to="${base_end_link}"
+        kinematics="${kinematics}"
+        inertials="${inertials}"
+        sensors_config="${sensors_config}"
+        ros2_control_plugin="${ros2_control_plugin}" />
+
+      <xacro:if value="${ros2_control}">
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+          <xacro:robot_sensors_ros2_control plugin="${ros2_control_plugin}"
+            name="sensors_system" />
+        </xacro:unless>
+      </xacro:if>
+    </xacro:if>
+
+
+    <xacro:if value="$(arg ros2_control)">
+      <xacro:if value="${'ign' in '$(arg ros2_control_plugin)'}">
+        <xacro:ign_ros2_control controller_parameters="${ros2_controller_parameters}" />
+      </xacro:if>
+
+      <xacro:if value="${'gazebo' in '$(arg ros2_control_plugin)'}">
+        <xacro:gazebo_ros2_control controller_parameters="${ros2_controller_parameters}" />
+      </xacro:if>
+
+      <xacro:if value="${'mujoco' in '$(arg ros2_control_plugin)'}">
+        <xacro:mujoco_ros2_control robot_id="${robot_id}"
+          controller_parameters="${ros2_controller_parameters}" />
+      </xacro:if>
+
+      <xacro:if value="${'webots' in '$(arg ros2_control_plugin)'}">
+        <xacro:webots_ros2_control controller_parameters="${ros2_controller_parameters}" />
+      </xacro:if>
+    </xacro:if>
+  </xacro:macro>
+</robot>

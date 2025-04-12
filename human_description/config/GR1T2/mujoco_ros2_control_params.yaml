@@ -1,0 +1,214 @@
+mujoco_ros2_control:
+  ros__parameters:
+    pid_gains:
+      l_hip_roll_actuator:
+        p: 12000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      l_hip_yaw_actuator:
+        p: 10000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      l_hip_pitch_actuator:
+        p: 10000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      l_knee_pitch_actuator:
+        p: 10000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      l_ankle_pitch_actuator:
+        p: 12000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      l_ankle_roll_actuator:
+        p: 10000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_hip_roll_actuator:
+        p: 12000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_hip_yaw_actuator:
+        p: 10000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_hip_pitch_actuator:
+        p: 10000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_knee_pitch_actuator:
+        p: 10000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_ankle_pitch_actuator:
+        p: 12000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_ankle_roll_actuator:
+        p: 10000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+
+      waist_yaw_actuator:
+        p: 10000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      waist_pitch_actuator:
+        p: 10000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      waist_roll_actuator:
+        p: 10000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      neck_yaw_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      neck_pitch_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      neck_roll_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      l_shoulder_pitch_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      l_shoulder_roll_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      l_elbow_yaw_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      l_elbow_pitch_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      l_wrist_yaw_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      l_wrist_pitch_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      l_wrist_roll_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      l_index_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      l_middle_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      l_pinky_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      l_ring_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      l_thumb_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_shoulder_pitch_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_shoulder_roll_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_elbow_yaw_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_elbow_pitch_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_wrist_yaw_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_wrist_pitch_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_wrist_roll_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_index_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_middle_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_pinky_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_ring_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0
+      r_thumb_actuator:
+        p: 1000.0
+        d: 1.0
+        i: 1.0
+        i_clamp: 1.0

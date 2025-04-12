@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!-- Xacro for GR1T2 -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!--                   -->
+    <!-- Imported elements -->
+    <!--                   -->
+    <xacro:include filename="$(find human_description)/robots/common/utils.xacro" />
+
+    <xacro:macro name="robot_sensors"
+        params="
+        robot_id
+        description_pkg:='human_description'
+        ros2_control_plugin:='gazebo'
+        connected_to:='base_footprint'
+        xyz:='0 0 0'
+        rpy:='0 0 0'
+        inertials
+        kinematics
+        sensors_config
+        with_sc:=false">
+
+        <xacro:property name="gazebo"
+            value="$(eval 'true' if ros2_control_plugin == 'gazebo' else 'false')" />
+
+        <!-- IMU -->
+        <xacro:robot-link name="pelvis_imu_frame"
+            prefix=""
+            material_name="steel"
+            gazebo="${gazebo}" />
+        <xacro:robot-joint joint_name="pelvis_imu"
+            joint_type="fixed"
+            parent="${connected_to}"
+            child="pelvis_imu_frame"
+            kinematics="${kinematics}"
+            inertials="${inertials}" />
+
+        <xacro:robot-sensor-imu
+            sensor_name="pelvis_imu"
+            sensor_id="pelvis_imu"
+            parent="pelvis_imu_frame"
+        />
+
+    </xacro:macro>
+
+</robot>

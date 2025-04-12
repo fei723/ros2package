@@ -1,0 +1,25 @@
+initial_positions:
+  l_thumb_cmc_y: 0.0
+  l_thumb_cmc_p: 0.0
+  l_thumb_mcp: 0.0
+  l_thumb_ip: 0.0
+  l_index_mcp: 0.0
+  l_index_pip: 0.0
+  l_middle_mcp: 0.0
+  l_middle_pip: 0.0
+  l_ring_mcp: 0.0
+  l_ring_pip: 0.0
+  l_pinky_mcp: 0.0
+  l_pinky_pip: 0.0
+  r_thumb_cmc_y: 0.0
+  r_thumb_cmc_p: 0.0
+  r_thumb_mcp: 0.0
+  r_thumb_ip: 0.0
+  r_index_mcp: 0.0
+  r_index_pip: 0.0
+  r_middle_mcp: 0.0
+  r_middle_pip: 0.0
+  r_ring_mcp: 0.0
+  r_ring_pip: 0.0
+  r_pinky_mcp: 0.0
+  r_pinky_pip: 0.0

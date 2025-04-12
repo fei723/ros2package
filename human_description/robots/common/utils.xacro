@@ -1,0 +1,780 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="material-color"
+    params="material_name">
+    <xacro:if value="${material_name == 'black'}">
+      <material name="black">
+        <color rgba="0.0 0.0 0.0 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'blue'}">
+      <material name="blue">
+        <color rgba="0.0 0.0 0.8 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'green'}">
+      <material name="green">
+        <color rgba="0.0 0.8 0.0 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'yellow'}">
+      <material name="yellow">
+        <color rgba="0.9 1.0 0.0 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'grey'}">
+      <material name="grey">
+        <color rgba="0.2 0.2 0.2 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'orange'}">
+      <material name="orange">
+        <color rgba="${255/255} ${108/255} ${10/255} 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'brown'}">
+      <material name="brown">
+        <color rgba="${222/255} ${207/255} ${195/255} 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'red'}">
+      <material name="red">
+        <color rgba="0.8 0.0 0.0 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'white'}">
+      <material name="white">
+        <color rgba="1.0 1.0 1.0 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'metal'}">
+      <material name="metal">
+        <color rgba="0.85 0.85 0.85 1" />
+      </material>
+    </xacro:if>
+    <xacro:if value="${material_name == 'steel'}">
+      <material name="steel">
+        <color rgba="0.7 0.65 0.55 1" />
+      </material>
+    </xacro:if>
+    <xacro:if value="${material_name == 'carbon'}">
+      <material name="carbon">
+        <color rgba="1 1 1 1" />
+        <texture filename="package://human_description/textures/carbon.png" />
+      </material>
+    </xacro:if>
+    <xacro:unless
+      value="${material_name in ['black', 'blue', 'green', 'yellow', 'grey', 'orange', 'brown', 'red', 'white', 'metal', 'steel', 'carbon']}">
+      <material name="skin">
+        <color rgba="1 1 1 1" />
+      </material>
+    </xacro:unless>
+  </xacro:macro>
+
+  <!-- ============================================================== -->
+  <!-- Macro to add an <inertial> tag based on yaml-load properties   -->
+  <!--                                                                -->
+  <!-- name:     Name of the robot link (without prefix)              -->
+  <!-- inertial: Dictionary of inertia properties (see inertial.yaml) -->
+  <!-- ============================================================== -->
+  <xacro:macro name="robot-inertials"
+    params="name inertials:=^">
+    <xacro:unless value="${name in inertials}">${xacro.warning('No inertia properties defined for: '
+      + name)}</xacro:unless>
+    <xacro:if value="${name in inertials}">
+      <!-- Access inertia properties of link 'name' -->
+      <xacro:property name="link_inertials"
+        value="${inertials[name]}"
+        lazy_eval="false" />
+      <inertial>
+        <origin rpy="${link_inertials.origin.rpy}"
+          xyz="${link_inertials.origin.xyz}" />
+        <mass value="${link_inertials.mass}" />
+        <xacro:if value="${'inertia' in link_inertials}">
+          <xacro:property name="I"
+            value="${link_inertials.inertia}" />
+          <inertia ixx="${I.xx}"
+            ixy="${I.xy}"
+            ixz="${I.xz}"
+            iyy="${I.yy}"
+            iyz="${I.yz}"
+            izz="${I.zz}" />
+        </xacro:if>
+      </inertial>
+    </xacro:if>
+  </xacro:macro>
+
+  <!-- ========================================================== -->
+  <!-- Macro to add a single link, both with                      -->
+  <!--  * detailed meshes for environmental collision checking    -->
+  <!--  * and coarse geometry models for self-collision checking  -->
+  <!--    (only if 'gazebo' param is set)                         -->
+  <!--                                                            -->
+  <!-- name:  Name of the robot link (without prefix)             -->
+  <!-- rpy:   Rotation of the *_sc link relative to parent [rad]  -->
+  <!-- self_collision_geometries:  self <collision> models        -->
+  <!-- ========================================================== -->
+  <xacro:macro name="robot-link"
+    params="name prefix:='' material_name:=metal mu:=0.85 gazebo:=false mesh_scale:='1 1 1'">
+    <link name="${prefix}${name}">
+      <visual name="${prefix}${name}_vis">
+        <geometry>
+          <mesh
+            filename="package://${description_pkg}/meshes/${robot_id}/visual/${prefix}${name}.stl"
+            scale="${mesh_scale}" />
+        </geometry>
+        <xacro:material-color material_name="${material_name}" />
+      </visual>
+      <collision name="${prefix}${name}_col">
+        <geometry>
+          <mesh
+            filename="package://${description_pkg}/meshes/${robot_id}/collision/${prefix}${name}.stl"
+            scale="${mesh_scale}" />
+        </geometry>
+      </collision>
+      <xacro:robot-inertials name="${prefix}${name}" />
+    </link>
+    <xacro:if value="${gazebo}">
+      <xacro:gazebo-friction link="${prefix}${name}"
+        mu="${mu}" />
+    </xacro:if>
+  </xacro:macro>
+
+  <xacro:macro name="robot-link-sc-geometry"
+    params="name prefix:='' sc_geometry:=true material_name:=metal mu:=0.85 gazebo:=false mesh_scale:='1 1 1' **self_collision_geometries">
+    <link name="${prefix}${name}">
+      <visual name="${prefix}${name}_vis">
+        <geometry>
+          <mesh
+            filename="package://${description_pkg}/meshes/${robot_id}/visual/${prefix}${name}.stl"
+            scale="${mesh_scale}" />
+        </geometry>
+        <xacro:material-color material_name="${material_name}" />
+      </visual>
+      <collision name="${prefix}${name}_col">
+        <xacro:unless value="${sc_geometry}">
+          <geometry>
+            <mesh
+              filename="package://${description_pkg}/meshes/${robot_id}/collision/${prefix}${name}.stl"
+              scale="${mesh_scale}" />
+          </geometry>
+        </xacro:unless>
+        <xacro:if value="${sc_geometry}">
+          <xacro:insert_block name="self_collision_geometries" />
+        </xacro:if>
+      </collision>
+      <xacro:robot-inertials name="${prefix}${name}" />
+    </link>
+    <xacro:if value="${gazebo}">
+      <xacro:gazebo-friction link="${prefix}${name}"
+        mu="${mu}" />
+    </xacro:if>
+  </xacro:macro>
+
+  <xacro:macro name="dummy-link"
+    params="
+    name prefix:=''
+  ">
+    <link name="${prefix}${name}" />
+  </xacro:macro>
+
+  <xacro:macro name="sphere-link"
+    params="
+  name prefix:='' mass:=1e-5 radius:=0.01 xyz:='0 0 0' rpy:='0 0 0' collision:=true mu:=1.0 material_name:=metal mu:=0.85 gazebo:=false
+">
+    <link name="${prefix}${name}">
+      <visual name="${prefix}${name}_vis">
+        <origin xyz="${xyz}"
+          rpy="${rpy}" />
+        <geometry>
+          <sphere radius="${radius}" />
+        </geometry>
+        <xacro:material-color material_name="${material_name}" />
+      </visual>
+
+      <xacro:if value="${collision}">
+        <collision name="${prefix}${name}_col">
+          <origin xyz="${xyz}"
+            rpy="${rpy}" />
+          <geometry>
+            <sphere radius="${radius}" />
+          </geometry>
+        </collision>
+      </xacro:if>
+      <xacro:inertia-cylinder mass="${mass}"
+        radius="${radius}"
+        h="${radius}" />
+    </link>
+    <xacro:if value="${gazebo}">
+      <xacro:gazebo-friction link="${prefix}${name}"
+        mu="${mu}" />
+    </xacro:if>
+  </xacro:macro>
+
+  <!-- =========================================================== -->
+  <!-- Add a <collision> tag with a capsule, made from a cylinder  -->
+  <!-- with two spheres at its caps. The capsule will always be    -->
+  <!-- aligned with the axis of 'direction' you pass along.        -->
+  <!--                                                             -->
+  <!-- radius: Radii of both the cylinder and both spheres [m]     -->
+  <!-- length: Length of the cylinder/distance between the centers -->
+  <!--         of the spheres. NOT overall length of capsule!      -->
+  <!-- xyz:    Position of the center of the capsule/cylinder      -->
+  <!-- direction: One of { x, y, z, -x, -y, -z }                   -->
+  <!-- =========================================================== -->
+  <xacro:macro name="collision-capsule"
+    params="radius length xyz:='0 0 0' direction:='z'">
+    <xacro:property name="r"
+      value="${pi/2.0 if 'y' in direction else 0}" />
+    <xacro:property name="p"
+      value="${pi/2.0 if 'x' in direction else 0}" />
+    <xacro:property name="y"
+      value="0" />
+    <xacro:property name="x"
+      value="${xyz.split(' ')[0]}" />
+    <xacro:property name="y"
+      value="${xyz.split(' ')[1]}" />
+    <xacro:property name="z"
+      value="${xyz.split(' ')[2]}" />
+    <!-- Sphere center offsets from center of cylinder -->
+    <xacro:property name="sx"
+      value="${length / 2.0 if 'x' in direction else 0}" />
+    <xacro:property name="sy"
+      value="${length / 2.0 if 'y' in direction else 0}" />
+    <xacro:property name="sz"
+      value="${length / 2.0 if 'z' in direction else 0}" />
+
+    <collision>
+      <origin xyz="${x} ${y} ${z}"
+        rpy="${r} ${p} ${y}" />
+      <geometry>
+        <cylinder radius="${radius}"
+          length="${length}" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="${x+sx} ${y+sy} ${z+sz}" />
+      <geometry>
+        <sphere radius="${radius}" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="${x-sx} ${y-sy} ${z-sz}" />
+      <geometry>
+        <sphere radius="${radius}" />
+      </geometry>
+    </collision>
+  </xacro:macro>
+
+  <xacro:macro name="collision_box"
+    params="size:='0 0 0' xyz:='0 0 0' rpy:='0 0 0'">
+    <xacro:property name="x"
+      value="${xyz.split(' ')[0]}" />
+    <xacro:property name="y"
+      value="${xyz.split(' ')[1]}" />
+    <xacro:property name="z"
+      value="${xyz.split(' ')[2]}" />
+
+    <xacro:property name="r"
+      value="${rpy.split(' ')[0]}" />
+    <xacro:property name="p"
+      value="${rpy.split(' ')[1]}" />
+    <xacro:property name="y"
+      value="${rpy.split(' ')[2]}" />
+
+    <origin xyz="${x} ${y} ${z}"
+      rpy="${r} ${p} ${y}" />
+    <geometry>
+      <box size="${size}" />
+    </geometry>
+  </xacro:macro>
+
+
+  <xacro:macro name="collision_cylinder"
+    params="radius length xyz:='0 0 0' direction:='z'">
+    <xacro:property name="x"
+      value="${xyz.split(' ')[0]}" />
+    <xacro:property name="y"
+      value="${xyz.split(' ')[1]}" />
+    <xacro:property name="z"
+      value="${xyz.split(' ')[2]}" />
+
+    <xacro:property name="r"
+      value="${pi/2.0 if 'y' in direction else 0}" />
+    <xacro:property name="p"
+      value="${pi/2.0 if 'x' in direction else 0}" />
+    <xacro:property name="y"
+      value="0" />
+
+    <origin xyz="${xyz}"
+      rpy="${r} ${p} ${y}" />
+    <geometry>
+      <cylinder radius="${radius}"
+        length="${length}" />
+    </geometry>
+  </xacro:macro>
+  <!-- ========================================================== -->
+  <!-- Adds the required tags to simulate one joint in gazebo     -->
+  <!--                                                            -->
+  <!-- joint - Name of the fer joint to simulate                  -->
+  <!-- transmission - type of the transmission of the joint       -->
+  <!-- ========================================================== -->
+  <xacro:macro name="gazebo-joint"
+    params="joint">
+    <gazebo reference="${joint}">
+      <!-- Needed for ODE to output external wrenches on joints -->
+      <provideFeedback>true</provideFeedback>
+      <preserveFixedJoint>true</preserveFixedJoint>
+      <disableFixedJointLumping>true</disableFixedJointLumping>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="gazebo-friction"
+    params="link mu">
+    <gazebo reference="${link}">
+      <mu1 value="${mu}" />
+      <mu2 value="${mu}" />
+      <maxContacts>10</maxContacts>
+      <minDepth>0.0001</minDepth>
+      <maxVel>0.01</maxVel>
+      <selfCollide value="True" />
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="inertia-cylinder"
+    params="mass radius h">
+    <inertial>
+      <origin xyz="0. 0. 0."
+        rpy="0. 0. 0." />
+      <mass value="${mass}" />
+      <inertia ixx="${1./12 * mass * (3 * radius**2 + h**2)}"
+        ixy="0"
+        ixz="0"
+        iyy="${1./12 * mass * (3 * radius**2 + h**2)}"
+        iyz="0"
+        izz="${1./2  * mass * radius**2}" />
+    </inertial>
+  </xacro:macro>
+
+  <!-- ========================================================================= -->
+  <!-- Adds the <limit ... /> & <safety_controller/> tags given a config file    -->
+  <!-- of joint limits                                                           -->
+  <!--                                                                           -->
+  <!-- config - YAML struct defining joint limits (e.g. fer/joint_limits.yaml)   -->
+  <!-- name   - Name of the joint for which to add limits to                     -->
+  <!-- ========================================================================= -->
+  <xacro:macro name="robot-limits"
+    params="config name joint_type">
+    <xacro:property name="limits"
+      value="${config[name]['limit']}"
+      lazy_eval="false" />
+    <xacro:if value="${joint_type == 'continuous'}">
+      <limit effort="${limits.effort}"
+        velocity="${limits.velocity}" />
+    </xacro:if>
+    <xacro:unless value="${joint_type == 'continuous'}">
+      <limit lower="${limits.lower*pi/180}"
+        upper="${limits.upper*pi/180}"
+        effort="${limits.effort}"
+        velocity="${limits.velocity}" />
+      <safety_controller k_position="${limits.k_position}"
+        k_velocity="${limits.k_velocity}"
+        soft_lower_limit="${(limits.lower + limits.safety_margin)*pi/180}"
+        soft_upper_limit="${(limits.upper - limits.safety_margin)*pi/180}" />
+    </xacro:unless>
+  </xacro:macro>
+
+  <!-- ========================================================================= -->
+  <!-- Adds the <dynamics ... /> tag given a config file of joint dynamics       -->
+  <!--                                                                           -->
+  <!-- config - YAML struct defining joint dynamics (e.g. fer/dynamics.yaml)     -->
+  <!-- name   - Name of the joint for which to add dynamics to                   -->
+  <!-- ========================================================================= -->
+  <xacro:macro name="robot-dynamics"
+    params="config name">
+    <xacro:property name="dynamics"
+      value="${config[name]['dynamic']}"
+      lazy_eval="false" />
+    <dynamics damping="${dynamics.damping}"
+      friction="${dynamics.friction}" />
+  </xacro:macro>
+
+  <!-- ========================================================================= -->
+  <!-- Adds the <kinematics ... /> tag given a config file of joint kinematics   -->
+  <!--                                                                           -->
+  <!-- config - YAML struct defining joint kinematics (e.g. fer/kinematics.yaml) -->
+  <!-- name   - Name of the joint for which to add kinematics to                 -->
+  <!-- ========================================================================= -->
+  <xacro:macro name="robot-kinematics"
+    params="config name">
+    <xacro:property name="kinematics"
+      value="${config[name]['kinematic']}"
+      lazy_eval="false" />
+    <origin rpy="${kinematics.roll} ${kinematics.pitch} ${kinematics.yaw}"
+      xyz="${kinematics.x} ${kinematics.y} ${kinematics.z}" />
+    <axis xyz="${kinematics.axis}" />
+  </xacro:macro>
+
+
+  <xacro:macro name="robot-joint"
+    params="
+    parent
+    child
+    joint_name
+    joint_type
+    joint_limits:=^
+    inertials:=^
+    kinematics
+    dynamics:=^
+    mimic_joint:=none multiplier:=1 ros2_control_plugin:=gazebo
+  ">
+    <joint name="${joint_name}"
+      type="${joint_type}">
+      <parent link="${parent}" />
+      <child link="${child}" />
+      <xacro:robot-kinematics name="${joint_name}"
+        config="${kinematics}" />
+      <xacro:unless value="${joint_type == 'fixed' or joint_type == 'floating'}">
+        <xacro:robot-limits name="${joint_name}"
+          config="${joint_limits}"
+          joint_type="${joint_type}" />
+      </xacro:unless>
+      <xacro:unless value="${joint_type == 'fixed'}">
+        <xacro:robot-dynamics name="${joint_name}"
+          config="${dynamics}" />
+        <xacro:unless value="${mimic_joint == 'none'}">
+          <mimic joint="${mimic_joint}"
+            multiplier="${multiplier}"
+            offset="0" />
+        </xacro:unless>
+      </xacro:unless>
+    </joint>
+    <xacro:unless value="${joint_type == 'fixed'}">
+      <xacro:if value="${'gazebo' in '$(arg ros2_control_plugin)'}">
+        <xacro:gazebo-joint joint="${joint_name}" />
+      </xacro:if>
+    </xacro:unless>
+  </xacro:macro>
+
+
+  <xacro:macro name="ros2_control-hardware"
+    params="plugin">
+    <hardware>
+      <xacro:if value="${plugin == 'fake'}">
+        <plugin>fake_components/GenericSystem</plugin>
+      </xacro:if>
+      <xacro:if value="${plugin == 'mock'}">
+        <plugin>mock_components/GenericSystem</plugin>
+      </xacro:if>
+      <xacro:if value="${plugin == 'gazebo'}">
+        <plugin>ign_ros2_control/IgnitionSystem</plugin>
+      </xacro:if>
+      <xacro:if value="${plugin == 'mujoco'}">
+        <plugin>mujoco_ros2_control/MujocoSystem</plugin>
+      </xacro:if>
+      <xacro:if value="${plugin == 'webots'}">
+        <plugin>webots_ros2_control::Ros2ControlSystem</plugin>
+      </xacro:if>
+      <xacro:if value="${plugin == 'isaac'}">
+        <plugin>topic_based_ros2_control/TopicBasedSystem</plugin>
+        <param name="joint_commands_topic">/isaac_joint_commands</param>
+        <param name="joint_states_topic">/isaac_joint_states</param>
+      </xacro:if>
+      <xacro:if value="${plugin == 'real'}">
+        <plugin>cyberone_driver/CyberoneDriver</plugin>
+      </xacro:if>
+      <xacro:unless
+        value="${plugin == 'fake' or plugin == 'mock' or plugin == 'gazebo' or plugin == 'mujoco' or plugin == 'webots' or plugin == 'isaac' or plugin == 'real'}">
+        <plugin>${plugin}</plugin>
+      </xacro:unless>
+    </hardware>
+  </xacro:macro>
+
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <xacro:macro name="ros2_control-simple_transmission"
+    params="
+    joint_name mimic_joint:=none act_reduction:=1 act_offset:=0 jnt_reduction:=1 jnt_offset:=0 initial_positions:=^
+  ">
+    <xacro:property name="initial_position"
+      value="${initial_positions['initial_positions'][joint_name]}"
+      lazy_eval="false" />
+
+    <joint name="${joint_name}_joint">
+      <param name="initial_position">${initial_position}</param>
+      <xacro:unless value="${mimic_joint == 'none'}">
+        <param name="mimic">${mimic_joint}</param>
+        <param name="multiplier">1</param>
+      </xacro:unless>
+
+      <xacro:if value="${'position' in command_interface}">
+        <command_interface name="position" />
+      </xacro:if>
+      <xacro:if value="${'velocity' in command_interface}">
+        <command_interface name="velocity" />
+      </xacro:if>
+      <xacro:if value="${'effort' in command_interface}">
+        <command_interface name="effort" />
+      </xacro:if>
+      <xacro:if value="${'stiffness' in command_interface}">
+        <command_interface name="stiffness" />
+      </xacro:if>
+      <xacro:if value="${'damping' in command_interface}">
+        <command_interface name="damping" />
+      </xacro:if>
+
+      <state_interface name="position">
+        <param name="initial_value">${initial_position}</param>
+      </state_interface>
+      <state_interface name="velocity" />
+      <state_interface name="effort" />
+    </joint>
+
+    <!-- Transmission -->
+    <xacro:if value="${mimic_joint == 'none'}">
+      <transmission name="${joint_name}_transmission">
+        <plugin>transmission_interface/SimpleTransmission</plugin>
+        <joint name="${joint_name}_joint"
+          role="joint1">
+          <mechanical_reduction>${jnt_reduction}</mechanical_reduction>
+          <offset>${jnt_offset}</offset>
+        </joint>
+        <actuator name="${joint_name}_actuator"
+          role="actuator1">
+          <mechanical_reduction>${act_reduction}</mechanical_reduction>
+          <offset>${act_offset}</offset>
+        </actuator>
+      </transmission>
+    </xacro:if>
+  </xacro:macro>
+
+  <xacro:macro name="robot-sensor-force-torque"
+    params="
+    sensor_name
+    sensor_id
+    update_rate:=100.0
+    parent
+    origin_xyz:='0 0 0'
+    origin_rpy:='0 0 0'
+    sensor_frame
+    measure_direction:='force torque sensor'
+  ">
+    <sensor name="${sensor_name}" type="force_torque" id="${sensor_id}"
+      update_rate="${update_rate}">
+      <parent link="${parent}" />
+      <origin xyz="${origin_xyz}" rpy="${origin_rpy}" />
+      <force_torque frame="${sensor_frame}" measure_direction="${measure_direction}" />
+    </sensor>
+  </xacro:macro>
+
+  <xacro:macro name="ros2_control-sensor-force-torque"
+    params="
+    sensor_name
+    frame_id
+    fx_range:=100
+    fy_range:=100
+    fz_range:=100
+    tx_range:=15
+    ty_range:=15
+    tz_range:=15
+  ">
+    <sensor name="${sensor_name}">
+      <state_interface name="force.x" />
+      <state_interface name="force.y" />
+      <state_interface name="force.z" />
+      <state_interface name="torque.x" />
+      <state_interface name="torque.y" />
+      <state_interface name="torque.z" />
+      <param name="frame_id">${frame_id}</param>
+      <param name="fx_range">${fx_range}</param>
+      <param name="fy_range">${fy_range}</param>
+      <param name="fz_range">${fz_range}</param>
+      <param name="tx_range">${tx_range}</param>
+      <param name="ty_range">${ty_range}</param>
+      <param name="tz_range">${tz_range}</param>
+      <param name="force_sensor">${sensor_name}_force</param>
+      <param name="torque_sensor">${sensor_name}_torque</param>
+      <param name="sensor_type">force_torque</param>
+    </sensor>
+  </xacro:macro>
+
+  <xacro:macro name="robot-sensor-imu"
+    params="
+    sensor_name
+    sensor_id
+    update_rate:=100.0
+    parent
+    origin_xyz:='0 0 0'
+    origin_rpy:='0 0 0'
+  ">
+    <sensor name="${sensor_name}" type="imu" id="${sensor_id}" update_rate="${update_rate}">
+      <parent link="${parent}" />
+      <origin xyz="${origin_xyz}" rpy="${origin_rpy}" />
+    </sensor>
+  </xacro:macro>
+
+  <xacro:macro name="ros2_control-sensor_imu"
+    params="sensor_name  frame_id">
+    <sensor name="${sensor_name}">
+      <state_interface name="orientation.x" />
+      <state_interface name="orientation.y" />
+      <state_interface name="orientation.z" />
+      <state_interface name="orientation.w" />
+      <state_interface name="angular_velocity.x" />
+      <state_interface name="angular_velocity.y" />
+      <state_interface name="angular_velocity.z" />
+      <state_interface name="linear_acceleration.x" />
+      <state_interface name="linear_acceleration.y" />
+      <state_interface name="linear_acceleration.z" />
+      <param name="frame_id">${frame_id}</param>
+      <param name="gyro_sensor">${sensor_name}_gyro</param>
+      <param name="accelerometer_sensor">${sensor_name}_accelerometer</param>
+      <param name="quaternion_sensor">${sensor_name}_quaternion</param>
+      <param name="sensor_type">imu</param>
+    </sensor>
+  </xacro:macro>
+
+  <xacro:macro name="robot-sensor-camera"
+    params="
+    sensor_name
+    parent
+    origin_xyz:='0 0 0'
+    origin_rpy:='0 0 0'
+    sensors_config:=^
+    gazebo:=false
+    type:=camera
+    topic_name:=/camera_name/image_raw
+    frame_id:=/camera_name/camera_optical_frame
+  ">
+    <xacro:property name="camera_config"
+      value="${sensors_config[sensor_name]}"
+      lazy_eval="false" />
+    <sensor name="${sensor_name}" type="camera" update_rate="${camera_config.update_rate}">
+      <parent link="${parent}" />
+      <origin xyz="${origin_xyz}" rpy="${origin_rpy}" />
+      <camera>
+        <image width="${camera_config.image_width}" height="${camera_config.image_height}"
+          hfov="${camera_config.horizontal_fov}"
+          format="${camera_config.image_format}"
+          near="${camera_config.clip_near}" far="${camera_config.clip_far}" />
+      </camera>
+    </sensor>
+    <xacro:if value="${gazebo}">
+      <xacro:gazebo-camera_plugin sensor_name="${sensor_name}" parent="${parent}" type="${type}"
+        topic_name="${topic_name}" frame_id="${frame_id}" />
+    </xacro:if>
+  </xacro:macro>
+
+  <xacro:macro name="gazebo-camera_plugin"
+    params="sensor_name:=camera parent type:=camera topic_name frame_id sensors_config:=^">
+    <xacro:property name="camera_config"
+      value="${sensors_config[sensor_name]}"
+      lazy_eval="false" />
+    <gazebo reference="${parent}">
+      <sensor name="${sensor_name}" type="${type}">
+        <update_rate>${camera_config.update_rate}</update_rate>
+        <ignition_frame_id>${frame_id}</ignition_frame_id>
+        <topic>${topic_name}</topic>
+        <camera name="${sensor_name}">
+          <horizontal_fov>${camera_config.horizontal_fov}</horizontal_fov>
+          <lens>
+            <intrinsics>
+              <!-- fx = fy = width / ( 2 * tan (hfov / 2 ) ) -->
+              <fx>${camera_config.image_width / (2 * math.tan(camera_config.horizontal_fov / 2))}</fx>
+              <fy>${camera_config.image_width / (2 * math.tan(camera_config.horizontal_fov / 2))}</fy>
+              <!-- cx = ( width + 1 ) / 2 -->
+              <cx>${(camera_config.image_width + 1) /2}</cx>
+              <!-- cy = ( height + 1 ) / 2 -->
+              <cy>${(camera_config.image_height + 1) /2}</cy>
+              <s>0</s>
+            </intrinsics>
+          </lens>
+          <distortion>
+            <k1>0.0</k1>
+            <k2>0.0</k2>
+            <k3>0.0</k3>
+            <p1>0.0</p1>
+            <p2>0.0</p2>
+            <center>0.5 0.5</center>
+          </distortion>
+          <image>
+            <width>${camera_config.image_width}</width>
+            <height>${camera_config.image_height}</height>
+            <format>${camera_config.image_format}</format>
+          </image>
+          <clip>
+            <near>${camera_config.clip_near}</near>
+            <far>${camera_config.clip_far}</far>
+          </clip>
+          <depth_camera>
+            <clip>
+              <near>0.1</near>
+              <far>10</far>
+            </clip>
+          </depth_camera>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.007</stddev>
+          </noise>
+        </camera>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="robot-sensor-d435"
+    params="
+    camera_name
+    sensors_config:=^
+    gazebo:=false
+  ">
+    <xacro:robot-sensor-camera
+      sensor_name="${camera_name}_color"
+      parent="${camera_name}_color_frame"
+      sensors_config="${sensors_config}"
+      gazebo="${gazebo}"
+      frame_id="${camera_name}_color_optical_frame"
+      topic_name="/${camera_name}/color/image_raw"
+    />
+    <xacro:robot-sensor-camera
+      sensor_name="${camera_name}_depth"
+      parent="${camera_name}_depth_frame"
+      sensors_config="${sensors_config}"
+      gazebo="${gazebo}"
+      type="depth_camera"
+      frame_id="${camera_name}_depth_optical_frame"
+      topic_name="/${camera_name}/depth/image_raw"
+    />
+
+    <!--
+    <xacro:robot-sensor-camera
+      sensor_name="${camera_name}_infra1"
+      parent="${camera_name}_infra1_frame"
+      sensors_config="${sensors_config}"
+      gazebo="${gazebo}"
+      frame_id="${camera_name}_infra1_optical_frame"
+      topic_name="/${camera_name}/infra1/image_raw"
+    />
+
+    <xacro:robot-sensor-camera
+      sensor_name="${camera_name}_infra2"
+      parent="${camera_name}_infra2_frame"
+      sensors_config="${sensors_config}"
+      gazebo="${gazebo}"
+      frame_id="${camera_name}_infra2_optical_frame"
+      topic_name="/${camera_name}/infra2/image_raw"
+    />
+    -->
+  </xacro:macro>
+</robot>

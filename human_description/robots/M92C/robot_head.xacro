@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!-- Xacro for GR1T2 leg -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!--                   -->
+  <!-- Imported elements -->
+  <!--                   -->
+  <xacro:include filename="$(find human_description)/robots/common/utils.xacro" />
+
+
+  <xacro:macro name="robot_head"
+    params="robot_id description_pkg:='human_description' prefix:='' connected_to:='base_link' joint_fixed:=false
+      joint_limits
+      inertials
+      kinematics
+      dynamics mesh_scale:='1 1 1' with_sc:=false ros2_control_plugin:='fake'
+  ">
+    <xacro:property name="gazebo"
+      value="$(eval 'true' if ros2_control_plugin == 'gazebo' else 'false')"/>
+
+    <xacro:if value="${joint_fixed}">
+      <xacro:property name="joint_type"
+        value="fixed"/>
+    </xacro:if>
+    <xacro:unless value="${joint_fixed}">
+      <xacro:property name="joint_type"
+        value="revolute"/>
+    </xacro:unless>
+
+    <xacro:property name="joint1"
+      value="head1_y"/>
+    <xacro:property name="joint2"
+      value="head2_p"/>
+
+    <!-- head yaw -->
+    <xacro:sphere-link name="${joint1}_link"
+      prefix="${prefix}"
+      radius="0.005"
+      material_name="metal"
+      gazebo="${gazebo}"
+      mesh_scale="${mesh_scale}"/>
+    <xacro:robot-joint joint_name="${prefix}${joint1}_joint"
+      joint_type="${joint_type}"
+      parent="${connected_to}"
+      child="${prefix}${joint1}_link"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}"/>
+
+    <!-- head pitch -->
+    <xacro:robot-link name="${joint2}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}"
+      mesh_scale="${mesh_scale}"/>
+    <xacro:robot-joint joint_name="${prefix}${joint2}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint1}_link"
+      child="${prefix}${joint2}_link"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}"/>
+
+  </xacro:macro>
+</robot>

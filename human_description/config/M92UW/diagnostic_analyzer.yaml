@@ -1,0 +1,109 @@
+aggregator_node:
+  ros__parameters:
+    primary:
+      type: diagnostic_aggregator/AnalyzerGroup
+      path: mujoco_ros2_control
+      analyzers:
+        collidingStatus:
+          type: diagnostic_aggregator/GenericAnalyzer
+          path: colliding status
+          contains: ["Colliding Status"]
+          remove_prefix: ["mujoco_ros2_control"]
+        RealtimeInfo:
+          type: "diagnostic_aggregator/AnalyzerGroup"
+          path: "Realtime Loop Info"
+          analyzers:
+            realtimeLoopFrequency:
+              type: diagnostic_aggregator/GenericAnalyzer
+              path: realtime loop frequency
+              contains: ["realtime loop frequency"]
+              remove_prefix: ["mujoco_ros2_control"]
+            updateFrequency:
+              type: diagnostic_aggregator/GenericAnalyzer
+              path: update frequency
+              contains: ["update frequency"]
+              remove_prefix: ["mujoco_ros2_control"]
+            updateTimestamp:
+              type: diagnostic_aggregator/GenericAnalyzer
+              path: update timestamp
+              contains: ["update timestamp"]
+              remove_prefix: ["mujoco_ros2_control"]
+        Leg:
+          type: diagnostic_aggregator/AnalyzerGroup
+          path: "Hardware Components"
+          analyzers:
+            Leg:
+              type: diagnostic_aggregator/AnalyzerGroup
+              path: "Leg"
+              analyzers:
+                ActuatorStatus:
+                  type: diagnostic_aggregator/GenericAnalyzer
+                  path: "Actuator Status"
+                  contains:
+                    [
+                      "mujoco_ros2_control: ankle_p_actuator",
+                      "mujoco_ros2_control: knee_p_actuator",
+                    ]
+                  remove_prefix: ["mujoco_ros2_control:"]
+            Waist:
+              type: "diagnostic_aggregator/AnalyzerGroup"
+              path: "Waist"
+              analyzers:
+                ActuatorStatus:
+                  type: diagnostic_aggregator/GenericAnalyzer
+                  path: "Actuator Status"
+                  contains:
+                    [
+                      "mujoco_ros2_control: waist1_p_actuator",
+                      "mujoco_ros2_control: waist2_y_actuator",
+                    ]
+                  remove_prefix: ["mujoco_ros2_control:"]
+            Head:
+              type: "diagnostic_aggregator/AnalyzerGroup"
+              path: "Head"
+              analyzers:
+                ActuatorStatus:
+                  type: diagnostic_aggregator/GenericAnalyzer
+                  path: "Actuator Status"
+                  contains:
+                    [
+                      "mujoco_ros2_control: head1_y_actuator",
+                      "mujoco_ros2_control: head2_p_actuator",
+                    ]
+                  remove_prefix: ["mujoco_ros2_control:"]
+            LeftArm:
+              type: diagnostic_aggregator/AnalyzerGroup
+              path: "Left Arm"
+              analyzers:
+                ActuatorStatus:
+                  type: diagnostic_aggregator/GenericAnalyzer
+                  path: "Actuator Status"
+                  contains:
+                    [
+                      "mujoco_ros2_control: l_arm1_shoulder_p_actuator",
+                      "mujoco_ros2_control: l_arm2_shoulder_r_actuator",
+                      "mujoco_ros2_control: l_arm3_shoulder_y_actuator",
+                      "mujoco_ros2_control: l_arm4_elbow_p_actuator",
+                      "mujoco_ros2_control: l_arm5_wrist_y_actuator",
+                      "mujoco_ros2_control: l_arm6_wrist_p_actuator",
+                      "mujoco_ros2_control: l_arm7_wrist_r_actuator",
+                    ]
+                  remove_prefix: ["mujoco_ros2_control:"]
+            RightArm:
+              type: "diagnostic_aggregator/AnalyzerGroup"
+              path: "Right Arm"
+              analyzers:
+                ActuatorStatus:
+                  type: diagnostic_aggregator/GenericAnalyzer
+                  path: "Actuator Status"
+                  contains:
+                    [
+                      "mujoco_ros2_control: r_arm1_shoulder_p_actuator",
+                      "mujoco_ros2_control: r_arm2_shoulder_r_actuator",
+                      "mujoco_ros2_control: r_arm3_shoulder_y_actuator",
+                      "mujoco_ros2_control: r_arm4_elbow_p_actuator",
+                      "mujoco_ros2_control: r_arm5_wrist_y_actuator",
+                      "mujoco_ros2_control: r_arm6_wrist_p_actuator",
+                      "mujoco_ros2_control: r_arm7_wrist_r_actuator",
+                    ]
+                  remove_prefix: ["mujoco_ros2_control:"]

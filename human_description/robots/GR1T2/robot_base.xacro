@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!-- Xacro for GR1T2 base -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!--                   -->
+    <!-- Imported elements -->
+    <!--                   -->
+    <xacro:include filename="$(find human_description)/robots/common/utils.xacro" />
+
+    <xacro:macro name="robot_base"
+        params="
+        robot_id mesh_scale:='1 1 1' description_pkg:='human_description' ros2_control_plugin:='gazebo' connected_to:='base_footprint' xyz:='0 0 0' rpy:='0 0 0' dynamics with_sc:=false joint_limits inertials kinematics ">
+
+        <xacro:property name="gazebo"
+            value="$(eval 'true' if ros2_control_plugin == 'gazebo' else 'false')"/>
+
+        <xacro:unless value="${not connected_to}">
+            <link name="${connected_to}">
+            </link>
+            <joint name="${connected_to}_fixed_joint"
+                type="fixed">
+                <parent link="${connected_to}"/>
+                <child link="base_link"/>
+                <origin rpy="${rpy}"
+                    xyz="${xyz}"/>
+            </joint>
+        </xacro:unless>
+
+        <xacro:robot-link name="base_link"
+            prefix=""
+            material_name="steel"
+            gazebo="${gazebo}"/>
+
+    </xacro:macro>
+
+</robot>

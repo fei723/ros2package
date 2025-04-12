@@ -1,0 +1,131 @@
+#### left hand ####
+# l_hand_palm:
+#   dynamic:
+#     damping: 0.003
+#     friction: 0.2
+
+l_thumb_mcp_yaw_joint:
+  dynamic:
+    damping: 3.48
+    friction: 1.65
+
+l_thumb_mcp_pitch_joint:
+  dynamic:
+    damping: 3.48
+    friction: 1.65
+
+l_thumb_dip_joint:
+  dynamic:
+    damping: 0.12
+    friction: 0.7
+
+l_thumb_tip_joint:
+  dynamic:
+    damping: 0.12
+    friction: 0.7
+
+l_index_mcp_joint:
+  dynamic:
+    damping: 3.48
+    friction: 1.65
+
+l_index_dip_joint:
+  dynamic:
+    damping: 0.12
+    friction: 0.7
+
+l_middle_mcp_joint:
+  dynamic:
+    damping: 3.48
+    friction: 1.65
+
+l_middle_dip_joint:
+  dynamic:
+    damping: 0.12
+    friction: 0.7
+
+l_ring_mcp_joint:
+  dynamic:
+    damping: 3.48
+    friction: 1.65
+
+l_ring_dip_joint:
+  dynamic:
+    damping: 0.12
+    friction: 0.7
+
+l_pinky_mcp_joint:
+  dynamic:
+    damping: 3.48
+    friction: 1.65
+
+l_pinky_dip_joint:
+  dynamic:
+    damping: 0.12
+    friction: 0.7
+
+#### right hand ####
+# r_hand_palm:
+#   dynamic:
+#     damping: 0.003
+#     friction: 0.2
+
+r_thumb_mcp_yaw_joint:
+  dynamic:
+    damping: 3.48
+    friction: 1.65
+
+r_thumb_mcp_pitch_joint:
+  dynamic:
+    damping: 3.48
+    friction: 1.65
+
+r_thumb_dip_joint:
+  dynamic:
+    damping: 0.12
+    friction: 0.7
+
+r_thumb_tip_joint:
+  dynamic:
+    damping: 0.12
+    friction: 0.7
+
+r_index_mcp_joint:
+  dynamic:
+    damping: 3.48
+    friction: 1.65
+
+r_index_dip_joint:
+  dynamic:
+    damping: 0.12
+    friction: 0.7
+
+r_middle_mcp_joint:
+  dynamic:
+    damping: 3.48
+    friction: 1.65
+
+r_middle_dip_joint:
+  dynamic:
+    damping: 0.12
+    friction: 0.7
+
+r_ring_mcp_joint:
+  dynamic:
+    damping: 3.48
+    friction: 1.65
+
+r_ring_dip_joint:
+  dynamic:
+    damping: 0.12
+    friction: 0.7
+
+r_pinky_mcp_joint:
+  dynamic:
+    damping: 3.48
+    friction: 1.65
+
+r_pinky_dip_joint:
+  dynamic:
+    damping: 0.12
+    friction: 0.7

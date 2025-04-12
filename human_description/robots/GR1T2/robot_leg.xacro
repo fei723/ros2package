@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!-- Xacro for GR1T2 -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!--                   -->
+  <!-- Imported elements -->
+  <!--                   -->
+  <xacro:include filename="$(find human_description)/robots/common/utils.xacro" />
+
+
+  <xacro:macro name="robot_leg"
+    params="robot_id description_pkg:='human_description' prefix:='' connected_to:='base_link' 
+      joint_limits
+      inertials
+      kinematics
+      dynamics mesh_scale:='1 1 1' joint_fixed:=false with_sc:=false ros2_control_plugin:='fake' 
+  ">
+    <xacro:property name="gazebo"
+      value="$(eval 'true' if ros2_control_plugin == 'gazebo' else 'false')"/>
+
+    <xacro:if value="${joint_fixed}">
+      <xacro:property name="joint_type"
+        value="fixed"/>
+    </xacro:if>
+    <xacro:unless value="${joint_fixed}">
+      <xacro:property name="joint_type"
+        value="revolute"/>
+    </xacro:unless>
+
+    <xacro:property name="joint1"
+      value="hip_roll"/>
+    <xacro:property name="joint2"
+      value="hip_yaw"/>
+    <xacro:property name="joint3"
+      value="hip_pitch"/>
+    <xacro:property name="joint4"
+      value="knee_pitch"/>
+    <xacro:property name="joint5"
+      value="ankle_pitch"/>
+    <xacro:property name="joint6"
+      value="ankle_roll"/>
+
+
+    <!-- hip roll -->
+    <xacro:robot-link name="${joint1}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}" />
+    <xacro:robot-joint joint_name="${prefix}${joint1}_joint"
+      joint_type="${joint_type}"
+      parent="${connected_to}"
+      child="${prefix}${joint1}_link"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}"/>
+
+    <!-- hip yaw -->
+    <xacro:robot-link name="${joint2}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}" />
+    <xacro:robot-joint joint_name="${prefix}${joint2}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint1}_link"
+      child="${prefix}${joint2}_link"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}"/>
+
+    <!-- hip pitch -->
+    <xacro:robot-link name="${joint3}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}" />
+    <xacro:robot-joint joint_name="${prefix}${joint3}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint2}_link"
+      child="${prefix}${joint3}_link"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}"/>
+
+    <!-- knee -->
+    <xacro:robot-link name="${joint4}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}" />
+    <xacro:robot-joint joint_name="${prefix}${joint4}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint3}_link"
+      child="${prefix}${joint4}_link"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}"/>
+
+    <!-- ankle pitch -->
+    <xacro:robot-link name="${joint5}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}" />
+    <xacro:robot-joint joint_name="${prefix}${joint5}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint4}_link"
+      child="${prefix}${joint5}_link"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}"/>
+
+    <!-- ankle roll -->
+    <xacro:robot-link name="${joint6}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}" />
+    <xacro:robot-joint joint_name="${prefix}${joint6}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint5}_link"
+      child="${prefix}${joint6}_link"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}"/>
+
+  </xacro:macro>
+</robot>

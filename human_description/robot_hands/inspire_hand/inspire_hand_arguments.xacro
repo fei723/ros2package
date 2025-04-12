@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Name for the robot -->
+  <xacro:arg name="robot_id" default="GR1T2" />
+
+  <!-- End-effector id" -->
+  <xacro:arg name="hand_id" default="inspire_hand" />
+
+  <!-- Should self-collision be enabled? -->
+  <xacro:arg name="with_sc" default="false" />
+
+  <!-- Should fake sensors be used? -->
+  <xacro:arg name="description_pkg" default="human_description" />
+
+</robot>

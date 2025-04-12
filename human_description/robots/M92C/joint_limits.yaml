@@ -1,0 +1,315 @@
+#### left leg ####
+l_leg1_hip_y_joint:
+  limit:
+    upper: 90.0
+    lower: -45.0
+    velocity: 22.19
+    effort: 200.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_leg2_hip_r_joint:
+  limit:
+    upper: 45.0
+    lower: -45.0
+    velocity: 20.22
+    effort: 100.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_leg3_hip_p_joint:
+  limit:
+    upper: 78.0
+    lower: -133.0
+    velocity: 27.27
+    effort: 350.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_leg4_knee_p_joint:
+  limit:
+    upper: 151.9
+    lower: -10.0
+    velocity: 27.27
+    effort: 350.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_leg5_ankle_p_joint:
+  limit:
+    upper: 37.0
+    lower: -70.0
+    velocity: 33.0
+    effort: 150.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_leg6_ankle_r_joint:
+  limit:
+    upper: 30.0
+    lower: -30.0
+    velocity: 33.0
+    effort: 150.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+#### right leg ####
+r_leg1_hip_y_joint:
+  limit:
+    upper: 45.0
+    lower: -90.0
+    velocity: 22.19
+    effort: 200.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_leg2_hip_r_joint:
+  limit:
+    upper: 45.0
+    lower: -45.0
+    velocity: 20.22
+    effort: 100.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_leg3_hip_p_joint:
+  limit:
+    upper: 78.0
+    lower: -133.0
+    velocity: 27.27
+    effort: 350.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_leg4_knee_p_joint:
+  limit:
+    upper: 151.9
+    lower: -10.0
+    velocity: 27.27
+    effort: 350.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_leg5_ankle_p_joint:
+  limit:
+    upper: 37.0
+    lower: -70.0
+    velocity: 33.0
+    effort: 150.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_leg6_ankle_r_joint:
+  limit:
+    upper: 30.0
+    lower: -30.0
+    velocity: 33.0
+    effort: 150.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+#### waist ####
+waist1_y_joint:
+  limit:
+    upper: 60.0
+    lower: -60.0
+    velocity: 6.0
+    effort: 200.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+waist2_p_joint:
+  limit:
+    upper: 70.0
+    lower: -3.0
+    velocity: 6.0
+    effort: 200.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+#### head ####
+# neck_roll_joint:
+#   limit:
+#     lower: -20.0
+#     upper: 20.0
+#     velocity: 27.96
+#     effort: 3.95
+#     k_position: 121.0
+#     k_velocity: 540.0
+#     safety_margin: 3.0
+
+# neck_pitch_joint:
+#   limit:
+#     lower: -50.0
+#     upper: 50.0
+#     velocity: 27.96
+#     effort: 3.95
+#     k_position: 121.0
+#     k_velocity: 540.0
+#     safety_margin: 3.0
+
+# neck_yaw_joint:
+#   limit:
+#     lower: -155.0
+#     upper: 155.0
+#     velocity: 27.96
+#     effort: 3.95
+#     k_position: 121.0
+#     k_velocity: 540.0
+#     safety_margin: 3.0
+
+#### left arm ####
+l_arm1_shoulder_p_joint:
+  limit:
+    upper: 57.3
+    lower: -180.0
+    velocity: 4.71
+    effort: 102.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_arm2_shoulder_r_joint:
+  limit:
+    upper: 90.0
+    lower: -10.0
+    velocity: 4.71
+    effort: 102.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_arm3_shoulder_y_joint:
+  limit:
+    upper: 179.9
+    lower: -179.9
+    velocity: 8.12
+    effort: 29.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_arm4_elbow_p_joint:
+  limit:
+    upper: 3.0
+    lower: -110.0
+    velocity: 8.12
+    effort: 29.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_arm5_wrist_y_joint:
+  limit:
+    upper: 180.0
+    lower: -180.0
+    velocity: 14.37
+    effort: 38.76
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_arm6_wrist_r_joint:
+  limit:
+    upper: 45.3
+    lower: -81.9
+    velocity: 8.81
+    effort: 21.6
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+l_arm7_wrist_p_joint:
+  limit:
+    upper: 39.5
+    lower: -46.4
+    velocity: 8.81
+    effort: 21.6
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+#### right arm ####
+r_arm1_shoulder_p_joint:
+  limit:
+    upper: 57.3
+    lower: -180.0
+    velocity: 4.71
+    effort: 102.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_arm2_shoulder_r_joint:
+  limit:
+    upper: 10.0
+    lower: -90.0
+    velocity: 4.71
+    effort: 102.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_arm3_shoulder_y_joint:
+  limit:
+    upper: 179.9
+    lower: -179.9
+    velocity: 8.12
+    effort: 29.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_arm4_elbow_p_joint:
+  limit:
+    upper: 3.0
+    lower: -110.0
+    velocity: 8.12
+    effort: 29.0
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_arm5_wrist_y_joint:
+  limit:
+    upper: 180.0
+    lower: -180.0
+    velocity: 14.37
+    effort: 38.76
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_arm6_wrist_r_joint:
+  limit:
+    upper: 81.9
+    lower: -45.3
+    velocity: 8.81
+    effort: 21.6
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+r_arm7_wrist_p_joint:
+  limit:
+    upper: 39.5
+    lower: -46.4
+    velocity: 8.81
+    effort: 21.6
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0

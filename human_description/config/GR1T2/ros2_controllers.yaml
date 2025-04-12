@@ -1,0 +1,973 @@
+# This config file is used by ros2_control
+controller_manager:
+  ros__parameters:
+    update_rate: 300 # Hz
+    cycle_time_error_threshold: 0.03
+
+    l_leg_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    r_leg_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    leg_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    l_foot_fts_broadcaster:
+      type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
+
+    r_foot_fts_broadcaster:
+      type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
+
+    pelvis_imu_broadcaster:
+      type: imu_sensor_broadcaster/IMUSensorBroadcaster
+
+    waist_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    head_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    dual_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    body_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    walking_rl_contorller:
+      type: legged_rl_walking_controller/LeggedRLWalkingController
+
+    cartesian_motion_controller:
+      type: cartesian_motion_controller/CartesianMotionController
+
+    motion_control_handle:
+      type: cartesian_controller_handles/MotionControlHandle
+
+    dual_hand_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+cartesian_motion_controller:
+  ros__parameters:
+    # See the cartesian_compliance_controller
+    end_effector_link: "l_end_effector_link"
+    robot_base_link: "torso_link"
+    joints:
+      - l_shoulder_pitch_joint
+      - l_shoulder_roll_joint
+      - l_elbow_yaw_joint
+      - l_elbow_pitch_joint
+      - l_wrist_yaw_joint
+      - l_wrist_roll_joint
+      - l_wrist_pitch_joint
+
+    # See the cartesian_compliance_controller
+    command_interfaces:
+      - position
+        #- velocity
+
+    solver:
+      error_scale: 1.0
+      iterations: 10
+      publish_state_feedback: True
+
+    pd_gains:
+      trans_x: { p: 1.0 }
+      trans_y: { p: 1.0 }
+      trans_z: { p: 1.0 }
+      rot_x: { p: 0.5 }
+      rot_y: { p: 0.5 }
+      rot_z: { p: 0.5 }
+
+motion_control_handle:
+  ros__parameters:
+    end_effector_link: "l_end_effector_link"
+    robot_base_link: "torso_link"
+    ft_sensor_ref_link: "l_wrist_pitch_link"
+    joints:
+      - l_shoulder_pitch_joint
+      - l_shoulder_roll_joint
+      - l_elbow_yaw_joint
+      - l_elbow_pitch_joint
+      - l_wrist_yaw_joint
+      - l_wrist_roll_joint
+      - l_wrist_pitch_joint
+
+l_leg_controller:
+  ros__parameters:
+    joints:
+      - l_hip_pitch_joint
+      - l_hip_roll_joint
+      - l_hip_yaw_joint
+      - l_knee_pitch_joint
+      - l_ankle_pitch_joint
+      - l_ankle_roll_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    open_loop_control: true
+    allow_partial_joints_goal: true
+
+r_leg_controller:
+  ros__parameters:
+    joints:
+      - r_hip_pitch_joint
+      - r_hip_roll_joint
+      - r_hip_yaw_joint
+      - r_knee_pitch_joint
+      - r_ankle_pitch_joint
+      - r_ankle_roll_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    open_loop_control: true
+    allow_partial_joints_goal: true
+
+leg_controller:
+  ros__parameters:
+    joints:
+      - l_hip_roll_joint
+      - l_hip_yaw_joint
+      - l_hip_pitch_joint
+      - l_knee_pitch_joint
+      - l_ankle_pitch_joint
+      - l_ankle_roll_joint
+      - r_hip_roll_joint
+      - r_hip_yaw_joint
+      - r_hip_pitch_joint
+      - r_knee_pitch_joint
+      - r_ankle_pitch_joint
+      - r_ankle_roll_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    open_loop_control: true
+    allow_partial_joints_goal: true
+
+waist_controller:
+  ros__parameters:
+    joints:
+      - waist_yaw_joint
+      - waist_roll_joint
+      - waist_pitch_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    open_loop_control: true
+    allow_partial_joints_goal: true
+
+head_controller:
+  ros__parameters:
+    joints:
+      - neck_yaw_joint
+      - neck_pitch_joint
+      - neck_roll_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    open_loop_control: true
+    allow_partial_joints_goal: true
+
+dual_arm_controller:
+  ros__parameters:
+    joints:
+      - l_shoulder_pitch_joint
+      - l_shoulder_roll_joint
+      - l_elbow_yaw_joint
+      - l_elbow_pitch_joint
+      - l_wrist_yaw_joint
+      - l_wrist_pitch_joint
+      - l_wrist_roll_joint
+      - r_shoulder_pitch_joint
+      - r_shoulder_roll_joint
+      - r_elbow_yaw_joint
+      - r_elbow_pitch_joint
+      - r_wrist_yaw_joint
+      - r_wrist_pitch_joint
+      - r_wrist_roll_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    open_loop_control: true
+    allow_partial_joints_goal: true
+
+dual_hand_controller:
+  ros__parameters:
+    joints:
+      - l_thumb_mcp_yaw_joint
+      - l_thumb_mcp_pitch_joint
+      - l_index_mcp_joint
+      - l_middle_mcp_joint
+      - l_ring_mcp_joint
+      - l_pinky_mcp_joint
+      - r_thumb_mcp_yaw_joint
+      - r_thumb_mcp_pitch_joint
+      - r_index_mcp_joint
+      - r_middle_mcp_joint
+      - r_ring_mcp_joint
+      - r_pinky_mcp_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    open_loop_control: true
+    allow_partial_joints_goal: true
+
+body_controller:
+  ros__parameters:
+    joints:
+      - l_hip_roll_joint
+      - l_hip_yaw_joint
+      - l_hip_pitch_joint
+      - l_knee_pitch_joint
+      - l_ankle_pitch_joint
+      - l_ankle_roll_joint
+      - r_hip_roll_joint
+      - r_hip_yaw_joint
+      - r_hip_pitch_joint
+      - r_knee_pitch_joint
+      - r_ankle_pitch_joint
+      - r_ankle_roll_joint
+      - waist_yaw_joint
+      - waist_roll_joint
+      - waist_pitch_joint
+      - neck_yaw_joint
+      - neck_pitch_joint
+      - neck_roll_joint
+      - l_shoulder_pitch_joint
+      - l_shoulder_roll_joint
+      - l_elbow_yaw_joint
+      - l_elbow_pitch_joint
+      - l_wrist_yaw_joint
+      - l_wrist_pitch_joint
+      - l_wrist_roll_joint
+      - r_shoulder_pitch_joint
+      - r_shoulder_roll_joint
+      - r_elbow_yaw_joint
+      - r_elbow_pitch_joint
+      - r_wrist_yaw_joint
+      - r_wrist_pitch_joint
+      - r_wrist_roll_joint
+      - l_thumb_mcp_yaw_joint
+      - l_thumb_mcp_pitch_joint
+      - l_index_mcp_joint
+      - l_middle_mcp_joint
+      - l_ring_mcp_joint
+      - l_pinky_mcp_joint
+      - r_thumb_mcp_yaw_joint
+      - r_thumb_mcp_pitch_joint
+      - r_index_mcp_joint
+      - r_middle_mcp_joint
+      - r_ring_mcp_joint
+      - r_pinky_mcp_joint
+    command_interfaces:
+      - position
+      # - effort
+    state_interfaces:
+      - position
+      - velocity
+    open_loop_control: true
+    allow_partial_joints_goal: true
+    gains:
+      waist_yaw_joint:
+        p: 200.0
+        d: 20.0
+        i: 0.0
+        i_clamp: 1.0
+      waist_roll_joint:
+        p: 200.0
+        d: 20.0
+        i: 0.0
+        i_clamp: 1.0
+      l_hip_roll_joint:
+        p: 200.0
+        d: 20.0
+        i: 0.0
+        i_clamp: 1.0
+      l_hip_yaw_joint:
+        p: 200.0
+        d: 20.0
+        i: 0.0
+        i_clamp: 1.0
+      l_hip_pitch_joint:
+        p: 500.0
+        d: 50.0
+        i: 0.0
+        i_clamp: 1.0
+      l_knee_pitch_joint:
+        p: 500.0
+        d: 50.0
+        i: 0.0
+        i_clamp: 1.0
+      l_ankle_pitch_joint:
+        p: 200.0
+        d: 20.0
+        i: 0.0
+        i_clamp: 1.0
+      l_ankle_roll_joint:
+        p: 200.0
+        d: 20.0
+        i: 0.0
+        i_clamp: 1.0
+      r_hip_roll_joint:
+        p: 200.0
+        d: 20.0
+        i: 0.0
+        i_clamp: 1.0
+      r_hip_yaw_joint:
+        p: 200.0
+        d: 20.0
+        i: 0.0
+        i_clamp: 1.0
+      r_hip_pitch_joint:
+        p: 500.0
+        d: 50.0
+        i: 0.0
+        i_clamp: 1.0
+      r_knee_pitch_joint:
+        p: 500.0
+        d: 50.0
+        i: 0.0
+        i_clamp: 1.0
+      r_ankle_pitch_joint:
+        p: 200.0
+        d: 20.0
+        i: 0.0
+        i_clamp: 1.0
+      r_ankle_roll_joint:
+        p: 200.0
+        d: 20.0
+        i: 0.0
+        i_clamp: 1.0
+      chest_roll_joint:
+        p: 500.0
+        d: 50.0
+        i: 0.0
+        i_clamp: 1.0
+      neck_yaw_joint:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      neck_pitch_joint:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      neck_roll_joint:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      l_shoulder_pitch_joint:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      l_shoulder_roll_joint:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      l_elbow_yaw_joint:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      l_elbow_pitch_joint:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      l_wrist_yaw_joint:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      l_wrist_pitch_joint:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      l_wrist_roll_joint:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      r_shoulder_pitch_joint:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      r_shoulder_roll_joint:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      r_elbow_yaw_joint:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      r_elbow_pitch_joint:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      r_wrist_yaw_joint:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      r_wrist_pitch_joint:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      r_wrist_roll_joint:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      l_thumb:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      l_index:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      l_middle:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      l_pinky:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      l_ring:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      r_thumb:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      r_index:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      r_middle:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      r_pinky:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+      r_ring:
+        p: 40.0
+        d: 4.0
+        i: 0.0
+        i_clamp: 1.0
+
+l_foot_fts_broadcaster:
+  ros__parameters:
+    interface_names.force.x: l_foot_fts/force.x
+    interface_names.force.y: l_foot_fts/force.y
+    interface_names.force.z: l_foot_fts/force.z
+    interface_names.torque.x: l_foot_fts/torque.x
+    interface_names.torque.y: l_foot_fts/torque.y
+    interface_names.torque.z: l_foot_fts/torque.z
+    frame_id: l_foot_fts_frame
+
+r_foot_fts_broadcaster:
+  ros__parameters:
+    interface_names.force.x: r_foot_fts/force.x
+    interface_names.force.y: r_foot_fts/force.y
+    interface_names.force.z: r_foot_fts/force.z
+    interface_names.torque.x: r_foot_fts/torque.x
+    interface_names.torque.y: r_foot_fts/torque.y
+    interface_names.torque.z: r_foot_fts/torque.z
+    frame_id: r_foot_fts_frame
+
+pelvis_imu_broadcaster:
+  ros__parameters:
+    frame_id: pelvis_imu_frame
+    sensor_name: pelvis_imu
+    static_covariance_orientation: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    static_covariance_angular_velocity:
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    static_covariance_linear_acceleration:
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+walking_rl_contorller:
+  ros__parameters:
+    observation_joints:
+      - l_hip_roll_joint
+      - r_hip_roll_joint
+      - waist_yaw_joint
+      - l_hip_yaw_joint
+      - r_hip_yaw_joint
+      - waist_pitch_joint
+      - l_hip_pitch_joint
+      - r_hip_pitch_joint
+      - waist_roll_joint
+      - l_knee_pitch_joint
+      - r_knee_pitch_joint
+      - l_ankle_pitch_joint
+      - r_ankle_pitch_joint
+      - l_shoulder_pitch_joint
+      - neck_roll_joint
+      - r_shoulder_pitch_joint
+      - l_ankle_roll_joint
+      - r_ankle_roll_joint
+      - l_shoulder_roll_joint
+      - neck_pitch_joint
+      - r_shoulder_roll_joint
+      - l_elbow_yaw_joint
+      - neck_yaw_joint
+      - r_elbow_yaw_joint
+      - l_elbow_pitch_joint
+      - r_elbow_pitch_joint
+      - l_wrist_yaw_joint
+      - r_wrist_yaw_joint
+      - l_wrist_roll_joint
+      - r_wrist_roll_joint
+      - l_wrist_pitch_joint
+      - r_wrist_pitch_joint
+    command_joints:
+      - l_hip_roll_joint
+      - r_hip_roll_joint
+      - waist_yaw_joint
+      - l_hip_yaw_joint
+      - r_hip_yaw_joint
+      - waist_pitch_joint
+      - l_hip_pitch_joint
+      - r_hip_pitch_joint
+      - waist_roll_joint
+      - l_knee_pitch_joint
+      - r_knee_pitch_joint
+      - l_ankle_pitch_joint
+      - r_ankle_pitch_joint
+      - l_shoulder_pitch_joint
+      - neck_roll_joint
+      - r_shoulder_pitch_joint
+      - l_ankle_roll_joint
+      - r_ankle_roll_joint
+      - l_shoulder_roll_joint
+      - neck_pitch_joint
+      - r_shoulder_roll_joint
+      - l_elbow_yaw_joint
+      - neck_yaw_joint
+      - r_elbow_yaw_joint
+      - l_elbow_pitch_joint
+      - r_elbow_pitch_joint
+      - l_wrist_yaw_joint
+      - r_wrist_yaw_joint
+      - l_wrist_roll_joint
+      - r_wrist_roll_joint
+      - l_wrist_pitch_joint
+      - r_wrist_pitch_joint
+    rl_control_joints:
+      - l_hip_roll_joint
+      - r_hip_roll_joint
+      - waist_yaw_joint
+      - l_hip_yaw_joint
+      - r_hip_yaw_joint
+      - waist_pitch_joint
+      - l_hip_pitch_joint
+      - r_hip_pitch_joint
+      - waist_roll_joint
+      - l_knee_pitch_joint
+      - r_knee_pitch_joint
+      - l_ankle_pitch_joint
+      - r_ankle_pitch_joint
+      - l_shoulder_pitch_joint
+      - neck_roll_joint
+      - r_shoulder_pitch_joint
+      - l_ankle_roll_joint
+      - r_ankle_roll_joint
+      - l_shoulder_roll_joint
+      - neck_pitch_joint
+      - r_shoulder_roll_joint
+      - l_elbow_yaw_joint
+      - neck_yaw_joint
+      - r_elbow_yaw_joint
+      - l_elbow_pitch_joint
+      - r_elbow_pitch_joint
+      - l_wrist_yaw_joint
+      - r_wrist_yaw_joint
+      - l_wrist_roll_joint
+      - r_wrist_roll_joint
+      - l_wrist_pitch_joint
+      - r_wrist_pitch_joint
+    command_interfaces:
+      # - position
+      # - velocity
+      - effort
+      # - stiffness
+      # - damping
+    state_interfaces:
+      - position
+      - velocity
+      # - acceleration
+      - effort
+    chainable_command_interfaces:
+      - position
+      - velocity
+    imu_sensor:
+      name: pelvis_imu
+      frame:
+        id: pelvis_imu_frame
+    rl_config:
+      module: policy.pt
+      num_observations: 105
+      num_actions: 32
+      forward_rate: 200.0
+    gains:
+      l_hip_roll_joint:
+        p: 251.625
+        d: 14.72
+        i: 0.0
+        i_clamp: 1.0
+      r_hip_roll_joint:
+        p: 251.625
+        d: 14.72
+        i: 0.0
+        i_clamp: 1.0
+      waist_yaw_joint:
+        p: 362.521
+        d: 10.083
+        i: 0.0
+        i_clamp: 1.0
+      l_hip_yaw_joint:
+        p: 362.521
+        d: 10.083
+        i: 0.0
+        i_clamp: 1.0
+      r_hip_yaw_joint:
+        p: 362.521
+        d: 10.083
+        i: 0.0
+        i_clamp: 1.0
+      waist_pitch_joint:
+        p: 362.521
+        d: 10.083
+        i: 0.0
+        i_clamp: 1.0
+      l_hip_pitch_joint:
+        p: 200.0
+        d: 11.0
+        i: 0.0
+        i_clamp: 1.0
+      r_hip_pitch_joint:
+        p: 200.0
+        d: 11.0
+        i: 0.0
+        i_clamp: 1.0
+      waist_roll_joint:
+        p: 362.521
+        d: 10.083
+        i: 0.0
+        i_clamp: 1.0
+      l_knee_pitch_joint:
+        p: 200.0
+        d: 11.0
+        i: 0.0
+        i_clamp: 1.0
+      r_knee_pitch_joint:
+        p: 200.0
+        d: 11.0
+        i: 0.0
+        i_clamp: 1.0
+      l_ankle_pitch_joint:
+        p: 10.981
+        d: 0.599
+        i: 0.0
+        i_clamp: 1.0
+      r_ankle_pitch_joint:
+        p: 10.981
+        d: 0.599
+        i: 0.0
+        i_clamp: 1.0
+      l_shoulder_pitch_joint:
+        p: 92.85
+        d: 2.575
+        i: 0.0
+        i_clamp: 1.0
+      neck_roll_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0
+      r_shoulder_pitch_joint:
+        p: 92.85
+        d: 2.575
+        i: 0.0
+        i_clamp: 1.0
+      l_ankle_roll_joint:
+        p: 0.25
+        d: 0.01
+        i: 0.0
+        i_clamp: 1.0
+      r_ankle_roll_joint:
+        p: 0.25
+        d: 0.01
+        i: 0.0
+        i_clamp: 1.0
+      l_shoulder_roll_joint:
+        p: 92.85
+        d: 2.575
+        i: 0.0
+        i_clamp: 1.0
+      neck_pitch_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0
+      r_shoulder_roll_joint:
+        p: 92.85
+        d: 2.575
+        i: 0.0
+        i_clamp: 1.0
+      l_elbow_yaw_joint:
+        p: 112.06
+        d: 3.1
+        i: 0.0
+        i_clamp: 1.0
+      neck_yaw_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0
+      r_elbow_yaw_joint:
+        p: 112.06
+        d: 3.1
+        i: 0.0
+        i_clamp: 1.0
+      l_elbow_pitch_joint:
+        p: 112.06
+        d: 3.1
+        i: 0.0
+        i_clamp: 1.0
+      r_elbow_pitch_joint:
+        p: 112.06
+        d: 3.1
+        i: 0.0
+        i_clamp: 1.0
+      l_wrist_yaw_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0
+      r_wrist_yaw_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0
+      l_wrist_roll_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0
+      r_wrist_roll_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0
+      l_wrist_pitch_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0
+      r_wrist_pitch_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0
+    high_frequency_gains:
+      l_hip_roll_joint:
+        p: 251.625
+        d: 14.72
+        i: 0.0
+        i_clamp: 1.0
+      r_hip_roll_joint:
+        p: 251.625
+        d: 14.72
+        i: 0.0
+        i_clamp: 1.0
+      waist_yaw_joint:
+        p: 362.521
+        d: 10.083
+        i: 0.0
+        i_clamp: 1.0
+      l_hip_yaw_joint:
+        p: 362.521
+        d: 10.083
+        i: 0.0
+        i_clamp: 1.0
+      r_hip_yaw_joint:
+        p: 362.521
+        d: 10.083
+        i: 0.0
+        i_clamp: 1.0
+      waist_pitch_joint:
+        p: 362.521
+        d: 10.083
+        i: 0.0
+        i_clamp: 1.0
+      l_hip_pitch_joint:
+        p: 200.0
+        d: 11.0
+        i: 0.0
+        i_clamp: 1.0
+      r_hip_pitch_joint:
+        p: 200.0
+        d: 11.0
+        i: 0.0
+        i_clamp: 1.0
+      waist_roll_joint:
+        p: 362.521
+        d: 10.083
+        i: 0.0
+        i_clamp: 1.0
+      l_knee_pitch_joint:
+        p: 200.0
+        d: 11.0
+        i: 0.0
+        i_clamp: 1.0
+      r_knee_pitch_joint:
+        p: 200.0
+        d: 11.0
+        i: 0.0
+        i_clamp: 1.0
+      l_ankle_pitch_joint:
+        p: 10.981
+        d: 0.599
+        i: 0.0
+        i_clamp: 1.0
+      r_ankle_pitch_joint:
+        p: 10.981
+        d: 0.599
+        i: 0.0
+        i_clamp: 1.0
+      l_shoulder_pitch_joint:
+        p: 92.85
+        d: 2.575
+        i: 0.0
+        i_clamp: 1.0
+      neck_roll_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0
+      r_shoulder_pitch_joint:
+        p: 92.85
+        d: 2.575
+        i: 0.0
+        i_clamp: 1.0
+      l_ankle_roll_joint:
+        p: 0.25
+        d: 0.01
+        i: 0.0
+        i_clamp: 1.0
+      r_ankle_roll_joint:
+        p: 0.25
+        d: 0.01
+        i: 0.0
+        i_clamp: 1.0
+      l_shoulder_roll_joint:
+        p: 92.85
+        d: 2.575
+        i: 0.0
+        i_clamp: 1.0
+      neck_pitch_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0
+      r_shoulder_roll_joint:
+        p: 92.85
+        d: 2.575
+        i: 0.0
+        i_clamp: 1.0
+      l_elbow_yaw_joint:
+        p: 112.06
+        d: 3.1
+        i: 0.0
+        i_clamp: 1.0
+      neck_yaw_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0
+      r_elbow_yaw_joint:
+        p: 112.06
+        d: 3.1
+        i: 0.0
+        i_clamp: 1.0
+      l_elbow_pitch_joint:
+        p: 112.06
+        d: 3.1
+        i: 0.0
+        i_clamp: 1.0
+      r_elbow_pitch_joint:
+        p: 112.06
+        d: 3.1
+        i: 0.0
+        i_clamp: 1.0
+      l_wrist_yaw_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0
+      r_wrist_yaw_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0
+      l_wrist_roll_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0
+      r_wrist_roll_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0
+      l_wrist_pitch_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0
+      r_wrist_pitch_joint:
+        p: 10.0
+        d: 1.0
+        i: 0.0
+        i_clamp: 1.0

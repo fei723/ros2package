@@ -1,0 +1,372 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="material-color"
+    params="material_name">
+    <xacro:if value="${material_name == 'black'}">
+      <material name="black">
+        <color rgba="0.0 0.0 0.0 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'blue'}">
+      <material name="blue">
+        <color rgba="0.0 0.0 0.8 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'green'}">
+      <material name="green">
+        <color rgba="0.0 0.8 0.0 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'yellow'}">
+      <material name="yellow">
+        <color rgba="0.9 1.0 0.0 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'grey'}">
+      <material name="grey">
+        <color rgba="0.2 0.2 0.2 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'orange'}">
+      <material name="orange">
+        <color rgba="${255/255} ${108/255} ${10/255} 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'brown'}">
+      <material name="brown">
+        <color rgba="${222/255} ${207/255} ${195/255} 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'red'}">
+      <material name="red">
+        <color rgba="0.8 0.0 0.0 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'white'}">
+      <material name="white">
+        <color rgba="1.0 1.0 1.0 1.0" />
+      </material>
+    </xacro:if>
+
+    <xacro:if value="${material_name == 'metal'}">
+      <material name="metal">
+        <color rgba="0.85 0.85 0.85 1" />
+      </material>
+    </xacro:if>
+    <xacro:if value="${material_name == 'steel'}">
+      <material name="steel">
+        <color rgba="0.7 0.65 0.55 1" />
+      </material>
+    </xacro:if>
+    <xacro:if value="${material_name == 'carbon'}">
+      <material name="carbon">
+        <color rgba="1 1 1 1" />
+        <texture filename="package://human_description/textures/carbon.png" />
+      </material>
+    </xacro:if>
+    <xacro:unless
+      value="${material_name in ['black', 'blue', 'green', 'yellow', 'grey', 'orange', 'brown', 'red', 'white', 'metal', 'steel', 'carbon']}">
+      <material name="skin">
+        <color rgba="1 1 1 1" />
+      </material>
+    </xacro:unless>
+  </xacro:macro>
+
+
+  <!-- ============================================================== -->
+  <!-- Macro to add an <inertial> tag based on yaml-load properties   -->
+  <!--                                                                -->
+  <!-- name:     Name of the end_effector (without prefix)              -->
+  <!-- ee_inertials: Dictionary of inertia properties (see inertial.yaml) -->
+  <!-- ============================================================== -->
+  <xacro:macro name="hand-inertials"
+    params="name inertials:=^">
+    <xacro:unless value="${name in inertials}">${xacro.warning('No inertia properties defined for: '
+      + name)}</xacro:unless>
+    <xacro:if value="${name in inertials}">
+      <!-- Access inertia properties of link 'name' -->
+      <xacro:property name="link_inertials"
+        value="${inertials[name]}"
+        lazy_eval="false" />
+      <inertial>
+        <origin rpy="${link_inertials.origin.rpy}"
+          xyz="${link_inertials.origin.xyz}" />
+        <mass value="${link_inertials.mass}" />
+        <xacro:if value="${'inertia' in link_inertials}">
+          <xacro:property name="I"
+            value="${link_inertials.inertia}" />
+          <inertia ixx="${I.xx}"
+            ixy="${I.xy}"
+            ixz="${I.xz}"
+            iyy="${I.yy}"
+            iyz="${I.yz}"
+            izz="${I.zz}" />
+        </xacro:if>
+      </inertial>
+    </xacro:if>
+  </xacro:macro>
+
+  <!-- ========================================================== -->
+  <!-- Adds the required tags to simulate one joint in gazebo     -->
+  <!--                                                            -->
+  <!-- joint - Name of the fer joint to simulate                  -->
+  <!-- transmission - type of the transmission of the joint       -->
+  <!-- ========================================================== -->
+  <xacro:macro name="gazebo-joint"
+    params="joint transmission:=hardware_interface/EffortJointInterface">
+    <gazebo reference="${joint}">
+      <!-- Needed for ODE to output external wrenches on joints -->
+      <provideFeedback>true</provideFeedback>
+      <preserveFixedJoint>true</preserveFixedJoint>
+      <disableFixedJointLumping>true</disableFixedJointLumping>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="gazebo-friction"
+    params="link mu">
+    <gazebo reference="${link}">
+      <mu1 value="${mu}" />
+      <mu2 value="${mu}" />
+      <maxContacts>10</maxContacts>
+      <minDepth>0.0001</minDepth>
+      <maxVel>0.01</maxVel>
+      <selfCollide value="True" />
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="sphere-link"
+    params="
+name prefix:='' mass:=1e-5 radius:=0.01 xyz:='0 0 0' rpy:='0 0 0' collision:=true mu:=1.0 material_name:=metal mu:=0.85 gazebo:=false
+">
+    <link name="${prefix}${name}">
+      <visual name="${prefix}${name}_vis">
+        <origin xyz="${xyz}"
+          rpy="${rpy}" />
+        <geometry>
+          <sphere radius="${radius}" />
+        </geometry>
+        <xacro:material-color material_name="${material_name}" />
+      </visual>
+
+      <xacro:if value="${collision}">
+        <collision name="${prefix}${name}_col">
+          <origin xyz="${xyz}"
+            rpy="${rpy}" />
+          <geometry>
+            <sphere radius="${radius}" />
+          </geometry>
+        </collision>
+      </xacro:if>
+      <xacro:inertia-cylinder mass="${mass}"
+        radius="${radius}"
+        h="${radius}" />
+    </link>
+    <xacro:if value="${gazebo}">
+      <xacro:gazebo-friction link="${prefix}${name}"
+        mu="${mu}" />
+    </xacro:if>
+  </xacro:macro>
+  <!-- ========================================================== -->
+  <!-- Macro to add a single link, both with                      -->
+  <!--  * detailed meshes for environmental collision checking    -->
+  <!--  * and coarse geometry models for self-collision checking  -->
+  <!--    (only if 'gazebo' param is set)                         -->
+  <!--                                                            -->
+  <!-- name:  Name of the end-effector (without prefix)             -->
+  <!-- rpy:   Rotation of the *_sc link relative to parent [rad]  -->
+  <!-- self_collision_geometries:  self <collision> models        -->
+  <!-- ========================================================== -->
+  <xacro:macro name="hand-link"
+    params="name prefix:='' material_name:=metal mu:=0.85 gazebo:=false  mesh_scale:='1 1 1'">
+    <link name="${prefix}${name}">
+      <visual name="${prefix}${name}_vis">
+        <geometry>
+          <mesh
+            filename="package://${description_pkg}/meshes/robot_hands/${hand_id}/visual/${prefix}${name}.stl"
+            scale="${mesh_scale}" />
+        </geometry>
+        <xacro:material-color material_name="${material_name}" />
+      </visual>
+      <collision name="${prefix}${name}_col">
+        <geometry>
+          <mesh
+            filename="package://${description_pkg}/meshes/robot_hands/${hand_id}/collision/${prefix}${name}.stl"
+            scale="${mesh_scale}" />
+        </geometry>
+      </collision>
+      <xacro:hand-inertials name="${prefix}${name}" />
+      <xacro:if value="${gazebo}">
+        <xacro:gazebo-friction link="${prefix}${name}"
+          mu="${mu}" />
+      </xacro:if>
+    </link>
+  </xacro:macro>
+
+  <!-- =========================================================== -->
+  <!-- Add a <collision> tag with a capsule, made from a cylinder  -->
+  <!-- with two spheres at its caps. The capsule will always be    -->
+  <!-- aligned with the axis of 'direction' you pass along.        -->
+  <!--                                                             -->
+  <!-- radius: Radii of both the cylinder and both spheres [m]     -->
+  <!-- length: Length of the cylinder/distance between the centers -->
+  <!--         of the spheres. NOT overall length of capsule!      -->
+  <!-- xyz:    Position of the center of the capsule/cylinder      -->
+  <!-- direction: One of { x, y, z, -x, -y, -z }                   -->
+  <!-- =========================================================== -->
+  <xacro:macro name="collision-capsule"
+    params="radius length xyz:='0 0 0' direction:='z'">
+    <xacro:property name="r"
+      value="${pi/2.0 if 'y' in direction else 0}" />
+    <xacro:property name="p"
+      value="${pi/2.0 if 'x' in direction else 0}" />
+    <xacro:property name="y"
+      value="0" />
+    <xacro:property name="x"
+      value="${xyz.split(' ')[0]}" />
+    <xacro:property name="y"
+      value="${xyz.split(' ')[1]}" />
+    <xacro:property name="z"
+      value="${xyz.split(' ')[2]}" />
+    <!-- Sphere center offsets from center of cylinder -->
+    <xacro:property name="sx"
+      value="${length / 2.0 if 'x' in direction else 0}" />
+    <xacro:property name="sy"
+      value="${length / 2.0 if 'y' in direction else 0}" />
+    <xacro:property name="sz"
+      value="${length / 2.0 if 'z' in direction else 0}" />
+
+    <collision>
+      <origin xyz="${x} ${y} ${z}"
+        rpy="${r} ${p} ${y}" />
+      <geometry>
+        <cylinder radius="${radius}"
+          length="${length}" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="${x+sx} ${y+sy} ${z+sz}" />
+      <geometry>
+        <sphere radius="${radius}" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="${x-sx} ${y-sy} ${z-sz}" />
+      <geometry>
+        <sphere radius="${radius}" />
+      </geometry>
+    </collision>
+  </xacro:macro>
+
+
+  <!-- ========================================================================= -->
+  <!-- Adds the <limit ... /> & <safety_controller/> tags given a config file    -->
+  <!-- of joint limits                                                           -->
+  <!--                                                                           -->
+  <!-- config - YAML struct defining joint limits (e.g. fer/joint_limits.yaml)   -->
+  <!-- name   - Name of the joint for which to add limits to                     -->
+  <!-- ========================================================================= -->
+  <xacro:macro name="hand-limits"
+    params="config name joint_type">
+    <xacro:property name="limits"
+      value="${config[name]['limit']}"
+      lazy_eval="false" />
+    <xacro:if value="${joint_type == 'continuous'}">
+      <limit effort="${limits.effort}"
+        velocity="${limits.velocity}" />
+    </xacro:if>
+    <xacro:unless value="${joint_type == 'continuous'}">
+      <limit lower="${limits.lower*pi/180}"
+        upper="${limits.upper*pi/180}"
+        effort="${limits.effort}"
+        velocity="${limits.velocity}" />
+    </xacro:unless>
+  </xacro:macro>
+
+  <!-- ========================================================================= -->
+  <!-- Adds the <dynamics ... /> tag given a config file of joint dynamics       -->
+  <!--                                                                           -->
+  <!-- config - YAML struct defining joint dynamics (e.g. fer/dynamics.yaml)     -->
+  <!-- name   - Name of the joint for which to add dynamics to                   -->
+  <!-- ========================================================================= -->
+  <xacro:macro name="hand-dynamics"
+    params="config name">
+    <xacro:property name="dynamics"
+      value="${config[name]['dynamic']}"
+      lazy_eval="false" />
+    <dynamics damping="${dynamics.damping}"
+      friction="${dynamics.friction}" />
+  </xacro:macro>
+
+  <!-- ========================================================================= -->
+  <!-- Adds the <kinematics ... /> tag given a config file of joint kinematics   -->
+  <!--                                                                           -->
+  <!-- config - YAML struct defining joint kinematics (e.g. fer/kinematics.yaml) -->
+  <!-- name   - Name of the joint for which to add kinematics to                 -->
+  <!-- ========================================================================= -->
+  <xacro:macro name="hand-kinematics"
+    params="config name">
+    <xacro:property name="kinematics"
+      value="${config[name]['kinematic']}"
+      lazy_eval="false" />
+    <origin rpy="${kinematics.roll} ${kinematics.pitch} ${kinematics.yaw}"
+      xyz="${kinematics.x} ${kinematics.y} ${kinematics.z}" />
+    <axis xyz="${kinematics.axis}" />
+  </xacro:macro>
+
+  <xacro:macro name="hand-link-properties"
+    params="config name">
+    <xacro:property name="origin"
+      value="${config[name]['origin']}"
+      lazy_eval="false" />
+    <origin rpy="${origin.roll} ${origin.pitch} ${origin.yaw}"
+      xyz="${origin.x} ${origin.y} ${origin.z}" />
+  </xacro:macro>
+
+  <xacro:macro name="hand-joint"
+    params="
+  parent
+  child
+  joint_name
+  joint_type
+  joint_limits
+  inertials
+  kinematics
+  dynamics mimic_joint:=none multiplier:=1 mimic_offset:=0 ros2_control_plugin:=gazebo
+">
+    <joint name="${joint_name}"
+      type="${joint_type}">
+      <parent link="${parent}" />
+      <child link="${child}" />
+      <xacro:hand-kinematics name="${joint_name}"
+        config="${kinematics}" />
+      <xacro:unless value="${joint_type == 'fixed' or joint_type == 'floating'}">
+        <xacro:hand-limits name="${joint_name}"
+          config="${joint_limits}"
+          joint_type="${joint_type}" />
+      </xacro:unless>
+      <xacro:unless value="${joint_type == 'fixed'}">
+        <xacro:hand-dynamics name="${joint_name}"
+          config="${dynamics}" />
+        <xacro:unless value="${mimic_joint == 'none'}">
+          <mimic joint="${mimic_joint}"
+            multiplier="${multiplier}"
+            offset="${mimic_offset}" />
+        </xacro:unless>
+      </xacro:unless>
+    </joint>
+    <xacro:unless value="${joint_type == 'fixed'}">
+      <xacro:if value="${'gazebo' in '$(arg ros2_control_plugin)'}">
+        <xacro:gazebo-joint joint="${joint_name}" />
+      </xacro:if>
+    </xacro:unless>
+  </xacro:macro>
+</robot>

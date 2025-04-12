@@ -1,0 +1,397 @@
+/mujoco_ros2_control:
+  ros__parameters:
+    diagnostic_updater:
+      period: 0.05
+    realtime_loop_frequency:
+      min_freq: 990.0
+      max_freq: 1010.0
+      tolerance: 0.01
+      window_size: 50
+    update_frequency:
+      min_freq: 270.0
+      max_freq: 330.0
+      tolerance: 0.01
+      window_size: 50
+    update_timestamp:
+      min_acceptable: 0.001
+      max_acceptable: 0.006
+    bound_cpu_id: 2
+    actuator_pid_gains:
+      head1_y_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      head2_p_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      l_arm1_shoulder_p_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      l_arm2_shoulder_r_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      l_arm3_shoulder_y_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      l_arm4_elbow_p_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      l_arm5_wrist_y_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      l_arm6_wrist_p_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      l_arm7_wrist_r_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      l_leg1_hip_y_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      l_leg2_hip_r_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      l_leg3_hip_p_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      l_leg4_knee_p_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      l_leg5_ankle_p_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      l_leg6_ankle_r_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      l_index_mcp_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      l_index_pip_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      l_middle_mcp_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      l_middle_pip_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      l_pinky_mcp_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      l_pinky_pip_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      l_ring_mcp_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      l_ring_pip_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      l_thumb_cmc_p_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      l_thumb_cmc_y_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      l_thumb_ip_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      l_thumb_mcp_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      r_arm1_shoulder_p_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      r_arm2_shoulder_r_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      r_arm3_shoulder_y_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      r_arm4_elbow_p_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      r_arm5_wrist_y_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      r_arm6_wrist_p_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      r_arm7_wrist_r_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      r_leg1_hip_y_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      r_leg2_hip_r_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      r_leg3_hip_p_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      r_leg4_knee_p_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      r_leg5_ankle_p_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      r_leg6_ankle_r_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      r_index_mcp_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      r_index_pip_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      r_middle_mcp_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      r_middle_pip_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      r_pinky_mcp_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      r_pinky_pip_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      r_ring_mcp_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      r_ring_pip_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      r_thumb_cmc_p_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      r_thumb_cmc_y_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      r_thumb_ip_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      r_thumb_mcp_actuator:
+        antiwindup: false
+        d: 1.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 50.0
+      waist1_y_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+      waist2_p_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0

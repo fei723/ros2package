@@ -1,0 +1,152 @@
+#### left leg ####
+l_leg1_hip_y_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+l_leg2_hip_r_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+l_leg3_hip_p_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+l_leg4_knee_p_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+l_leg5_ankle_p_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+l_leg6_ankle_r_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+
+#### right leg ####
+r_leg1_hip_y_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+r_leg2_hip_r_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+r_leg3_hip_p_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+r_leg4_knee_p_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+r_leg5_ankle_p_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+r_leg6_ankle_r_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+
+#### waist ####
+waist1_y_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+waist2_p_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+
+# torso_fixed_joint:
+#   dynamic:
+#     damping: 0.003
+#     friction: 0.2
+
+#### head ####
+# neck_roll_joint:
+#   dynamic:
+#     damping: 0.003
+#     friction: 0.2
+
+# neck_pitch_joint:
+#   dynamic:
+#     damping: 0.003
+#     friction: 0.2
+
+# neck_yaw_joint:
+#   dynamic:
+#     damping: 0.003
+#     friction: 0.2
+
+#### left arm ####
+l_arm1_shoulder_p_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+l_arm2_shoulder_r_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+l_arm3_shoulder_y_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+l_arm4_elbow_p_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+l_arm5_wrist_y_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+l_arm6_wrist_r_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+l_arm7_wrist_p_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+
+# l_end_effector_joint:
+#   dynamic:
+#     damping: 0.003
+#     friction: 0.2
+
+#### right arm ####
+r_arm1_shoulder_p_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+r_arm2_shoulder_r_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+r_arm3_shoulder_y_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+r_arm4_elbow_p_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+r_arm5_wrist_y_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+r_arm6_wrist_r_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+r_arm7_wrist_p_joint:
+  dynamic:
+    damping: 0.0
+    friction: 0.0
+
+# r_end_effector_joint:
+#   dynamic:
+#     damping: 0.003
+#     friction: 0.2

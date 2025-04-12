@@ -1,0 +1,277 @@
+<?xml version="1.0"?>
+<!-- Xacro for GR1T2 head -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!--                   -->
+  <!-- Imported elements -->
+  <!--                   -->
+  <xacro:include filename="$(find human_description)/robot_hands/common/utils.xacro" />
+
+
+  <xacro:macro name="m92c_hand"
+    params="robot_id hand_id mesh_scale:='1 1 1' description_pkg:='human_description' prefix:='' connected_to:='base_link' joint_fixed:=false
+      joint_limits
+      inertials
+      kinematics
+      dynamics with_sc:=false ros2_control_plugin:='fake'
+  ">
+    <xacro:property name="gazebo"
+      value="$(eval 'true' if ros2_control_plugin == 'gazebo' else 'false')" />
+
+    <xacro:property name="mimic_offset"
+      value="0.3017" />
+    <xacro:if value="${prefix == 'r_'}">
+      <xacro:property name="mimic_offset"
+        value="-0.3017" />
+    </xacro:if>
+
+    <xacro:if value="${joint_fixed}">
+      <xacro:property name="joint_type"
+        value="fixed" />
+    </xacro:if>
+    <xacro:unless value="${joint_fixed}">
+      <xacro:property name="joint_type"
+        value="revolute" />
+    </xacro:unless>
+
+    <xacro:property name="joint0"
+      value="hand_palm" />
+
+    <xacro:property name="joint1_1"
+      value="thumb_cmc_y" />
+    <xacro:property name="joint1_2"
+      value="thumb_cmc_p" />
+    <xacro:property name="joint1_3"
+      value="thumb_mcp" />
+    <xacro:property name="joint1_4"
+      value="thumb_ip" />
+
+    <xacro:property name="joint2_1"
+      value="index_mcp" />
+    <xacro:property name="joint2_2"
+      value="index_pip" />
+
+    <xacro:property name="joint3_1"
+      value="middle_mcp" />
+    <xacro:property name="joint3_2"
+      value="middle_pip" />
+
+    <xacro:property name="joint4_1"
+      value="ring_mcp" />
+    <xacro:property name="joint4_2"
+      value="ring_pip" />
+
+    <xacro:property name="joint5_1"
+      value="pinky_mcp" />
+    <xacro:property name="joint5_2"
+      value="pinky_pip" />
+
+    <!-- hand palm -->
+    <xacro:sphere-link name="${joint0}_link"
+      prefix="${prefix}"
+      radius="0.005"
+      material_name="yellow"
+      gazebo="${gazebo}" />
+    <xacro:hand-joint joint_name="${prefix}${joint0}_fixed_joint"
+      joint_type="fixed"
+      parent="${connected_to}"
+      child="${prefix}${joint0}_link"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}" />
+
+    <!-- thumb -->
+    <xacro:hand-link name="${joint1_1}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}"
+      mesh_scale="${mesh_scale}" />
+    <xacro:hand-joint joint_name="${prefix}${joint1_1}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint0}_link"
+      child="${prefix}${joint1_1}_link"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}" />
+
+    <xacro:hand-link name="${joint1_2}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}"
+      mesh_scale="${mesh_scale}" />
+    <xacro:hand-joint joint_name="${prefix}${joint1_2}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint1_1}_link"
+      child="${prefix}${joint1_2}_link"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}" />
+
+    <xacro:hand-link name="${joint1_3}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}"
+      mesh_scale="${mesh_scale}" />
+    <xacro:hand-joint joint_name="${prefix}${joint1_3}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint1_2}_link"
+      child="${prefix}${joint1_3}_link"
+      mimic_joint="${prefix}${joint1_2}_joint"
+      multiplier="1.257"
+      mimic_offset="-1.192"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}" />
+
+    <xacro:hand-link name="${joint1_4}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}"
+      mesh_scale="${mesh_scale}" />
+    <xacro:hand-joint joint_name="${prefix}${joint1_4}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint1_3}_link"
+      child="${prefix}${joint1_4}_link"
+      mimic_joint="${prefix}${joint1_2}_joint"
+      multiplier="1.009"
+      mimic_offset="-0.85"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}" />
+
+    <!-- index -->
+    <xacro:hand-link name="${joint2_1}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}"
+      mesh_scale="${mesh_scale}" />
+    <xacro:hand-joint joint_name="${prefix}${joint2_1}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint0}_link"
+      child="${prefix}${joint2_1}_link"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}" />
+
+    <xacro:hand-link name="${joint2_2}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}"
+      mesh_scale="${mesh_scale}" />
+    <xacro:hand-joint joint_name="${prefix}${joint2_2}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint2_1}_link"
+      child="${prefix}${joint2_2}_link"
+      mimic_joint="${prefix}${joint2_1}_joint"
+      multiplier="0.9845"
+      mimic_offset="${mimic_offset}"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}" />
+
+    <!-- middle -->
+    <xacro:hand-link name="${joint3_1}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}"
+      mesh_scale="${mesh_scale}" />
+    <xacro:hand-joint joint_name="${prefix}${joint3_1}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint0}_link"
+      child="${prefix}${joint3_1}_link"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}" />
+
+    <xacro:hand-link name="${joint3_2}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}"
+      mesh_scale="${mesh_scale}" />
+    <xacro:hand-joint joint_name="${prefix}${joint3_2}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint3_1}_link"
+      child="${prefix}${joint3_2}_link"
+      mimic_joint="${prefix}${joint3_1}_joint"
+      multiplier="0.9845"
+      mimic_offset="${mimic_offset}"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}" />
+
+    <!-- ring -->
+    <xacro:hand-link name="${joint4_1}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}"
+      mesh_scale="${mesh_scale}" />
+    <xacro:hand-joint joint_name="${prefix}${joint4_1}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint0}_link"
+      child="${prefix}${joint4_1}_link"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}" />
+
+    <xacro:hand-link name="${joint4_2}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}"
+      mesh_scale="${mesh_scale}" />
+    <xacro:hand-joint joint_name="${prefix}${joint4_2}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint4_1}_link"
+      child="${prefix}${joint4_2}_link"
+      mimic_joint="${prefix}${joint4_1}_joint"
+      multiplier="0.9845"
+      mimic_offset="${mimic_offset}"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}" />
+
+
+    <!-- pinky -->
+    <xacro:hand-link name="${joint5_1}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}"
+      mesh_scale="${mesh_scale}" />
+    <xacro:hand-joint joint_name="${prefix}${joint5_1}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint0}_link"
+      child="${prefix}${joint5_1}_link"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}" />
+
+    <xacro:hand-link name="${joint5_2}_link"
+      prefix="${prefix}"
+      material_name="metal"
+      gazebo="${gazebo}"
+      mesh_scale="${mesh_scale}" />
+    <xacro:hand-joint joint_name="${prefix}${joint5_2}_joint"
+      joint_type="${joint_type}"
+      parent="${prefix}${joint5_1}_link"
+      child="${prefix}${joint5_2}_link"
+      mimic_joint="${prefix}${joint5_1}_joint"
+      multiplier="0.9845"
+      mimic_offset="${mimic_offset}"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}" />
+
+  </xacro:macro>
+</robot>

@@ -1,0 +1,117 @@
+# This config file is used by ros2_control
+controller_manager:
+  ros__parameters:
+    update_rate: 300 # Hz
+    cycle_time_error_threshold: 0.03
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    body_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    head_imu_broadcaster:
+      type: imu_sensor_broadcaster/IMUSensorBroadcaster
+
+    trunk_imu_broadcaster:
+      type: imu_sensor_broadcaster/IMUSensorBroadcaster
+
+    l_arm_fts_broadcaster:
+      type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
+
+    r_arm_fts_broadcaster:
+      type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
+
+l_arm_fts_broadcaster:
+  ros__parameters:
+    interface_names.force.x: l_arm_fts/force.x
+    interface_names.force.y: l_arm_fts/force.y
+    interface_names.force.z: l_arm_fts/force.z
+    interface_names.torque.x: l_arm_fts/torque.x
+    interface_names.torque.y: l_arm_fts/torque.y
+    interface_names.torque.z: l_arm_fts/torque.z
+    frame_id: l_arm_force_sensor_link
+
+r_arm_fts_broadcaster:
+  ros__parameters:
+    interface_names.force.x: r_arm_fts/force.x
+    interface_names.force.y: r_arm_fts/force.y
+    interface_names.force.z: r_arm_fts/force.z
+    interface_names.torque.x: r_arm_fts/torque.x
+    interface_names.torque.y: r_arm_fts/torque.y
+    interface_names.torque.z: r_arm_fts/torque.z
+    frame_id: r_arm_force_sensor_link
+
+head_imu_broadcaster:
+  ros__parameters:
+    frame_id: head_imu_frame
+    sensor_name: head_imu
+    static_covariance_orientation: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    static_covariance_angular_velocity:
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    static_covariance_linear_acceleration:
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+trunk_imu_broadcaster:
+  ros__parameters:
+    frame_id: trunk_imu_frame
+    sensor_name: trunk_imu
+    static_covariance_orientation: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    static_covariance_angular_velocity:
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    static_covariance_linear_acceleration:
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+body_controller:
+  ros__parameters:
+    joints:
+      - waist1_y_joint
+      - waist2_p_joint
+      - l_leg1_hip_y_joint
+      - l_leg2_hip_r_joint
+      - l_leg3_hip_p_joint
+      - l_leg4_knee_p_joint
+      - l_leg5_ankle_p_joint
+      - l_leg6_ankle_r_joint
+      - r_leg1_hip_y_joint
+      - r_leg2_hip_r_joint
+      - r_leg3_hip_p_joint
+      - r_leg4_knee_p_joint
+      - r_leg5_ankle_p_joint
+      - r_leg6_ankle_r_joint
+      - l_arm1_shoulder_p_joint
+      - l_arm2_shoulder_r_joint
+      - l_arm3_shoulder_y_joint
+      - l_arm4_elbow_p_joint
+      - l_arm5_wrist_y_joint
+      - l_arm6_wrist_p_joint
+      - l_arm7_wrist_r_joint
+      - r_arm1_shoulder_p_joint
+      - r_arm2_shoulder_r_joint
+      - r_arm3_shoulder_y_joint
+      - r_arm4_elbow_p_joint
+      - r_arm5_wrist_y_joint
+      - r_arm6_wrist_p_joint
+      - r_arm7_wrist_r_joint
+      - head1_y_joint
+      - head2_p_joint
+      - l_thumb_cmc_y_joint
+      - l_thumb_cmc_p_joint
+      - l_index_mcp_joint
+      - l_middle_mcp_joint
+      - l_ring_mcp_joint
+      - l_pinky_mcp_joint
+      - r_thumb_cmc_y_joint
+      - r_thumb_cmc_p_joint
+      - r_index_mcp_joint
+      - r_middle_mcp_joint
+      - r_ring_mcp_joint
+      - r_pinky_mcp_joint
+    command_interfaces:
+      - position
+      # - effort
+    state_interfaces:
+      - position
+      - velocity
+    open_loop_control: true
+    allow_partial_joints_goal: true

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="robot_sensors_ros2_control"
+    params="name plugin:=fake ">
+    <ros2_control name="${name}"
+      type="system">
+      <xacro:ros2_control-hardware plugin="${plugin}" />
+      <joint name="head_imu" />
+      <xacro:ros2_control-sensor_imu sensor_name="head_imu" frame_id="head_imu_frame" />
+      <xacro:ros2_control-sensor_imu sensor_name="trunk_imu" frame_id="trunk_imu_frame" />
+      <xacro:ros2_control-sensor-force-torque sensor_name="l_arm_fts"
+        frame_id="l_arm_force_sensor_link" />
+      <xacro:ros2_control-sensor-force-torque sensor_name="r_arm_fts"
+        frame_id="r_arm_force_sensor_link" />
+    </ros2_control>
+  </xacro:macro>
+</robot>

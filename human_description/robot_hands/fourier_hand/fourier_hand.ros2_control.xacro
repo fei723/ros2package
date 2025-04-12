@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="fourier_hand_ros2_control"
+    params="name prefix:='' plugin:=fake transmission_type:=simple command_interface:=effort initial_positions">
+    <ros2_control name="${name}"
+      type="system">
+      <xacro:ros2_control-hardware plugin="${plugin}" />
+
+      <xacro:if value="${transmission_type == 'simple'}">
+        <xacro:ros2_control-simple_transmission joint_name="${prefix}thumb_mcp_yaw"
+          initial_positions="${initial_positions}"
+          act_reduction="1.0"
+          jnt_reduction="1.0" />
+
+        <xacro:ros2_control-simple_transmission joint_name="${prefix}thumb_mcp_pitch"
+          initial_positions="${initial_positions}"
+          act_reduction="1.0"
+          jnt_reduction="1.0" />
+
+        <xacro:ros2_control-simple_transmission joint_name="${prefix}thumb_dip"
+          initial_positions="${initial_positions}"
+          mimic_joint="${prefix}thumb_mcp_pitch_joint"
+          act_reduction="1.0"
+          jnt_reduction="1.0" />
+
+        <xacro:ros2_control-simple_transmission joint_name="${prefix}index_mcp"
+          initial_positions="${initial_positions}"
+          act_reduction="1.0"
+          jnt_reduction="1.0" />
+
+        <xacro:ros2_control-simple_transmission joint_name="${prefix}index_dip"
+          initial_positions="${initial_positions}"
+          mimic_joint="${prefix}index_mcp_joint"
+          act_reduction="1.0"
+          jnt_reduction="1.0" />
+
+        <xacro:ros2_control-simple_transmission joint_name="${prefix}middle_mcp"
+          initial_positions="${initial_positions}"
+          act_reduction="1.0"
+          jnt_reduction="1.0" />
+
+        <xacro:ros2_control-simple_transmission joint_name="${prefix}middle_dip"
+          initial_positions="${initial_positions}"
+          mimic_joint="${prefix}middle_mcp_joint"
+          act_reduction="1.0"
+          jnt_reduction="1.0" />
+
+        <xacro:ros2_control-simple_transmission joint_name="${prefix}pinky_mcp"
+          initial_positions="${initial_positions}"
+          act_reduction="1.0"
+          jnt_reduction="1.0" />
+
+        <xacro:ros2_control-simple_transmission joint_name="${prefix}pinky_dip"
+          initial_positions="${initial_positions}"
+          mimic_joint="${prefix}pinky_mcp_joint"
+          act_reduction="1.0"
+          jnt_reduction="1.0" />
+
+        <xacro:ros2_control-simple_transmission joint_name="${prefix}ring_mcp"
+          initial_positions="${initial_positions}"
+          act_reduction="1.0"
+          jnt_reduction="1.0" />
+
+        <xacro:ros2_control-simple_transmission joint_name="${prefix}ring_dip"
+          initial_positions="${initial_positions}"
+          mimic_joint="${prefix}ring_mcp_joint"
+          act_reduction="1.0"
+          jnt_reduction="1.0" />
+      </xacro:if>
+    </ros2_control>
+  </xacro:macro>
+</robot>

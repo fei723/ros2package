@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!-- Macros that add Ignition Gazebo plugins for Ginger -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="ign_ros2_control"
+        params="
+   controller_parameters
+  ">
+        <gazebo>
+            <plugin filename="ign_ros2_control-system"
+                name="ign_ros2_control::IgnitionROS2ControlPlugin">
+                <parameters>${controller_parameters}</parameters>
+            </plugin>
+        </gazebo>
+    </xacro:macro>
+
+    <xacro:macro name="gazebo_ros2_control"
+        params="
+   controller_parameters
+  ">
+        <gazebo>
+            <plugin filename="ign_ros2_control-system"
+                name="ign_ros2_control::IgnitionROS2ControlPlugin">
+                <parameters>${controller_parameters}</parameters>
+            </plugin>
+            <self_collide>false</self_collide>
+        </gazebo>
+    </xacro:macro>
+
+    <xacro:macro name="mujoco_ros2_control"
+        params=" robot_id
+   controller_parameters
+  ">
+        <mujoco>
+            <compiler balanceinertia="true"
+                discardvisual="true"
+                fusestatic="false"
+                meshdir="../../meshes/${robot_id}/visual"
+                texturedir="../../textures/"
+                strippath="true"
+                angle="degree"
+                eulerseq="xyz"
+                convexhull="true" />
+            <option timestep="0.001"
+                collision="all" />
+        </mujoco>
+    </xacro:macro>
+
+    <xacro:macro name="webots_ros2_control"
+        params="
+  controller_parameters
+ ">
+        <webots>
+            <plugin type="webots_ros2_control::Ros2Control" />
+        </webots>
+    </xacro:macro>
+</robot>

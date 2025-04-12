@@ -1,0 +1,1579 @@
+format: "xrdf"
+
+format_version: 1.0
+
+default_joint_positions: 
+  head1_y_joint: 0
+  head2_p_joint: 0
+  l_arm1_shoulder_p_joint: 0
+  l_arm2_shoulder_r_joint: 0
+  l_arm3_shoulder_y_joint: 0
+  l_arm4_elbow_p_joint: -0.5
+  l_arm5_wrist_y_joint: 0
+  l_arm6_wrist_p_joint: 0
+  l_arm7_wrist_r_joint: 0
+  l_index_mcp_joint: 0
+  l_leg1_hip_y_joint: 0
+  l_leg2_hip_r_joint: 0
+  l_leg3_hip_p_joint: 0
+  l_leg4_knee_p_joint: 0
+  l_leg5_ankle_p_joint: 0
+  l_leg6_ankle_r_joint: 0
+  l_middle_mcp_joint: 0
+  l_pinky_mcp_joint: 0
+  l_ring_mcp_joint: 0
+  l_thumb_cmc_p_joint: 0
+  l_thumb_cmc_y_joint: 0
+  r_arm1_shoulder_p_joint: 0
+  r_arm2_shoulder_r_joint: 0
+  r_arm3_shoulder_y_joint: 0
+  r_arm4_elbow_p_joint: -0.5
+  r_arm5_wrist_y_joint: 0
+  r_arm6_wrist_p_joint: 0
+  r_arm7_wrist_r_joint: 0
+  r_index_mcp_joint: 0
+  r_leg1_hip_y_joint: 0
+  r_leg2_hip_r_joint: 0
+  r_leg3_hip_p_joint: 0
+  r_leg4_knee_p_joint: 0
+  r_leg5_ankle_p_joint: 0
+  r_leg6_ankle_r_joint: 0
+  r_middle_mcp_joint: 0
+  r_pinky_mcp_joint: 0
+  r_ring_mcp_joint: 0
+  r_thumb_cmc_p_joint: 0
+  r_thumb_cmc_y_joint: 0
+  waist1_y_joint: 0
+  waist2_p_joint: 0
+
+cspace: 
+  joint_names: 
+    - "r_arm1_shoulder_p_joint"
+    - "r_arm2_shoulder_r_joint"
+    - "r_arm3_shoulder_y_joint"
+    - "r_arm4_elbow_p_joint"
+    - "r_arm5_wrist_y_joint"
+    - "r_arm6_wrist_p_joint"
+    - "r_arm7_wrist_r_joint"
+    - "waist1_y_joint"
+    - "waist2_p_joint"
+    - "l_leg1_hip_y_joint"
+    - "l_leg2_hip_r_joint"
+    - "l_leg3_hip_p_joint"
+    - "l_leg4_knee_p_joint"
+    - "l_leg5_ankle_p_joint"
+    - "l_leg6_ankle_r_joint"
+    - "r_leg1_hip_y_joint"
+    - "r_leg2_hip_r_joint"
+    - "r_leg3_hip_p_joint"
+    - "r_leg4_knee_p_joint"
+    - "r_leg5_ankle_p_joint"
+    - "r_leg6_ankle_r_joint"
+    - "l_arm1_shoulder_p_joint"
+    - "l_arm2_shoulder_r_joint"
+    - "l_arm3_shoulder_y_joint"
+    - "l_arm4_elbow_p_joint"
+    - "l_arm5_wrist_y_joint"
+    - "l_arm6_wrist_p_joint"
+    - "l_arm7_wrist_r_joint"
+    - "head1_y_joint"
+    - "head2_p_joint"
+    - "l_thumb_cmc_y_joint"
+    - "l_thumb_cmc_p_joint"
+    - "l_index_mcp_joint"
+    - "l_middle_mcp_joint"
+    - "l_ring_mcp_joint"
+    - "l_pinky_mcp_joint"
+    - "r_thumb_cmc_y_joint"
+    - "r_thumb_cmc_p_joint"
+    - "r_index_mcp_joint"
+    - "r_middle_mcp_joint"
+    - "r_ring_mcp_joint"
+    - "r_pinky_mcp_joint"
+
+  acceleration_limits: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+  jerk_limits: [10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000]
+
+
+
+tool_frames: ["r_end_effector_frame"]
+
+collision: 
+  geometry: "auto_generated_collision_sphere_group"
+
+self_collision: 
+  geometry: "auto_generated_collision_sphere_group"
+  ignore: 
+    base_link: 
+      - "head1_y_link"
+      - "head2_p_link"
+      - "head_camera_link"
+      - "l_arm1_shoulder_p_link"
+      - "l_arm2_shoulder_r_link"
+      - "l_arm3_shoulder_y_link"
+      - "l_arm4_elbow_p_link"
+      - "l_leg1_hip_y_link"
+      - "l_leg2_hip_r_link"
+      - "l_leg4_knee_p_link"
+      - "l_leg5_ankle_p_link"
+      - "l_leg6_ankle_r_link"
+      - "r_arm1_shoulder_p_link"
+      - "r_arm2_shoulder_r_link"
+      - "r_arm3_shoulder_y_link"
+      - "r_arm4_elbow_p_link"
+      - "r_leg1_hip_y_link"
+      - "r_leg2_hip_r_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    head1_y_link: 
+      - "head2_p_link"
+      - "head_camera_link"
+      - "l_arm1_shoulder_p_link"
+      - "l_arm2_shoulder_r_link"
+      - "l_arm3_shoulder_y_link"
+      - "l_leg1_hip_y_link"
+      - "l_leg2_hip_r_link"
+      - "l_leg3_hip_p_link"
+      - "l_leg4_knee_p_link"
+      - "l_leg5_ankle_p_link"
+      - "l_leg6_ankle_r_link"
+      - "r_arm1_shoulder_p_link"
+      - "r_arm2_shoulder_r_link"
+      - "r_arm3_shoulder_y_link"
+      - "r_leg1_hip_y_link"
+      - "r_leg2_hip_r_link"
+      - "r_leg3_hip_p_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    head2_p_link: 
+      - "head_camera_link"
+      - "l_arm1_shoulder_p_link"
+      - "l_arm2_shoulder_r_link"
+      - "l_leg1_hip_y_link"
+      - "l_leg2_hip_r_link"
+      - "l_leg3_hip_p_link"
+      - "l_leg4_knee_p_link"
+      - "l_leg5_ankle_p_link"
+      - "l_leg6_ankle_r_link"
+      - "r_arm1_shoulder_p_link"
+      - "r_arm2_shoulder_r_link"
+      - "r_leg1_hip_y_link"
+      - "r_leg2_hip_r_link"
+      - "r_leg3_hip_p_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    head_camera_link: 
+      - "l_arm1_shoulder_p_link"
+      - "l_arm2_shoulder_r_link"
+      - "l_leg1_hip_y_link"
+      - "l_leg2_hip_r_link"
+      - "l_leg3_hip_p_link"
+      - "l_leg4_knee_p_link"
+      - "l_leg5_ankle_p_link"
+      - "l_leg6_ankle_r_link"
+      - "r_arm1_shoulder_p_link"
+      - "r_arm2_shoulder_r_link"
+      - "r_index_pip_link"
+      - "r_leg1_hip_y_link"
+      - "r_leg2_hip_r_link"
+      - "r_leg3_hip_p_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "r_thumb_cmc_y_link"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    l_arm1_shoulder_p_link: 
+      - "l_arm2_shoulder_r_link"
+      - "l_arm3_shoulder_y_link"
+      - "l_arm4_elbow_p_link"
+      - "l_arm5_wrist_y_link"
+      - "l_arm6_wrist_p_link"
+      - "l_leg1_hip_y_link"
+      - "l_leg2_hip_r_link"
+      - "l_leg3_hip_p_link"
+      - "l_leg4_knee_p_link"
+      - "l_leg5_ankle_p_link"
+      - "l_leg6_ankle_r_link"
+      - "r_arm1_shoulder_p_link"
+      - "r_arm2_shoulder_r_link"
+      - "r_arm3_shoulder_y_link"
+      - "r_arm4_elbow_p_link"
+      - "r_arm5_wrist_y_link"
+      - "r_arm6_wrist_p_link"
+      - "r_arm7_wrist_r_link"
+      - "r_arm_force_sensor_link"
+      - "r_leg1_hip_y_link"
+      - "r_leg2_hip_r_link"
+      - "r_leg3_hip_p_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    l_arm2_shoulder_r_link: 
+      - "l_arm3_shoulder_y_link"
+      - "l_arm4_elbow_p_link"
+      - "l_arm5_wrist_y_link"
+      - "l_arm6_wrist_p_link"
+      - "l_arm7_wrist_r_link"
+      - "l_leg1_hip_y_link"
+      - "l_leg2_hip_r_link"
+      - "l_leg3_hip_p_link"
+      - "l_leg4_knee_p_link"
+      - "l_leg5_ankle_p_link"
+      - "l_leg6_ankle_r_link"
+      - "l_ring_mcp_link"
+      - "r_arm1_shoulder_p_link"
+      - "r_arm2_shoulder_r_link"
+      - "r_arm3_shoulder_y_link"
+      - "r_arm4_elbow_p_link"
+      - "r_arm5_wrist_y_link"
+      - "r_arm6_wrist_p_link"
+      - "r_arm7_wrist_r_link"
+      - "r_arm_force_sensor_link"
+      - "r_leg1_hip_y_link"
+      - "r_leg2_hip_r_link"
+      - "r_leg3_hip_p_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "r_thumb_cmc_y_link"
+      - "trunk_camera_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    l_arm3_shoulder_y_link: 
+      - "l_arm4_elbow_p_link"
+      - "l_arm5_wrist_y_link"
+      - "l_arm6_wrist_p_link"
+      - "l_arm7_wrist_r_link"
+      - "l_arm_force_sensor_link"
+      - "l_hand_palm_link"
+      - "l_index_mcp_link"
+      - "l_index_pip_link"
+      - "l_leg1_hip_y_link"
+      - "l_leg2_hip_r_link"
+      - "l_leg5_ankle_p_link"
+      - "l_leg6_ankle_r_link"
+      - "l_middle_mcp_link"
+      - "l_middle_pip_link"
+      - "l_pinky_mcp_link"
+      - "l_pinky_pip_link"
+      - "l_ring_mcp_link"
+      - "l_ring_pip_link"
+      - "l_thumb_cmc_p_link"
+      - "l_thumb_cmc_y_link"
+      - "l_thumb_ip_link"
+      - "l_thumb_mcp_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm1_shoulder_p_link"
+      - "r_arm2_shoulder_r_link"
+      - "r_arm3_shoulder_y_link"
+      - "r_arm4_elbow_p_link"
+      - "r_leg1_hip_y_link"
+      - "r_leg2_hip_r_link"
+      - "r_leg3_hip_p_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "trunk_camera_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    l_arm4_elbow_p_link: 
+      - "l_arm5_wrist_y_link"
+      - "l_arm6_wrist_p_link"
+      - "l_arm7_wrist_r_link"
+      - "l_arm_force_sensor_link"
+      - "l_hand_palm_link"
+      - "l_index_mcp_link"
+      - "l_index_pip_link"
+      - "l_leg1_hip_y_link"
+      - "l_leg2_hip_r_link"
+      - "l_leg5_ankle_p_link"
+      - "l_leg6_ankle_r_link"
+      - "l_middle_mcp_link"
+      - "l_middle_pip_link"
+      - "l_pinky_mcp_link"
+      - "l_pinky_pip_link"
+      - "l_ring_mcp_link"
+      - "l_ring_pip_link"
+      - "l_thumb_cmc_p_link"
+      - "l_thumb_cmc_y_link"
+      - "l_thumb_ip_link"
+      - "l_thumb_mcp_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm1_shoulder_p_link"
+      - "r_arm2_shoulder_r_link"
+      - "r_arm3_shoulder_y_link"
+      - "r_arm4_elbow_p_link"
+      - "r_leg1_hip_y_link"
+      - "r_leg2_hip_r_link"
+      - "r_leg3_hip_p_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+    l_arm5_wrist_y_link: 
+      - "l_arm6_wrist_p_link"
+      - "l_arm7_wrist_r_link"
+      - "l_arm_force_sensor_link"
+      - "l_hand_palm_link"
+      - "l_index_mcp_link"
+      - "l_index_pip_link"
+      - "l_leg2_hip_r_link"
+      - "l_leg5_ankle_p_link"
+      - "l_leg6_ankle_r_link"
+      - "l_middle_mcp_link"
+      - "l_middle_pip_link"
+      - "l_pinky_mcp_link"
+      - "l_pinky_pip_link"
+      - "l_ring_mcp_link"
+      - "l_ring_pip_link"
+      - "l_thumb_cmc_p_link"
+      - "l_thumb_cmc_y_link"
+      - "l_thumb_ip_link"
+      - "l_thumb_mcp_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm1_shoulder_p_link"
+      - "r_arm2_shoulder_r_link"
+      - "r_arm3_shoulder_y_link"
+      - "r_leg1_hip_y_link"
+      - "r_leg2_hip_r_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_middle_pip_link"
+    l_arm6_wrist_p_link: 
+      - "l_arm7_wrist_r_link"
+      - "l_arm_force_sensor_link"
+      - "l_hand_palm_link"
+      - "l_index_mcp_link"
+      - "l_index_pip_link"
+      - "l_leg5_ankle_p_link"
+      - "l_middle_mcp_link"
+      - "l_middle_pip_link"
+      - "l_pinky_mcp_link"
+      - "l_pinky_pip_link"
+      - "l_ring_mcp_link"
+      - "l_ring_pip_link"
+      - "l_thumb_cmc_p_link"
+      - "l_thumb_cmc_y_link"
+      - "l_thumb_ip_link"
+      - "l_thumb_mcp_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm1_shoulder_p_link"
+      - "r_arm2_shoulder_r_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_leg2_hip_r_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+    l_arm7_wrist_r_link: 
+      - "l_arm_force_sensor_link"
+      - "l_hand_palm_link"
+      - "l_index_mcp_link"
+      - "l_index_pip_link"
+      - "l_leg5_ankle_p_link"
+      - "l_middle_mcp_link"
+      - "l_middle_pip_link"
+      - "l_pinky_mcp_link"
+      - "l_pinky_pip_link"
+      - "l_ring_mcp_link"
+      - "l_ring_pip_link"
+      - "l_thumb_cmc_p_link"
+      - "l_thumb_cmc_y_link"
+      - "l_thumb_ip_link"
+      - "l_thumb_mcp_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm1_shoulder_p_link"
+      - "r_arm2_shoulder_r_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_leg2_hip_r_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "r_thumb_mcp_link"
+    l_arm_force_sensor_link: 
+      - "l_hand_palm_link"
+      - "l_index_mcp_link"
+      - "l_index_pip_link"
+      - "l_leg5_ankle_p_link"
+      - "l_leg6_ankle_r_link"
+      - "l_middle_mcp_link"
+      - "l_middle_pip_link"
+      - "l_pinky_mcp_link"
+      - "l_pinky_pip_link"
+      - "l_ring_mcp_link"
+      - "l_ring_pip_link"
+      - "l_thumb_cmc_p_link"
+      - "l_thumb_cmc_y_link"
+      - "l_thumb_ip_link"
+      - "l_thumb_mcp_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm7_wrist_r_link"
+      - "r_leg2_hip_r_link"
+      - "r_leg5_ankle_p_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_mcp_link"
+    l_hand_palm_link: 
+      - "l_index_mcp_link"
+      - "l_leg5_ankle_p_link"
+      - "l_middle_mcp_link"
+      - "l_pinky_mcp_link"
+      - "l_ring_mcp_link"
+      - "l_thumb_cmc_p_link"
+      - "l_thumb_cmc_y_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_y_link"
+    l_index_mcp_link: 
+      - "l_index_pip_link"
+      - "l_leg5_ankle_p_link"
+      - "l_middle_mcp_link"
+      - "l_middle_pip_link"
+      - "l_pinky_mcp_link"
+      - "l_pinky_pip_link"
+      - "l_ring_mcp_link"
+      - "l_ring_pip_link"
+      - "l_thumb_cmc_p_link"
+      - "l_thumb_cmc_y_link"
+      - "l_thumb_mcp_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm5_wrist_y_link"
+      - "r_arm_force_sensor_link"
+      - "r_index_pip_link"
+      - "r_leg5_ankle_p_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+      - "trunk_camera_link"
+    l_index_pip_link: 
+      - "l_leg5_ankle_p_link"
+      - "l_middle_mcp_link"
+      - "l_middle_pip_link"
+      - "l_pinky_mcp_link"
+      - "l_pinky_pip_link"
+      - "l_ring_mcp_link"
+      - "l_ring_pip_link"
+      - "l_thumb_cmc_y_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm_force_sensor_link"
+      - "r_hand_palm_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    l_leg1_hip_y_link: 
+      - "l_leg2_hip_r_link"
+      - "l_leg3_hip_p_link"
+      - "l_leg4_knee_p_link"
+      - "l_leg5_ankle_p_link"
+      - "l_leg6_ankle_r_link"
+      - "r_arm1_shoulder_p_link"
+      - "r_arm2_shoulder_r_link"
+      - "r_arm3_shoulder_y_link"
+      - "r_arm4_elbow_p_link"
+      - "r_arm5_wrist_y_link"
+      - "r_arm6_wrist_p_link"
+      - "r_leg1_hip_y_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    l_leg2_hip_r_link: 
+      - "l_leg3_hip_p_link"
+      - "l_leg4_knee_p_link"
+      - "l_leg5_ankle_p_link"
+      - "l_leg6_ankle_r_link"
+      - "r_arm1_shoulder_p_link"
+      - "r_arm2_shoulder_r_link"
+      - "r_arm3_shoulder_y_link"
+      - "r_arm4_elbow_p_link"
+      - "r_arm5_wrist_y_link"
+      - "r_arm6_wrist_p_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    l_leg3_hip_p_link: 
+      - "l_leg4_knee_p_link"
+      - "l_leg5_ankle_p_link"
+      - "l_leg6_ankle_r_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm1_shoulder_p_link"
+      - "r_arm2_shoulder_r_link"
+      - "r_arm3_shoulder_y_link"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    l_leg4_knee_p_link: 
+      - "l_leg5_ankle_p_link"
+      - "l_leg6_ankle_r_link"
+      - "r_arm1_shoulder_p_link"
+      - "r_arm2_shoulder_r_link"
+      - "r_arm3_shoulder_y_link"
+      - "r_leg1_hip_y_link"
+      - "r_leg2_hip_r_link"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    l_leg5_ankle_p_link: 
+      - "l_leg6_ankle_r_link"
+      - "l_middle_mcp_link"
+      - "l_middle_pip_link"
+      - "l_ring_mcp_link"
+      - "l_ring_pip_link"
+      - "l_thumb_cmc_p_link"
+      - "l_thumb_cmc_y_link"
+      - "l_thumb_ip_link"
+      - "l_thumb_mcp_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm1_shoulder_p_link"
+      - "r_arm2_shoulder_r_link"
+      - "r_arm3_shoulder_y_link"
+      - "r_arm4_elbow_p_link"
+      - "r_arm5_wrist_y_link"
+      - "r_arm7_wrist_r_link"
+      - "r_arm_force_sensor_link"
+      - "r_hand_palm_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_leg1_hip_y_link"
+      - "r_leg2_hip_r_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    l_leg6_ankle_r_link: 
+      - "l_thumb_cmc_y_link"
+      - "r_arm1_shoulder_p_link"
+      - "r_arm2_shoulder_r_link"
+      - "r_arm3_shoulder_y_link"
+      - "r_arm4_elbow_p_link"
+      - "r_leg1_hip_y_link"
+      - "r_leg2_hip_r_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    l_middle_mcp_link: 
+      - "l_middle_pip_link"
+      - "l_pinky_mcp_link"
+      - "l_pinky_pip_link"
+      - "l_ring_mcp_link"
+      - "l_ring_pip_link"
+      - "l_thumb_cmc_p_link"
+      - "l_thumb_cmc_y_link"
+      - "l_thumb_mcp_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm5_wrist_y_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+    l_middle_pip_link: 
+      - "l_pinky_mcp_link"
+      - "l_pinky_pip_link"
+      - "l_ring_mcp_link"
+      - "l_ring_pip_link"
+      - "l_thumb_cmc_y_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+    l_pinky_mcp_link: 
+      - "l_pinky_pip_link"
+      - "l_ring_mcp_link"
+      - "l_ring_pip_link"
+      - "l_thumb_cmc_p_link"
+      - "l_thumb_cmc_y_link"
+      - "l_thumb_ip_link"
+      - "l_thumb_mcp_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm6_wrist_p_link"
+      - "r_arm7_wrist_r_link"
+      - "r_arm_force_sensor_link"
+      - "r_hand_palm_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    l_pinky_pip_link: 
+      - "l_ring_mcp_link"
+      - "l_ring_pip_link"
+      - "l_thumb_cmc_p_link"
+      - "l_thumb_cmc_y_link"
+      - "l_thumb_ip_link"
+      - "l_thumb_mcp_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm6_wrist_p_link"
+      - "r_arm7_wrist_r_link"
+      - "r_arm_force_sensor_link"
+      - "r_hand_palm_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_leg5_ankle_p_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    l_ring_mcp_link: 
+      - "l_ring_pip_link"
+      - "l_thumb_cmc_p_link"
+      - "l_thumb_cmc_y_link"
+      - "l_thumb_ip_link"
+      - "l_thumb_mcp_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm5_wrist_y_link"
+      - "r_arm6_wrist_p_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    l_ring_pip_link: 
+      - "l_thumb_cmc_p_link"
+      - "l_thumb_cmc_y_link"
+      - "l_thumb_ip_link"
+      - "l_thumb_mcp_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm5_wrist_y_link"
+      - "r_arm6_wrist_p_link"
+      - "r_hand_palm_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_leg5_ankle_p_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    l_thumb_cmc_p_link: 
+      - "l_thumb_cmc_y_link"
+      - "l_thumb_ip_link"
+      - "l_thumb_mcp_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm_force_sensor_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_leg5_ankle_p_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+    l_thumb_cmc_y_link: 
+      - "l_thumb_ip_link"
+      - "l_thumb_mcp_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm7_wrist_r_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+    l_thumb_ip_link: 
+      - "l_thumb_mcp_link"
+      - "l_wrist_camera1_color_frame"
+      - "r_arm6_wrist_p_link"
+      - "r_arm_force_sensor_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_leg5_ankle_p_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+      - "trunk_camera_link"
+    l_thumb_mcp_link: 
+      - "l_wrist_camera1_color_frame"
+      - "r_arm_force_sensor_link"
+      - "r_index_mcp_link"
+      - "r_leg5_ankle_p_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_wrist_camera1_color_frame"
+    l_wrist_camera1_color_frame: 
+      - "r_index_mcp_link"
+      - "r_leg5_ankle_p_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+    r_arm1_shoulder_p_link: 
+      - "r_arm2_shoulder_r_link"
+      - "r_arm3_shoulder_y_link"
+      - "r_arm4_elbow_p_link"
+      - "r_arm5_wrist_y_link"
+      - "r_arm6_wrist_p_link"
+      - "r_leg1_hip_y_link"
+      - "r_leg2_hip_r_link"
+      - "r_leg3_hip_p_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    r_arm2_shoulder_r_link: 
+      - "r_arm3_shoulder_y_link"
+      - "r_arm4_elbow_p_link"
+      - "r_arm5_wrist_y_link"
+      - "r_arm6_wrist_p_link"
+      - "r_leg1_hip_y_link"
+      - "r_leg2_hip_r_link"
+      - "r_leg3_hip_p_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "r_middle_mcp_link"
+      - "r_ring_mcp_link"
+      - "trunk_camera_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    r_arm3_shoulder_y_link: 
+      - "r_arm4_elbow_p_link"
+      - "r_arm5_wrist_y_link"
+      - "r_arm6_wrist_p_link"
+      - "r_arm7_wrist_r_link"
+      - "r_arm_force_sensor_link"
+      - "r_hand_palm_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_leg1_hip_y_link"
+      - "r_leg2_hip_r_link"
+      - "r_leg3_hip_p_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+      - "trunk_camera_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    r_arm4_elbow_p_link: 
+      - "r_arm5_wrist_y_link"
+      - "r_arm6_wrist_p_link"
+      - "r_arm7_wrist_r_link"
+      - "r_arm_force_sensor_link"
+      - "r_hand_palm_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_leg1_hip_y_link"
+      - "r_leg2_hip_r_link"
+      - "r_leg3_hip_p_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    r_arm5_wrist_y_link: 
+      - "r_arm6_wrist_p_link"
+      - "r_arm7_wrist_r_link"
+      - "r_arm_force_sensor_link"
+      - "r_hand_palm_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_leg5_ankle_p_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    r_arm6_wrist_p_link: 
+      - "r_arm7_wrist_r_link"
+      - "r_arm_force_sensor_link"
+      - "r_hand_palm_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_leg5_ankle_p_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    r_arm7_wrist_r_link: 
+      - "r_arm_force_sensor_link"
+      - "r_hand_palm_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    r_arm_force_sensor_link: 
+      - "r_hand_palm_link"
+      - "r_index_mcp_link"
+      - "r_index_pip_link"
+      - "r_leg5_ankle_p_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    r_hand_palm_link: 
+      - "r_index_mcp_link"
+      - "r_leg5_ankle_p_link"
+      - "r_middle_mcp_link"
+      - "r_pinky_mcp_link"
+      - "r_ring_mcp_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_wrist_camera1_color_frame"
+    r_index_mcp_link: 
+      - "r_index_pip_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    r_index_pip_link: 
+      - "r_leg5_ankle_p_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_y_link"
+      - "r_wrist_camera1_color_frame"
+    r_leg1_hip_y_link: 
+      - "r_leg2_hip_r_link"
+      - "r_leg3_hip_p_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    r_leg2_hip_r_link: 
+      - "r_leg3_hip_p_link"
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    r_leg3_hip_p_link: 
+      - "r_leg4_knee_p_link"
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "r_wrist_camera1_color_frame"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    r_leg4_knee_p_link: 
+      - "r_leg5_ankle_p_link"
+      - "r_leg6_ankle_r_link"
+      - "r_thumb_ip_link"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    r_leg5_ankle_p_link: 
+      - "r_leg6_ankle_r_link"
+      - "r_middle_mcp_link"
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_wrist_camera1_color_frame"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    r_leg6_ankle_r_link: 
+      - "r_middle_pip_link"
+      - "trunk_camera_link"
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    r_middle_mcp_link: 
+      - "r_middle_pip_link"
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    r_middle_pip_link: 
+      - "r_pinky_mcp_link"
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_y_link"
+      - "r_wrist_camera1_color_frame"
+    r_pinky_mcp_link: 
+      - "r_pinky_pip_link"
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    r_pinky_pip_link: 
+      - "r_ring_mcp_link"
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    r_ring_mcp_link: 
+      - "r_ring_pip_link"
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    r_ring_pip_link: 
+      - "r_thumb_cmc_p_link"
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    r_thumb_cmc_p_link: 
+      - "r_thumb_cmc_y_link"
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    r_thumb_cmc_y_link: 
+      - "r_thumb_ip_link"
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    r_thumb_ip_link: 
+      - "r_thumb_mcp_link"
+      - "r_wrist_camera1_color_frame"
+    r_thumb_mcp_link: 
+      - "r_wrist_camera1_color_frame"
+    trunk_camera_link: 
+      - "trunk_link"
+      - "waist1_y_link"
+      - "waist2_p_link"
+    trunk_link: 
+      - "waist1_y_link"
+      - "waist2_p_link"
+    waist1_y_link: 
+      - "waist2_p_link"
+
+
+geometry: 
+  auto_generated_collision_sphere_group: 
+    spheres: 
+      head2_p_link: 
+        - center: [-0.019, 0.0, 0.08]
+          radius: 0.1
+        - center: [0.028, 0.0, 0.09]
+          radius: 0.1
+        - center: [0.042, 0.0, 0.031]
+          radius: 0.1
+      head1_y_link: 
+        - center: [-0.002, 0.0, -0.022]
+          radius: 0.065
+      l_arm1_shoulder_p_link: 
+        - center: [0.003, -0.002, 0.0]
+          radius: 0.09
+      l_arm2_shoulder_r_link: 
+        - center: [0.0, 0.025, -0.056]
+          radius: 0.07
+      l_arm3_shoulder_y_link: 
+        - center: [0.0, 0.0, 0.148]
+          radius: 0.06
+        - center: [-0.001, 0.0, 0.092]
+          radius: 0.055
+        - center: [0.0, 0.0, 0.035]
+          radius: 0.055
+      l_arm4_elbow_p_link: 
+        - center: [0.001, 0.0, -0.002]
+          radius: 0.07
+        - center: [-0.01, 0.0, -0.033]
+          radius: 0.07
+        - center: [-0.017, 0.0, -0.095]
+          radius: 0.06
+        - center: [-0.022, 0.002, -0.155]
+          radius: 0.06
+      l_arm5_wrist_y_link: 
+        - center: [0.0, 0.002, 0.009]
+          radius: 0.06
+      l_arm6_wrist_p_link: 
+        - center: [0.0, 0.0, -0.046]
+          radius: 0.056
+      l_hand_palm_link: 
+        - center: [0.007, 0.03, 0.068]
+          radius: 0.032
+        - center: [0.007, -0.028, 0.068]
+          radius: 0.032
+        - center: [0.015, 0.033, 0.107]
+          radius: 0.03
+        - center: [0.015, -0.032, 0.107]
+          radius: 0.03
+        - center: [0.016, 0.0, 0.115]
+          radius: 0.03
+        - center: [0.011, 0.012, 0.084]
+          radius: 0.03
+        - center: [0.011, -0.012, 0.084]
+          radius: 0.03
+        - center: [0.006, 0.0, 0.05]
+          radius: 0.04
+        - center: [-0.003, 0.02, 0.03]
+          radius: 0.04
+        - center: [-0.003, -0.022, 0.03]
+          radius: 0.04
+        - center: [0.02, 0.0, 0.015]
+          radius: 0.02
+      l_index_mcp_link: 
+        - center: [0.003, -0.001, 0.009]
+          radius: 0.018
+      l_index_pip_link: 
+        - center: [0.0, 0.0, 0.044]
+          radius: 0.01
+        - center: [0.002, 0.0, 0.034]
+          radius: 0.01
+        - center: [0.003, 0.0, 0.026]
+          radius: 0.01
+        - center: [0.004, 0.0, 0.019]
+          radius: 0.01
+        - center: [0.004, 0.001, 0.009]
+          radius: 0.01
+        - center: [0.004, 0.001, -0.003]
+          radius: 0.013
+      l_middle_mcp_link: 
+        - center: [0.002, 0.0, 0.011]
+          radius: 0.018
+      l_middle_pip_link: 
+        - center: [0.004, 0.0, 0.0]
+          radius: 0.013
+        - center: [0.002, 0.0, 0.045]
+          radius: 0.01
+        - center: [0.004, 0.0, 0.011]
+          radius: 0.01
+        - center: [0.004, 0.0, 0.02]
+          radius: 0.01
+        - center: [0.003, 0.0, 0.028]
+          radius: 0.01
+        - center: [0.002, 0.0, 0.035]
+          radius: 0.01
+      l_pinky_mcp_link: 
+        - center: [0.003, -0.001, 0.011]
+          radius: 0.018
+      l_pinky_pip_link: 
+        - center: [0.003, 0.0, -0.001]
+          radius: 0.013
+        - center: [0.0, 0.0, 0.044]
+          radius: 0.01
+        - center: [0.004, 0.0, 0.012]
+          radius: 0.01
+        - center: [0.003, 0.0, 0.021]
+          radius: 0.01
+        - center: [0.002, 0.0, 0.028]
+          radius: 0.01
+        - center: [0.001, 0.0, 0.036]
+          radius: 0.01
+      l_ring_mcp_link: 
+        - center: [0.002, -0.001, 0.011]
+          radius: 0.018
+      l_ring_pip_link: 
+        - center: [0.003, 0.0, -0.001]
+          radius: 0.013
+        - center: [0.0, 0.0, 0.044]
+          radius: 0.01
+        - center: [0.004, 0.0, 0.012]
+          radius: 0.01
+        - center: [0.004, 0.0, 0.02]
+          radius: 0.01
+        - center: [0.002, 0.0, 0.028]
+          radius: 0.01
+        - center: [0.002, 0.0, 0.036]
+          radius: 0.01
+      l_thumb_cmc_y_link: 
+        - center: [-0.001, -0.004, 0.0]
+          radius: 0.012
+      l_thumb_cmc_p_link: 
+        - center: [-0.002, 0.0, 0.012]
+          radius: 0.02
+        - center: [0.003, 0.0, 0.03]
+          radius: 0.02
+        - center: [0.004, 0.0, 0.049]
+          radius: 0.018
+      l_thumb_mcp_link: 
+        - center: [0.004, 0.0, 0.008]
+          radius: 0.018
+      l_thumb_ip_link: 
+        - center: [0.002, 0.0, 0.005]
+          radius: 0.014
+        - center: [0.0, 0.0, 0.022]
+          radius: 0.013
+      r_arm1_shoulder_p_link: 
+        - center: [0.004, 0.004, 0.0]
+          radius: 0.09
+      r_arm2_shoulder_r_link: 
+        - center: [0.0, -0.027, -0.055]
+          radius: 0.07
+      r_arm3_shoulder_y_link: 
+        - center: [0.0, 0.0, 0.15]
+          radius: 0.06
+        - center: [0.0, 0.0, 0.093]
+          radius: 0.055
+        - center: [-0.003, 0.0, 0.033]
+          radius: 0.055
+      r_arm4_elbow_p_link: 
+        - center: [0.0, 0.0, 0.0]
+          radius: 0.07
+        - center: [-0.011, 0.0, -0.035]
+          radius: 0.07
+        - center: [-0.016, 0.0, -0.1]
+          radius: 0.06
+        - center: [-0.018, 0.0, -0.153]
+          radius: 0.06
+      r_arm5_wrist_y_link: 
+        - center: [-0.0, 0.003, 0.011]
+          radius: 0.061
+      r_arm7_wrist_r_link: 
+        - center: [0.019, -0.002, -0.007]
+          radius: 0.04
+        - center: [-0.015, -0.0, -0.006]
+          radius: 0.04
+        - center: [0.006, 0.004, -0.043]
+          radius: 0.03
+        - center: [0.023, -0.001, -0.037]
+          radius: 0.03
+        - center: [-0.018, -0.001, -0.036]
+          radius: 0.03
+      r_hand_palm_link: 
+        - center: [-0.007, 0.03, 0.068]
+          radius: 0.03
+        - center: [-0.007, -0.034, 0.068]
+          radius: 0.03
+        - center: [-0.015, 0.033, 0.107]
+          radius: 0.03
+        - center: [-0.015, -0.032, 0.107]
+          radius: 0.03
+        - center: [-0.011, -0.012, 0.084]
+          radius: 0.03
+        - center: [-0.011, 0.012, 0.084]
+          radius: 0.03
+        - center: [-0.016, 0.0, 0.115]
+          radius: 0.03
+        - center: [-0.006, 0.0, 0.05]
+          radius: 0.04
+        - center: [-0.003, -0.022, 0.03]
+          radius: 0.04
+        - center: [-0.003, 0.02, 0.03]
+          radius: 0.04
+        - center: [0.019, -0.005, 0.02]
+          radius: 0.02
+      r_index_mcp_link: 
+        - center: [-0.002, 0.001, 0.008]
+          radius: 0.019
+      r_index_pip_link: 
+        - center: [-0.003, 0.0, -0.004]
+          radius: 0.013
+        - center: [0.0, 0.0, 0.045]
+          radius: 0.01
+        - center: [-0.004, 0.0, 0.009]
+          radius: 0.01
+        - center: [-0.004, 0.0, 0.018]
+          radius: 0.01
+        - center: [-0.003, 0.0, 0.026]
+          radius: 0.01
+        - center: [-0.001, 0.0, 0.035]
+          radius: 0.01
+      r_middle_mcp_link: 
+        - center: [-0.003, -0.001, 0.008]
+          radius: 0.019
+      r_middle_pip_link: 
+        - center: [-0.004, 0.0, -0.003]
+          radius: 0.013
+        - center: [-0.001, 0.0, 0.044]
+          radius: 0.01
+        - center: [-0.004, 0.0, 0.01]
+          radius: 0.01
+        - center: [-0.003, 0.0, 0.02]
+          radius: 0.01
+        - center: [-0.003, 0.0, 0.027]
+          radius: 0.01
+        - center: [-0.001, 0.0, 0.036]
+          radius: 0.01
+      r_ring_mcp_link: 
+        - center: [-0.002, 0.0, 0.008]
+          radius: 0.019
+      r_ring_pip_link: 
+        - center: [-0.003, 0.0, -0.003]
+          radius: 0.013
+        - center: [-0.001, 0.0, 0.044]
+          radius: 0.01
+        - center: [-0.004, 0.0, 0.01]
+          radius: 0.01
+        - center: [-0.003, 0.0, 0.02]
+          radius: 0.01
+        - center: [-0.003, 0.0, 0.028]
+          radius: 0.01
+        - center: [-0.002, 0.0, 0.035]
+          radius: 0.01
+      r_pinky_mcp_link: 
+        - center: [-0.004, 0.001, 0.009]
+          radius: 0.019
+      r_pinky_pip_link: 
+        - center: [-0.002, 0.0, -0.001]
+          radius: 0.013
+        - center: [-0.001, 0.0, 0.045]
+          radius: 0.01
+        - center: [-0.004, 0.0, 0.011]
+          radius: 0.01
+        - center: [-0.004, 0.0, 0.02]
+          radius: 0.01
+        - center: [-0.003, 0.0, 0.027]
+          radius: 0.01
+        - center: [-0.002, 0.0, 0.036]
+          radius: 0.01
+      r_thumb_cmc_y_link: 
+        - center: [0.001, 0.006, 0.001]
+          radius: 0.012
+      r_thumb_cmc_p_link: 
+        - center: [0.001, 0.0, 0.016]
+          radius: 0.02
+        - center: [0.003, -0.001, 0.033]
+          radius: 0.02
+        - center: [0.004, 0.0, 0.051]
+          radius: 0.018
+      r_thumb_mcp_link: 
+        - center: [0.004, 0.001, 0.01]
+          radius: 0.018
+      r_thumb_ip_link: 
+        - center: [0.003, 0.001, 0.009]
+          radius: 0.014
+        - center: [0.003, 0.001, 0.022]
+          radius: 0.013
+      base_link: 
+        - center: [-0.013, 0.057, 0.0]
+          radius: 0.09
+        - center: [0.0, -0.06, 0.0]
+          radius: 0.09
+      waist1_y_link: 
+        - center: [0.0, 0.0, -0.026]
+          radius: 0.08
+      l_leg1_hip_y_link: 
+        - center: [0.008, 0.0, -0.005]
+          radius: 0.085
+      l_leg3_hip_p_link: 
+        - center: [0.007, 0.05, -0.095]
+          radius: 0.1
+        - center: [0.017, 0.05, -0.193]
+          radius: 0.09
+        - center: [0.009, 0.05, -0.303]
+          radius: 0.08
+        - "center": [0.0, 0.074, 0.0]
+          "radius": 0.09
+      l_leg4_knee_p_link: 
+        - center: [0.007, 0.0, -0.318]
+          radius: 0.05
+        - center: [0.012, 0.0, -0.248]
+          radius: 0.05
+        - center: [0.019, 0.0, -0.19]
+          radius: 0.055
+        - center: [0.022, 0.0, -0.157]
+          radius: 0.06
+        - center: [0.026, 0.0, -0.104]
+          radius: 0.06
+        - center: [0.024, 0.0, -0.049]
+          radius: 0.06
+      r_leg1_hip_y_link: 
+        - center: [0.008, 0.001, -0.005]
+          radius: 0.085
+      l_leg2_hip_r_link: 
+        - center: [0.124, 0.013, -0.002]
+          radius: 0.09
+      r_leg2_hip_r_link: 
+        - center: [0.126, -0.021, -0.002]
+          radius: 0.09
+      r_leg3_hip_p_link: 
+        - center: [-0.003, -0.076, 0.0]
+          radius: 0.09
+        - center: [0.007, -0.05, -0.095]
+          radius: 0.1
+        - center: [0.017, -0.05, -0.193]
+          radius: 0.09
+        - center: [0.009, -0.05, -0.303]
+          radius: 0.08
+      r_leg4_knee_p_link: 
+        - center: [0.024, 0.0, -0.049]
+          radius: 0.06
+        - center: [0.026, 0.0, -0.104]
+          radius: 0.06
+        - center: [0.022, 0.0, -0.157]
+          radius: 0.06
+        - center: [0.019, 0.0, -0.19]
+          radius: 0.055
+        - center: [0.012, 0.0, -0.248]
+          radius: 0.05
+        - center: [0.007, 0.0, -0.318]
+          radius: 0.05
+      l_leg6_ankle_r_link: 
+        - center: [0.0, 0.0, -0.027]
+          radius: 0.02
+      r_leg6_ankle_r_link: 
+        - center: [0.0, 0.0, -0.027]
+          radius: 0.02
+      trunk_link: 
+        - center: [-0.037, 0.0, 0.064]
+          radius: 0.15
+        - center: [0.0, -0.048, 0.104]
+          radius: 0.1
+        - center: [0.0, 0.047, 0.104]
+          radius: 0.1
+        - center: [-0.074, 0.047, 0.104]
+          radius: 0.1
+        - center: [-0.074, -0.047, 0.104]
+          radius: 0.1
+        - center: [0.007, -0.043, 0.197]
+          radius: 0.12
+        - center: [0.007, 0.044, 0.192]
+          radius: 0.12
+        - center: [-0.074, 0.047, 0.197]
+          radius: 0.11
+        - center: [-0.074, -0.047, 0.197]
+          radius: 0.11
+        - center: [0.019, -0.072, 0.287]
+          radius: 0.1
+        - center: [0.019, 0.072, 0.287]
+          radius: 0.1
+        - center: [-0.069, 0.072, 0.287]
+          radius: 0.1
+        - center: [-0.069, -0.072, 0.287]
+          radius: 0.1
+        - center: [0.0, 0.0, 0.347]
+          radius: 0.13
+        - center: [-0.068, 0.0, 0.347]
+          radius: 0.13
+        - center: [0.01, 0.087, 0.372]
+          radius: 0.1
+        - center: [-0.071, 0.087, 0.375]
+          radius: 0.1
+        - center: [0.01, -0.087, 0.372]
+          radius: 0.1
+        - center: [0.0, 0.0, 0.375]
+          radius: 0.1
+        - center: [-0.071, -0.087, 0.372]
+          radius: 0.1
+        - center: [-0.025, 0.077, 0.413]
+          radius: 0.11
+        - center: [-0.061, 0.0, 0.43]
+          radius: 0.11
+        - center: [-0.025, -0.077, 0.413]
+          radius: 0.11
+        - center: [0.0, 0.0, 0.424]
+          radius: 0.1
+      r_arm6_wrist_p_link: 
+        - center: [0.0, 0.0, -0.056]
+          radius: 0.056
+      r_arm_force_sensor_link: 
+        - center: [0.002, -0.001, -0.032]
+          radius: 0.043

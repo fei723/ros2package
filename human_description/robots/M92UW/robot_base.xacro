@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<!-- Xacro for GR1T2 base -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!--                   -->
+    <!-- Imported elements -->
+    <!--                   -->
+    <xacro:include filename="$(find human_description)/robots/common/utils.xacro" />
+
+    <xacro:macro name="robot_base"
+        params="
+        robot_id
+        mesh_scale:='1 1 1'
+        description_pkg:='human_description'
+        ros2_control_plugin:='gazebo'
+        connected_to:='base_footprint'
+        xyz:='0 0 0'
+        rpy:='0 0 0'
+        dynamics
+        with_sc:=false
+        joint_limits
+        inertials
+        kinematics ">
+
+        <xacro:property name="gazebo"
+            value="$(eval 'true' if ros2_control_plugin == 'gazebo' else 'false')" />
+
+        <xacro:property name="left_front_wheel" value="lf_wheel" />
+        <xacro:property name="left_back_wheel" value="lb_wheel" />
+        <xacro:property name="right_front_wheel" value="rf_wheel" />
+        <xacro:property name="right_back_wheel" value="rb_wheel" />
+
+        <!-- <xacro:unless value="${not connected_to}">
+            <link name="${connected_to}" />
+            <joint name="${connected_to}_prismatic_joint" type="prismatic">
+                <parent link="${connected_to}" />
+                <child link="${connected_to}_floating" />
+                <origin rpy="${rpy}" xyz="${xyz}" />
+                <axis xyz="1 0 0" />
+                <limit effort="436.0" velocity="2.51" />
+                <dynamics damping="21.75" friction="3.48"/>
+            </joint>
+            <link name="${connected_to}_floating" />
+            <joint name="${connected_to}_continuous_joint" type="continuous">
+                <parent link="${connected_to}_floating" />
+                <child link="base_link" />
+                <origin rpy="${rpy}" xyz="${xyz}" />
+                <axis xyz="0 0 1" />
+                <limit effort="436.0" velocity="2.51" />
+                <dynamics damping="21.75" friction="3.48"/>
+            </joint>
+        </xacro:unless> -->
+        <xacro:unless value="${not connected_to}">
+            <link name="${connected_to}" />
+            <joint name="${connected_to}_fixed_joint" type="fixed">
+                <parent link="${connected_to}" />
+                <child link="base_link" />
+                <origin rpy="${rpy}" xyz="${xyz}" />
+            </joint>
+        </xacro:unless>
+
+        <xacro:robot-link name="base_link"
+            prefix=""
+            mesh_scale="${mesh_scale}"
+            gazebo="${gazebo}" />
+
+
+        <!-- <xacro:robot-link name="${left_front_wheel}_link"
+            prefix=""
+            material_name="carbon"
+            gazebo="${gazebo}"
+            mesh_scale="${mesh_scale}" /> -->
+        <xacro:robot-link-sc-geometry name="${left_front_wheel}_link"
+            prefix=""
+            material_name="carbon"
+            gazebo="${gazebo}"
+            mesh_scale="${mesh_scale}"
+            sc_geometry='true'>
+            <self_collision_geometries>
+                <xacro:collision_cylinder xyz='0 0.11 0' radius='0.102' length='0.05' direction='y' />
+            </self_collision_geometries>
+        </xacro:robot-link-sc-geometry>
+        <xacro:robot-joint joint_name="${left_front_wheel}_joint"
+            joint_type="continuous"
+            parent="base_link"
+            child="${left_front_wheel}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            inertials="${inertials}"
+            dynamics="${dynamics}" />
+
+
+        <!-- <xacro:robot-link name="${left_back_wheel}_link"
+            prefix=""
+            material_name="carbon"
+            gazebo="${gazebo}"
+            mesh_scale="${mesh_scale}" /> -->
+        <xacro:robot-link-sc-geometry name="${left_back_wheel}_link"
+            prefix=""
+            material_name="carbon"
+            gazebo="${gazebo}"
+            mesh_scale="${mesh_scale}"
+            sc_geometry='true'>
+            <self_collision_geometries>
+                <xacro:collision_cylinder xyz='0 0.11 0' radius='0.102' length='0.05' direction='y' />
+            </self_collision_geometries>
+        </xacro:robot-link-sc-geometry>
+
+        <xacro:robot-joint joint_name="${left_back_wheel}_joint"
+            joint_type="continuous"
+            parent="base_link"
+            child="${left_back_wheel}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            inertials="${inertials}"
+            dynamics="${dynamics}" />
+
+
+        <!-- <xacro:robot-link name="${right_front_wheel}_link"
+            prefix=""
+            material_name="carbon"
+            gazebo="${gazebo}"
+            mesh_scale="${mesh_scale}" /> -->
+        <xacro:robot-link-sc-geometry name="${right_front_wheel}_link"
+            prefix=""
+            material_name="carbon"
+            gazebo="${gazebo}"
+            mesh_scale="${mesh_scale}"
+            sc_geometry='true'>
+            <self_collision_geometries>
+                <xacro:collision_cylinder xyz='0 -0.11 0' radius='0.102' length='0.005' direction='y' />
+            </self_collision_geometries>
+        </xacro:robot-link-sc-geometry>
+        <xacro:robot-joint joint_name="${right_front_wheel}_joint"
+            joint_type="continuous"
+            parent="base_link"
+            child="${right_front_wheel}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            inertials="${inertials}"
+            dynamics="${dynamics}" />
+
+
+        <!-- <xacro:robot-link name="${right_back_wheel}_link"
+            prefix=""
+            material_name="carbon"
+            gazebo="${gazebo}"
+            mesh_scale="${mesh_scale}" /> -->
+        <xacro:robot-link-sc-geometry name="${right_back_wheel}_link"
+            prefix=""
+            material_name="carbon"
+            gazebo="${gazebo}"
+            mesh_scale="${mesh_scale}"
+            sc_geometry='true'>
+            <self_collision_geometries>
+                <xacro:collision_cylinder xyz='0 -0.11 0' radius='0.102' length='0.005' direction='y' />
+            </self_collision_geometries>
+        </xacro:robot-link-sc-geometry>
+        <xacro:robot-joint joint_name="${right_back_wheel}_joint"
+            joint_type="continuous"
+            parent="base_link"
+            child="${right_back_wheel}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            inertials="${inertials}"
+            dynamics="${dynamics}" />
+    </xacro:macro>
+
+</robot>

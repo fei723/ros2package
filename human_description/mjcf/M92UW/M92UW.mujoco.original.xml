@@ -1,0 +1,385 @@
+<mujoco model="M92UW">
+  <compiler angle="radian" meshdir="../../meshes/M92UW/visual/" texturedir="../../textures/"/>
+  <option timestep="0.001"/>
+  <asset>
+    <mesh name="base_link" file="base_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="ankle_p_link" file="ankle_p_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="knee_p_link" file="knee_p_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="waist1_p_link" file="waist1_p_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="waist2_y_link" file="waist2_y_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="trunk_link" file="trunk_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="head1_y_link" file="head1_y_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="head2_p_link" file="head2_p_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_arm1_shoulder_p_link" file="l_arm1_shoulder_p_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_arm2_shoulder_r_link" file="l_arm2_shoulder_r_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_arm3_shoulder_y_link" file="l_arm3_shoulder_y_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_arm4_elbow_p_link" file="l_arm4_elbow_p_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_arm5_wrist_y_link" file="l_arm5_wrist_y_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_arm6_wrist_p_link" file="l_arm6_wrist_p_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_arm7_wrist_r_link" file="l_arm7_wrist_r_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_arm_force_sensor_link" file="l_arm_force_sensor_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_arm1_shoulder_p_link" file="r_arm1_shoulder_p_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_arm2_shoulder_r_link" file="r_arm2_shoulder_r_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_arm3_shoulder_y_link" file="r_arm3_shoulder_y_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_arm4_elbow_p_link" file="r_arm4_elbow_p_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_arm5_wrist_y_link" file="r_arm5_wrist_y_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_arm6_wrist_p_link" file="r_arm6_wrist_p_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_arm7_wrist_r_link" file="r_arm7_wrist_r_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_arm_force_sensor_link" file="r_arm_force_sensor_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_hand_palm_link" file="l_hand_palm_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_thumb_cmc_y_link" file="l_thumb_cmc_y_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_thumb_cmc_p_link" file="l_thumb_cmc_p_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_thumb_mcp_link" file="l_thumb_mcp_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_thumb_ip_link" file="l_thumb_ip_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_index_mcp_link" file="l_index_mcp_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_index_pip_link" file="l_index_pip_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_middle_mcp_link" file="l_middle_mcp_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_middle_pip_link" file="l_middle_pip_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_ring_mcp_link" file="l_ring_mcp_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_ring_pip_link" file="l_ring_pip_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_pinky_mcp_link" file="l_pinky_mcp_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_pinky_pip_link" file="l_pinky_pip_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_hand_palm_link" file="r_hand_palm_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_thumb_cmc_y_link" file="r_thumb_cmc_y_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_thumb_cmc_p_link" file="r_thumb_cmc_p_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_thumb_mcp_link" file="r_thumb_mcp_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_thumb_ip_link" file="r_thumb_ip_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_index_mcp_link" file="r_index_mcp_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_index_pip_link" file="r_index_pip_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_middle_mcp_link" file="r_middle_mcp_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_middle_pip_link" file="r_middle_pip_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_ring_mcp_link" file="r_ring_mcp_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_ring_pip_link" file="r_ring_pip_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_pinky_mcp_link" file="r_pinky_mcp_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_pinky_pip_link" file="r_pinky_pip_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="l_wrist_camera1_color_frame" file="l_wrist_camera1_color_frame.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="r_wrist_camera1_color_frame" file="r_wrist_camera1_color_frame.stl" scale="0.001 0.001 0.001"/>
+  </asset>
+  <worldbody>
+    <body name="base_footprint">
+      <body name="base_link" pos="0 0 0.131">
+        <inertial pos="0.0133677 0 -0.0150958" quat="0.497862 0.497862 -0.502129 0.502129" mass="74.7863" diaginertia="4.39012 2.57003 2.47861"/>
+        <geom name="base_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="base_link"/>
+        <body name="lf_wheel_link" pos="0.29 0.12 -0.03">
+          <inertial pos="0 0.109662 0" quat="0.5 0.5 0.5 0.5" mass="1.11565" diaginertia="0.00503805 0.00305791 0.0030579"/>
+          <joint name="lf_wheel_joint" pos="0 0 0" axis="0 1 0" actuatorfrcrange="-4360 4360" damping="1"/>
+          <geom name="lf_wheel_link_col" size="0.102 0.025" pos="0 0.11 0" quat="0.707107 0.707107 0 0" type="cylinder" rgba="1 1 1 1"/>
+        </body>
+        <body name="lb_wheel_link" pos="-0.29 0.12 -0.03">
+          <inertial pos="0 0.109662 0" quat="0.5 0.5 0.5 0.5" mass="1.11565" diaginertia="0.00503805 0.00305791 0.0030579"/>
+          <joint name="lb_wheel_joint" pos="0 0 0" axis="0 1 0" actuatorfrcrange="-436 436" damping="1"/>
+          <geom name="lb_wheel_link_col" size="0.102 0.025" pos="0 0.11 0" quat="0.707107 0.707107 0 0" type="cylinder" rgba="1 1 1 1"/>
+        </body>
+        <body name="rf_wheel_link" pos="0.29 -0.12 -0.03">
+          <inertial pos="0 -0.109662 0" quat="0.5 0.5 0.5 0.5" mass="1.11565" diaginertia="0.00503805 0.00305791 0.0030579"/>
+          <joint name="rf_wheel_joint" pos="0 0 0" axis="0 1 0" actuatorfrcrange="-4360 4360" damping="1"/>
+          <geom name="rf_wheel_link_col" size="0.102 0.0025" pos="0 -0.11 0" quat="0.707107 0.707107 0 0" type="cylinder" rgba="1 1 1 1"/>
+        </body>
+        <body name="rb_wheel_link" pos="-0.29 -0.12 -0.03">
+          <inertial pos="0 -0.109662 0" quat="0.5 0.5 0.5 0.5" mass="1.11565" diaginertia="0.00503805 0.00305791 0.0030579"/>
+          <joint name="rb_wheel_joint" pos="0 0 0" axis="0 1 0" actuatorfrcrange="-4360 4360" damping="1"/>
+          <geom name="rb_wheel_link_col" size="0.102 0.0025" pos="0 -0.11 0" quat="0.707107 0.707107 0 0" type="cylinder" rgba="1 1 1 1"/>
+        </body>
+        <body name="ankle_p_link" pos="0.085 0 0">
+          <inertial pos="0 0.000313537 0.2" mass="5.00147" diaginertia="0.127424 0.110785 0.0405234"/>
+          <joint name="ankle_p_joint" pos="0 0 0" axis="0 1 0" range="-1.5708 0.0523599" actuatorfrcrange="-436 436" damping="1" frictionloss="0.1"/>
+          <geom name="ankle_p_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="ankle_p_link"/>
+          <body name="knee_p_link" pos="0 0 0.4">
+            <inertial pos="-0.000172505 -5.74994e-05 0.0915208" quat="0.707167 -0.000334243 -0.000659821 0.707047" mass="9.99958" diaginertia="0.179663 0.177182 0.0382093"/>
+            <joint name="knee_p_joint" pos="0 0 0" axis="0 1 0" range="-0.0523599 2.77682" actuatorfrcrange="-436 436" damping="1" frictionloss="0.1"/>
+            <geom name="knee_p_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="knee_p_link"/>
+            <body name="waist1_p_link" pos="0 0 0.4">
+              <inertial pos="0 0 0.0574298" quat="0.707107 0 0 0.707107" mass="6.30492" diaginertia="0.0317453 0.029907 0.0123309"/>
+              <joint name="waist1_p_joint" pos="0 0 0" axis="0 1 0" range="-2.26893 2.26893" actuatorfrcrange="-207 207" damping="1" frictionloss="0.1"/>
+              <geom name="waist1_p_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="waist1_p_link"/>
+              <body name="waist2_y_link">
+                <inertial pos="0 0 0.173079" quat="0.5 0.5 -0.5 0.5" mass="0.709044" diaginertia="0.00205483 0.00104433 0.00104433"/>
+                <joint name="waist2_y_joint" pos="0 0 0" axis="0 0 1" range="-1.5708 1.5708" actuatorfrcrange="-207 207" damping="1" frictionloss="0.1"/>
+                <geom name="waist2_y_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="waist2_y_link"/>
+                <body name="trunk_link" pos="0 0 0.51">
+                  <inertial pos="-0.00854879 -9.6069e-06 -0.077759" quat="0.999389 5.99077e-05 0.0349579 -6.75391e-05" mass="12.3506" diaginertia="0.353908 0.26641 0.200986"/>
+                  <geom name="trunk_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="trunk_link"/>
+                  <body name="head1_y_link" pos="0.00825076 0 0.187488" quat="0.993566 0 0.113256 0">
+                    <inertial pos="0 0 0" quat="0.999629 -0.019479 -0.000667564 -0.0190129" mass="0.970172" diaginertia="0.00235366 0.00231311 0.000816993"/>
+                    <joint name="head1_y_joint" pos="0 0 0" axis="0 0 1" range="-0.785398 0.785398" actuatorfrcrange="-16 16" damping="1" frictionloss="0.1"/>
+                    <geom name="head1_y_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="head1_y_link"/>
+                    <body name="head2_p_link">
+                      <inertial pos="0.0239836 -3.40881e-05 0.060005" quat="0.347887 0.613908 0.602658 0.372686" mass="1.44127" diaginertia="0.00743811 0.00725612 0.00446619"/>
+                      <joint name="head2_p_joint" pos="0 0 0" axis="0 1 0" range="-0.349066 0.261799" actuatorfrcrange="-15 15" damping="1" frictionloss="0.1"/>
+                      <geom name="head2_p_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="head2_p_link"/>
+                      <body name="head_front_left_fisheye_color_frame" pos="0.115609 0.03 0.00194978" quat="0.999848 0 0.0174524 0">
+                        <body name="head_front_left_fisheye_color_optical_frame" quat="0.5 -0.5 0.5 -0.5"/>
+                      </body>
+                      <body name="head_front_right_fisheye_color_frame" pos="0.115609 -0.03 0.00194978" quat="0.999848 0 0.0174524 0">
+                        <body name="head_front_right_fisheye_color_optical_frame" quat="0.5 -0.5 0.5 -0.5"/>
+                      </body>
+                      <body name="head_left_fisheye_color_frame" pos="8e-05 0.079055 0.068" quat="0.702561 -0.0800468 -0.0800468 0.702561">
+                        <body name="head_left_fisheye_color_optical_frame" quat="0.5 -0.5 0.5 -0.5"/>
+                      </body>
+                      <body name="head_right_fisheye_color_frame" pos="8e-05 -0.079055 0.068" quat="0.702561 0.0800468 -0.0800468 -0.702561">
+                        <body name="head_right_fisheye_color_optical_frame" quat="0.5 -0.5 0.5 -0.5"/>
+                      </body>
+                      <body name="head_realsense_frame" pos="0.0873685 0 -0.0275414" quat="0.953717 0 0.300706 0">
+                        <body name="head_camera_bottom_screw_frame">
+                          <body name="head_camera_link" pos="0.0106 0.0175 0.0125">
+                            <inertial pos="-0.0043 -0.0175 0" quat="0.516657 0.520084 -0.47912 0.482723" mass="0.072" diaginertia="4.44619e-05 4.41105e-05 6.5939e-06"/>
+                            <geom name="head_camera_link_col" size="0.012525 0.045 0.0125" pos="-0.0043 -0.0175 0" type="box"/>
+                            <body name="head_camera_depth_frame">
+                              <body name="head_camera_depth_optical_frame" quat="0.5 -0.5 0.5 -0.5"/>
+                            </body>
+                            <body name="head_camera_infra1_frame">
+                              <body name="head_camera_infra1_optical_frame" quat="0.5 -0.5 0.5 -0.5"/>
+                            </body>
+                            <body name="head_camera_infra2_frame" pos="0 -0.05 0">
+                              <body name="head_camera_infra2_optical_frame" quat="0.5 -0.5 0.5 -0.5"/>
+                            </body>
+                            <body name="head_camera_color_frame" pos="0 0.015 0">
+                              <body name="head_camera_color_optical_frame" quat="0.5 -0.5 0.5 -0.5"/>
+                            </body>
+                            <body name="head_camera_accel_frame" pos="-0.01174 -0.00552 0.0051">
+                              <body name="head_camera_accel_optical_frame" quat="0.5 -0.5 0.5 -0.5"/>
+                            </body>
+                            <body name="head_camera_gyro_frame" pos="-0.01174 -0.00552 0.0051">
+                              <body name="head_camera_gyro_optical_frame" quat="0.5 -0.5 0.5 -0.5"/>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                      <body name="head_imu_frame" pos="0.10135 0.0307414 0.045874" quat="0.5 -0.5 0.5 -0.5"/>
+                    </body>
+                  </body>
+                  <body name="l_arm1_shoulder_p_link" pos="0 0.225 0">
+                    <inertial pos="0.00895069 -0.00791024 0.00104782" quat="-0.0505226 0.709 0.129367 0.691397" mass="2.34787" diaginertia="0.00493248 0.00450669 0.00366384"/>
+                    <joint name="l_arm1_shoulder_p_joint" pos="0 0 0" axis="0 1 0" range="-3.14159 1.00007" actuatorfrcrange="-107 107" damping="1" frictionloss="0.1"/>
+                    <geom name="l_arm1_shoulder_p_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_arm1_shoulder_p_link"/>
+                    <body name="l_arm2_shoulder_r_link">
+                      <inertial pos="0.000363052 0.011843 -0.0365219" quat="0.982239 0.150967 -0.0234078 0.108938" mass="0.752588" diaginertia="0.0026068 0.00254522 0.00157418"/>
+                      <joint name="l_arm2_shoulder_r_joint" pos="0 0 0" axis="1 0 0" range="-0.523599 1.5708" actuatorfrcrange="-107 107" damping="1" frictionloss="0.1"/>
+                      <geom name="l_arm2_shoulder_r_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_arm2_shoulder_r_link"/>
+                      <body name="l_arm3_shoulder_y_link" pos="0 0.0275 -0.28">
+                        <inertial pos="0.00948372 0.000928382 0.0722028" quat="0.695564 -0.0422109 -0.0496158 0.715504" mass="2.80322" diaginertia="0.0176151 0.0173345 0.00288822"/>
+                        <joint name="l_arm3_shoulder_y_joint" pos="0 0 0" axis="0 0 1" range="-3.13985 3.13985" actuatorfrcrange="-70 70" damping="1" frictionloss="0.1"/>
+                        <geom name="l_arm3_shoulder_y_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_arm3_shoulder_y_link"/>
+                        <body name="l_arm4_elbow_p_link" pos="0.02 0 0">
+                          <inertial pos="-0.0168789 -0.0024246 -0.083473" quat="0.995951 0.0553975 0.0695835 0.0130771" mass="1.49514" diaginertia="0.00434215 0.00403417 0.00186963"/>
+                          <joint name="l_arm4_elbow_p_joint" pos="0 0 0" axis="0 1 0" range="-2.61625 0.0523599" actuatorfrcrange="-70 70" damping="1" frictionloss="0.1"/>
+                          <geom name="l_arm4_elbow_p_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_arm4_elbow_p_link"/>
+                          <body name="l_arm5_wrist_y_link" pos="-0.02 0 -0.213">
+                            <inertial pos="1.01054e-05 -0.000792077 0.0334678" quat="0.583769 0.811918 0.00141944 -0.000502587" mass="0.272266" diaginertia="0.00042678 0.000381661 0.000282786"/>
+                            <joint name="l_arm5_wrist_y_joint" pos="0 0 0" axis="0 0 1" range="-3.14159 3.14159" actuatorfrcrange="-36 36" damping="1" frictionloss="0.1"/>
+                            <geom name="l_arm5_wrist_y_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_arm5_wrist_y_link"/>
+                            <body name="l_arm6_wrist_p_link">
+                              <inertial pos="-0.00239775 0.00329415 -0.0274711" quat="0.989259 -0.0612722 0.0546544 0.120934" mass="0.876903" diaginertia="0.00114029 0.00113184 0.00052297"/>
+                              <joint name="l_arm6_wrist_p_joint" pos="0 0 0" axis="0 1 0" range="-1.39626 1.39626" actuatorfrcrange="-15 15" damping="1" frictionloss="0.1"/>
+                              <geom name="l_arm6_wrist_p_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_arm6_wrist_p_link"/>
+                              <body name="l_arm7_wrist_r_link" pos="0 0 -0.055">
+                                <inertial pos="0.00562895 -0.000263129 -0.137134" quat="0.997437 -0.0645333 -0.0254291 -0.0175643" mass="1.11828" diaginertia="0.000540929 0.000408371 0.000283981"/>
+                                <joint name="l_arm7_wrist_r_joint" pos="0 0 0" axis="1 0 0" range="-1.39626 1.39626" actuatorfrcrange="-15 15" damping="1" frictionloss="0.1"/>
+                                <geom name="l_arm7_wrist_r_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_arm7_wrist_r_link"/>
+                                <body name="l_arm_force_sensor_link" pos="0 0 -0.06">
+                                  <inertial pos="-3.60996e-06 0.000107824 -0.0179621" quat="0.563693 0.426555 -0.565549 0.4248" mass="0.187917" diaginertia="9.10336e-05 6.77207e-05 6.76898e-05"/>
+                                  <geom name="l_arm_force_sensor_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_arm_force_sensor_link"/>
+                                  <body name="l_end_effector_frame" pos="0 0 -0.1785" quat="0.707107 0 0.707107 0"/>
+                                  <body name="l_hand_palm_link" pos="0 0 -0.0402" quat="1.89469e-08 0.707107 -0.707107 -1.89469e-08">
+                                    <inertial pos="0.00870089 -0.00231265 0.0744869" quat="0.999515 -0.0204661 0.0183775 -0.0145773" mass="0.619534" diaginertia="0.00170095 0.00132679 0.000559285"/>
+                                    <geom name="l_hand_palm_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_hand_palm_link"/>
+                                    <body name="l_thumb_cmc_y_link" pos="0.01286 -0.030499 0.0422" quat="2.67949e-08 -2.0944e-08 0 -1">
+                                      <inertial pos="0.00013691 0.00431402 0.0014461" quat="0.51566 0.855912 -0.0252567 0.0295418" mass="0.0041683" diaginertia="1.8805e-07 1.6673e-07 1.41923e-07"/>
+                                      <joint name="l_thumb_cmc_y_joint" pos="0 0 0" axis="0 0 1" range="0 1.5708" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                      <geom name="l_thumb_cmc_y_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_thumb_cmc_y_link"/>
+                                      <body name="l_thumb_cmc_p_link" pos="-0.002206 0.00998 -0.00125" quat="0.673568 -0.31538 -0.392692 -0.540958">
+                                        <inertial pos="0.00374063 6.25411e-05 0.0307014" quat="0.99713 0.00225033 0.0360329 0.0665441" mass="0.0658497" diaginertia="2.35184e-05 2.34354e-05 5.98257e-06"/>
+                                        <joint name="l_thumb_cmc_p_joint" pos="0 0 0" axis="0 1 0" range="0 0.958186" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                        <geom name="l_thumb_cmc_p_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_thumb_cmc_p_link"/>
+                                        <body name="l_thumb_mcp_link" pos="0 0 0.061208" quat="0.997912 0 -0.0645952 0">
+                                          <inertial pos="0.00410496 0.000124759 0.00680458" quat="0.998352 -0.00176418 -0.0572045 0.00422666" mass="0.0206263" diaginertia="2.78502e-06 2.43032e-06 1.83209e-06"/>
+                                          <joint name="l_thumb_mcp_joint" pos="0 0 0" axis="0 1 0" range="0 1.20444" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                          <geom name="l_thumb_mcp_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_thumb_mcp_link"/>
+                                          <body name="l_thumb_ip_link" pos="0 0 0.021998">
+                                            <inertial pos="0.00230128 5.19452e-05 0.0115539" quat="0.997521 0.00221766 -0.0702555 0.00319525" mass="0.014682" diaginertia="1.78454e-06 1.62433e-06 5.26818e-07"/>
+                                            <joint name="l_thumb_ip_joint" pos="0 0 0" axis="0 1 0" range="0 0.966809" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                            <geom name="l_thumb_ip_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_thumb_ip_link"/>
+                                          </body>
+                                        </body>
+                                      </body>
+                                    </body>
+                                    <body name="l_index_mcp_link" pos="-0.0098 -0.03646 0.135933" quat="0.994677 0.0260471 0.099657 0.00260149">
+                                      <inertial pos="0.00256303 -4.51442e-05 0.0158355" quat="0.999888 0.000790321 -0.0141059 -0.00492082" mass="0.0198195" diaginertia="7.97383e-06 7.79459e-06 1.35924e-06"/>
+                                      <joint name="l_index_mcp_joint" pos="0 0 0" axis="0 1 0" range="0 1.50971" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                      <geom name="l_index_mcp_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_index_mcp_link"/>
+                                      <body name="l_index_pip_link" pos="0 0 0.0310058" quat="0.999685 0 -0.025079 0">
+                                        <inertial pos="-0.00340428 4.77623e-05 0.0180078" quat="0.999807 0.000936232 0.0191192 -0.0043886" mass="0.014899" diaginertia="4.07801e-06 3.99522e-06 5.15948e-07"/>
+                                        <joint name="l_index_pip_joint" pos="0 0 0" axis="0 1 0" range="0 1.48631" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                        <geom name="l_index_pip_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_index_pip_link"/>
+                                      </body>
+                                    </body>
+                                    <body name="l_middle_mcp_link" pos="-0.0098 -0.011 0.1371" quat="0.995018 0 0.0996914 0">
+                                      <inertial pos="0.00256303 -4.51442e-05 0.0158355" quat="0.999888 0.000790321 -0.0141059 -0.00492082" mass="0.0198195" diaginertia="7.97383e-06 7.79459e-06 1.35924e-06"/>
+                                      <joint name="l_middle_mcp_joint" pos="0 0 0" axis="0 1 0" range="0 1.50971" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                      <geom name="l_middle_mcp_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_middle_mcp_link"/>
+                                      <body name="l_middle_pip_link" pos="0 0 0.0310058" quat="0.999685 0 -0.025079 0">
+                                        <inertial pos="-0.00340428 4.77623e-05 0.0180078" quat="0.999807 0.000936232 0.0191192 -0.0043886" mass="0.014899" diaginertia="4.07801e-06 3.99522e-06 5.15948e-07"/>
+                                        <joint name="l_middle_pip_joint" pos="0 0 0" axis="0 1 0" range="0 1.48631" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                        <geom name="l_middle_pip_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_middle_pip_link"/>
+                                      </body>
+                                    </body>
+                                    <body name="l_ring_mcp_link" pos="-0.0098 0.0145138 0.13693" quat="0.994677 -0.0260464 0.0996572 -0.00260931">
+                                      <inertial pos="0.00256303 -4.51442e-05 0.0158355" quat="0.999888 0.000790321 -0.0141059 -0.00492082" mass="0.0198195" diaginertia="7.97383e-06 7.79459e-06 1.35924e-06"/>
+                                      <joint name="l_ring_mcp_joint" pos="0 0 0" axis="0 1 0" range="0 1.50971" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                      <geom name="l_ring_mcp_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_ring_mcp_link"/>
+                                      <body name="l_ring_pip_link" pos="0 0 0.0310058" quat="0.999685 0 -0.025079 0">
+                                        <inertial pos="-0.00340428 4.77623e-05 0.0180078" quat="0.999807 0.000936232 0.0191192 -0.0043886" mass="0.014899" diaginertia="4.07801e-06 3.99522e-06 5.15948e-07"/>
+                                        <joint name="l_ring_pip_joint" pos="0 0 0" axis="0 1 0" range="0 1.48631" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                        <geom name="l_ring_pip_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_ring_pip_link"/>
+                                      </body>
+                                    </body>
+                                    <body name="l_pinky_mcp_link" pos="-0.0098 0.039853 0.133934" quat="0.993655 -0.0520687 0.0995523 -0.00521756">
+                                      <inertial pos="0.00256303 -4.51442e-05 0.0158355" quat="0.999888 0.000790321 -0.0141059 -0.00492082" mass="0.0198195" diaginertia="7.97383e-06 7.79459e-06 1.35924e-06"/>
+                                      <joint name="l_pinky_mcp_joint" pos="0 0 0" axis="0 1 0" range="0 1.50971" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                      <geom name="l_pinky_mcp_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_pinky_mcp_link"/>
+                                      <body name="l_pinky_pip_link" pos="0 0 0.0310058" quat="0.999685 0 -0.025079 0">
+                                        <inertial pos="-0.00340428 4.77623e-05 0.0180078" quat="0.999807 0.000936232 0.0191192 -0.0043886" mass="0.014899" diaginertia="4.07801e-06 3.99522e-06 5.15948e-07"/>
+                                        <joint name="l_pinky_pip_joint" pos="0 0 0" axis="0 1 0" range="0 1.48631" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                        <geom name="l_pinky_pip_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_pinky_pip_link"/>
+                                      </body>
+                                    </body>
+                                    <body name="l_wrist_camera1_color_frame" pos="-0.0367575 -0.0385 0.01804" quat="0.519187 0.12885 -0.721897 0.438983">
+                                      <inertial pos="-0.0122856 0.00878841 -0.00989469" quat="0.986554 -0.031304 0.118261 -0.108373" mass="0.0729322" diaginertia="5.37503e-05 3.8551e-05 2.3823e-05"/>
+                                      <geom name="l_wrist_camera1_color_frame_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="l_wrist_camera1_color_frame"/>
+                                      <body name="l_wrist_camera1_color_optical_frame" quat="0.5 -0.5 0.5 -0.5">
+                                        <body name="l_wrist_camera2_color_frame" pos="-0.02 0 0" quat="0.5 0.5 -0.5 0.5">
+                                          <body name="l_wrist_camera2_color_optical_frame" quat="0.5 -0.5 0.5 -0.5"/>
+                                        </body>
+                                      </body>
+                                    </body>
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                  <body name="r_arm1_shoulder_p_link" pos="0 -0.225 0">
+                    <inertial pos="0.00895069 0.00791024 0.00104782" quat="0.0505226 0.709 -0.129367 0.691397" mass="2.34787" diaginertia="0.00493248 0.00450669 0.00366384"/>
+                    <joint name="r_arm1_shoulder_p_joint" pos="0 0 0" axis="0 1 0" range="-3.14159 1.00007" actuatorfrcrange="-107 107" damping="1" frictionloss="0.1"/>
+                    <geom name="r_arm1_shoulder_p_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_arm1_shoulder_p_link"/>
+                    <body name="r_arm2_shoulder_r_link">
+                      <inertial pos="0.000363052 -0.011843 -0.0365219" quat="0.982239 -0.150967 -0.0234078 -0.108938" mass="0.752588" diaginertia="0.0026068 0.00254522 0.00157418"/>
+                      <joint name="r_arm2_shoulder_r_joint" pos="0 0 0" axis="1 0 0" range="-1.5708 0.523599" actuatorfrcrange="-107 107" damping="1" frictionloss="0.1"/>
+                      <geom name="r_arm2_shoulder_r_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_arm2_shoulder_r_link"/>
+                      <body name="r_arm3_shoulder_y_link" pos="0 -0.0275 -0.28">
+                        <inertial pos="0.00948372 -0.000928382 0.0722028" quat="0.715504 -0.0496158 -0.0422109 0.695564" mass="2.80322" diaginertia="0.0176151 0.0173345 0.00288822"/>
+                        <joint name="r_arm3_shoulder_y_joint" pos="0 0 0" axis="0 0 1" range="-3.13985 3.13985" actuatorfrcrange="-70 70" damping="1" frictionloss="0.1"/>
+                        <geom name="r_arm3_shoulder_y_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_arm3_shoulder_y_link"/>
+                        <body name="r_arm4_elbow_p_link" pos="0.02 0 0">
+                          <inertial pos="-0.0168789 0.0024246 -0.083473" quat="0.995951 -0.0553975 0.0695835 -0.0130771" mass="1.49514" diaginertia="0.00434215 0.00403417 0.00186963"/>
+                          <joint name="r_arm4_elbow_p_joint" pos="0 0 0" axis="0 1 0" range="-2.61625 0.0523599" actuatorfrcrange="-70 70" damping="1" frictionloss="0.1"/>
+                          <geom name="r_arm4_elbow_p_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_arm4_elbow_p_link"/>
+                          <body name="r_arm5_wrist_y_link" pos="-0.02 0 -0.213">
+                            <inertial pos="1.01054e-05 0.000792077 0.0334678" quat="0.811918 0.583769 0.000502587 -0.00141944" mass="0.272266" diaginertia="0.00042678 0.000381661 0.000282786"/>
+                            <joint name="r_arm5_wrist_y_joint" pos="0 0 0" axis="0 0 1" range="-3.14159 3.14159" actuatorfrcrange="-36 36" damping="1" frictionloss="0.1"/>
+                            <geom name="r_arm5_wrist_y_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_arm5_wrist_y_link"/>
+                            <body name="r_arm6_wrist_p_link">
+                              <inertial pos="-0.00239775 -0.00329415 -0.0274711" quat="0.989259 0.0612722 0.0546544 -0.120934" mass="0.876903" diaginertia="0.00114029 0.00113184 0.00052297"/>
+                              <joint name="r_arm6_wrist_p_joint" pos="0 0 0" axis="0 1 0" range="-1.39626 1.39626" actuatorfrcrange="-15 15" damping="1" frictionloss="0.1"/>
+                              <geom name="r_arm6_wrist_p_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_arm6_wrist_p_link"/>
+                              <body name="r_arm7_wrist_r_link" pos="0 0 -0.055">
+                                <inertial pos="0.00562895 0.000263129 -0.137134" quat="0.997437 0.0645333 -0.0254291 0.0175643" mass="1.11828" diaginertia="0.000540929 0.000408371 0.000283981"/>
+                                <joint name="r_arm7_wrist_r_joint" pos="0 0 0" axis="1 0 0" range="-1.39626 1.39626" actuatorfrcrange="-15 15" damping="1" frictionloss="0.1"/>
+                                <geom name="r_arm7_wrist_r_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_arm7_wrist_r_link"/>
+                                <body name="r_arm_force_sensor_link" pos="0 0 -0.06">
+                                  <inertial pos="-3.60996e-06 -0.000107824 -0.0179621" quat="0.426555 0.563693 -0.4248 0.565549" mass="0.187917" diaginertia="9.10336e-05 6.77207e-05 6.76898e-05"/>
+                                  <geom name="r_arm_force_sensor_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_arm_force_sensor_link"/>
+                                  <body name="r_end_effector_frame" pos="0 0 -0.1785" quat="0.707107 0 0.707107 0"/>
+                                  <body name="r_hand_palm_link" pos="0 0 -0.0402" quat="1.89469e-08 0.707107 0.707107 1.89469e-08">
+                                    <inertial pos="-0.00870089 -0.00231265 0.0744869" quat="0.999515 -0.0204661 -0.0183775 0.0145773" mass="0.619534" diaginertia="0.00170095 0.00132679 0.000559285"/>
+                                    <geom name="r_hand_palm_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_hand_palm_link"/>
+                                    <body name="r_thumb_cmc_y_link" pos="0.01286 0.030499 0.0422" quat="2.0944e-08 2.67949e-08 1 2.67949e-08">
+                                      <inertial pos="-0.00013691 0.00431402 0.0014461" quat="0.51566 0.855912 0.0252567 -0.0295418" mass="0.0041683" diaginertia="1.8805e-07 1.6673e-07 1.41923e-07"/>
+                                      <joint name="r_thumb_cmc_y_joint" pos="0 0 0" axis="0 0 1" range="0 1.5708" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                      <geom name="r_thumb_cmc_y_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_thumb_cmc_y_link"/>
+                                      <body name="r_thumb_cmc_p_link" pos="-0.002206 0.00998 0.00125" quat="-0.31538 0.673568 -0.540958 -0.392692">
+                                        <inertial pos="0.00374063 6.25411e-05 0.0307014" quat="0.99713 0.00225033 0.0360329 0.0665441" mass="0.0658497" diaginertia="2.35184e-05 2.34354e-05 5.98257e-06"/>
+                                        <joint name="r_thumb_cmc_p_joint" pos="0 0 0" axis="0 1 0" range="0 0.958186" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                        <geom name="r_thumb_cmc_p_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_thumb_cmc_p_link"/>
+                                        <body name="r_thumb_mcp_link" pos="0 0 0.061208" quat="0.997912 0 -0.0645952 0">
+                                          <inertial pos="0.00410496 0.000124759 0.00680458" quat="0.998352 -0.00176418 -0.0572045 0.00422666" mass="0.0206263" diaginertia="2.78502e-06 2.43032e-06 1.83209e-06"/>
+                                          <joint name="r_thumb_mcp_joint" pos="0 0 0" axis="0 1 0" range="0 1.20444" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                          <geom name="r_thumb_mcp_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_thumb_mcp_link"/>
+                                          <body name="r_thumb_ip_link" pos="0 0 0.021998">
+                                            <inertial pos="0.00230128 5.19452e-05 0.0115539" quat="0.997521 0.00221766 -0.0702555 0.00319525" mass="0.014682" diaginertia="1.78454e-06 1.62433e-06 5.26818e-07"/>
+                                            <joint name="r_thumb_ip_joint" pos="0 0 0" axis="0 1 0" range="0 0.966809" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                            <geom name="r_thumb_ip_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_thumb_ip_link"/>
+                                          </body>
+                                        </body>
+                                      </body>
+                                    </body>
+                                    <body name="r_index_mcp_link" pos="-0.0098 0.03651 0.137131" quat="0.994677 -0.0260471 0.099657 -0.00260149">
+                                      <inertial pos="-0.00256303 4.51442e-05 0.0158355" quat="0.999888 -0.000790321 0.0141059 -0.00492082" mass="0.0198195" diaginertia="7.97383e-06 7.79459e-06 1.35924e-06"/>
+                                      <joint name="r_index_mcp_joint" pos="0 0 0" axis="0 1 0" range="0 1.50971" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                      <geom name="r_index_mcp_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_index_mcp_link"/>
+                                      <body name="r_index_pip_link" pos="0 0 0.0310058" quat="0.999685 0 0.025079 0">
+                                        <inertial pos="-0.00340428 4.77623e-05 0.0180078" quat="0.999807 0.000936232 0.0191192 -0.0043886" mass="0.014899" diaginertia="4.07801e-06 3.99522e-06 5.15948e-07"/>
+                                        <joint name="r_index_pip_joint" pos="0 0 0" axis="0 1 0" range="0 1.48631" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                        <geom name="r_index_pip_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_index_pip_link"/>
+                                      </body>
+                                    </body>
+                                    <body name="r_middle_mcp_link" pos="-0.0098 0.0110499 0.1383" quat="0.995018 0 0.0996914 0">
+                                      <inertial pos="-0.00256303 4.51442e-05 0.0158355" quat="0.999888 -0.000790321 0.0141059 -0.00492082" mass="0.0198195" diaginertia="7.97383e-06 7.79459e-06 1.35924e-06"/>
+                                      <joint name="r_middle_mcp_joint" pos="0 0 0" axis="0 1 0" range="0 1.50971" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                      <geom name="r_middle_mcp_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_middle_mcp_link"/>
+                                      <body name="r_middle_pip_link" pos="0 0 0.0310058" quat="0.999685 0 0.025079 0">
+                                        <inertial pos="-0.00340428 4.77623e-05 0.0180078" quat="0.999807 0.000936232 0.0191192 -0.0043886" mass="0.014899" diaginertia="4.07801e-06 3.99522e-06 5.15948e-07"/>
+                                        <joint name="r_middle_pip_joint" pos="0 0 0" axis="0 1 0" range="0 1.48631" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                        <geom name="r_middle_pip_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_middle_pip_link"/>
+                                      </body>
+                                    </body>
+                                    <body name="r_ring_mcp_link" pos="-0.0098 -0.0144639 0.138135" quat="0.994677 0.0260464 0.0996572 0.00260931">
+                                      <inertial pos="-0.00256303 4.51442e-05 0.0158355" quat="0.999888 -0.000790321 0.0141059 -0.00492082" mass="0.0198195" diaginertia="7.97383e-06 7.79459e-06 1.35924e-06"/>
+                                      <joint name="r_ring_mcp_joint" pos="0 0 0" axis="0 1 0" range="0 1.50971" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                      <geom name="r_ring_mcp_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_ring_mcp_link"/>
+                                      <body name="r_ring_pip_link" pos="0 0 0.0310058" quat="0.999685 0 0.025079 0">
+                                        <inertial pos="-0.00340428 4.77623e-05 0.0180078" quat="0.999807 0.000936232 0.0191192 -0.0043886" mass="0.014899" diaginertia="4.07801e-06 3.99522e-06 5.15948e-07"/>
+                                        <joint name="r_ring_pip_joint" pos="0 0 0" axis="0 1 0" range="0 1.48631" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                        <geom name="r_ring_pip_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_ring_pip_link"/>
+                                      </body>
+                                    </body>
+                                    <body name="r_pinky_mcp_link" pos="-0.0098 -0.0398034 0.13514" quat="0.993655 0.0520687 0.0995523 0.00521756">
+                                      <inertial pos="-0.00256303 4.51442e-05 0.0158355" quat="0.999888 -0.000790321 0.0141059 -0.00492082" mass="0.0198195" diaginertia="7.97383e-06 7.79459e-06 1.35924e-06"/>
+                                      <joint name="r_pinky_mcp_joint" pos="0 0 0" axis="0 1 0" range="0 1.50971" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                      <geom name="r_pinky_mcp_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_pinky_mcp_link"/>
+                                      <body name="r_pinky_pip_link" pos="0 0 0.0310058" quat="0.999685 0 0.025079 0">
+                                        <inertial pos="-0.00340428 4.77623e-05 0.0180078" quat="0.999807 0.000936232 0.0191192 -0.0043886" mass="0.014899" diaginertia="4.07801e-06 3.99522e-06 5.15948e-07"/>
+                                        <joint name="r_pinky_pip_joint" pos="0 0 0" axis="0 1 0" range="0 1.48631" actuatorfrcrange="-10 10" damping="1" frictionloss="0.1"/>
+                                        <geom name="r_pinky_pip_link_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_pinky_pip_link"/>
+                                      </body>
+                                    </body>
+                                    <body name="r_wrist_camera1_color_frame" pos="0.0475535 -0.0287228 0.00962709" quat="0.438978 0.721898 -0.12885 0.51919">
+                                      <inertial pos="-0.0122813 0.00856358 -0.00986011" quat="0.986987 0.016941 0.118454 0.107417" mass="0.0728283" diaginertia="5.37112e-05 3.85684e-05 2.38604e-05"/>
+                                      <geom name="r_wrist_camera1_color_frame_col" type="mesh" rgba="0.85 0.85 0.85 1" mesh="r_wrist_camera1_color_frame"/>
+                                      <body name="r_wrist_camera1_color_optical_frame" quat="0.5 -0.5 0.5 -0.5">
+                                        <body name="r_wrist_camera2_color_frame" pos="-0.02 0 0" quat="0.5 0.5 -0.5 0.5">
+                                          <body name="r_wrist_camera2_color_optical_frame" quat="0.5 -0.5 0.5 -0.5"/>
+                                        </body>
+                                      </body>
+                                    </body>
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

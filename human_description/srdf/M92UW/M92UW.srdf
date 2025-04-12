@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="M92UW">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="trunk">
+        <joint name="ankle_p_joint"/>
+        <joint name="knee_p_joint"/>
+        <joint name="waist1_p_joint"/>
+        <joint name="waist2_y_joint"/>
+    </group>
+    <group name="head">
+        <joint name="head1_y_joint"/>
+        <joint name="head2_p_joint"/>
+    </group>
+    <group name="left_arm">
+        <joint name="l_arm1_shoulder_p_joint"/>
+        <joint name="l_arm2_shoulder_r_joint"/>
+        <joint name="l_arm3_shoulder_y_joint"/>
+        <joint name="l_arm4_elbow_p_joint"/>
+        <joint name="l_arm5_wrist_y_joint"/>
+        <joint name="l_arm6_wrist_p_joint"/>
+        <joint name="l_arm7_wrist_r_joint"/>
+        <joint name="l_end_effector_fixed_joint"/>
+    </group>
+    <group name="right_arm">
+        <joint name="r_arm1_shoulder_p_joint"/>
+        <joint name="r_arm2_shoulder_r_joint"/>
+        <joint name="r_arm3_shoulder_y_joint"/>
+        <joint name="r_arm4_elbow_p_joint"/>
+        <joint name="r_arm5_wrist_y_joint"/>
+        <joint name="r_arm6_wrist_p_joint"/>
+        <joint name="r_arm7_wrist_r_joint"/>
+        <joint name="r_end_effector_fixed_joint"/>
+    </group>
+    <group name="left_hand">
+        <joint name="l_thumb_cmc_y_joint"/>
+        <joint name="l_thumb_cmc_p_joint"/>
+        <joint name="l_index_mcp_joint"/>
+        <joint name="l_middle_mcp_joint"/>
+        <joint name="l_ring_mcp_joint"/>
+        <joint name="l_pinky_mcp_joint"/>
+    </group>
+    <group name="right_hand">
+        <joint name="r_thumb_cmc_y_joint"/>
+        <joint name="r_thumb_cmc_p_joint"/>
+        <joint name="r_index_mcp_joint"/>
+        <joint name="r_middle_mcp_joint"/>
+        <joint name="r_ring_mcp_joint"/>
+        <joint name="r_pinky_mcp_joint"/>
+    </group>
+    <group name="body">
+        <group name="trunk"/>
+        <group name="head"/>
+        <group name="left_arm"/>
+        <group name="right_arm"/>
+        <group name="left_hand"/>
+        <group name="right_hand"/>
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="homing" group="body">
+        <joint name="ankle_p_joint" value="0"/>
+        <joint name="head1_y_joint" value="0"/>
+        <joint name="head2_p_joint" value="0"/>
+        <joint name="knee_p_joint" value="0"/>
+        <joint name="l_arm1_shoulder_p_joint" value="0"/>
+        <joint name="l_arm2_shoulder_r_joint" value="0"/>
+        <joint name="l_arm3_shoulder_y_joint" value="0"/>
+        <joint name="l_arm4_elbow_p_joint" value="0"/>
+        <joint name="l_arm5_wrist_y_joint" value="0"/>
+        <joint name="l_arm6_wrist_p_joint" value="0"/>
+        <joint name="l_arm7_wrist_r_joint" value="0"/>
+        <joint name="l_index_mcp_joint" value="0"/>
+        <joint name="l_middle_mcp_joint" value="0"/>
+        <joint name="l_pinky_mcp_joint" value="0"/>
+        <joint name="l_ring_mcp_joint" value="0"/>
+        <joint name="l_thumb_cmc_p_joint" value="0"/>
+        <joint name="l_thumb_cmc_y_joint" value="0"/>
+        <joint name="r_arm1_shoulder_p_joint" value="0"/>
+        <joint name="r_arm2_shoulder_r_joint" value="0"/>
+        <joint name="r_arm3_shoulder_y_joint" value="0"/>
+        <joint name="r_arm4_elbow_p_joint" value="0"/>
+        <joint name="r_arm5_wrist_y_joint" value="0"/>
+        <joint name="r_arm6_wrist_p_joint" value="0"/>
+        <joint name="r_arm7_wrist_r_joint" value="0"/>
+        <joint name="r_index_mcp_joint" value="0"/>
+        <joint name="r_middle_mcp_joint" value="0"/>
+        <joint name="r_pinky_mcp_joint" value="0"/>
+        <joint name="r_ring_mcp_joint" value="0"/>
+        <joint name="r_thumb_cmc_p_joint" value="0"/>
+        <joint name="r_thumb_cmc_y_joint" value="0"/>
+        <joint name="waist1_p_joint" value="0"/>
+        <joint name="waist2_y_joint" value="0"/>
+    </group_state>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="left_eef" parent_link="l_end_effector_frame" group="left_hand" parent_group="left_arm"/>
+    <end_effector name="right_eef" parent_link="r_end_effector_frame" group="right_hand" parent_group="right_arm"/>
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="ankle_p_link" link2="base_link" reason="Adjacent"/>
+    <disable_collisions link1="ankle_p_link" link2="head1_y_link" reason="Never"/>
+    <disable_collisions link1="ankle_p_link" link2="knee_p_link" reason="Adjacent"/>
+    <disable_collisions link1="ankle_p_link" link2="lb_wheel_link" reason="Never"/>
+    <disable_collisions link1="ankle_p_link" link2="lf_wheel_link" reason="Never"/>
+    <disable_collisions link1="ankle_p_link" link2="rb_wheel_link" reason="Never"/>
+    <disable_collisions link1="ankle_p_link" link2="rf_wheel_link" reason="Never"/>
+    <disable_collisions link1="base_link" link2="lb_wheel_link" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="lf_wheel_link" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="rb_wheel_link" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="rf_wheel_link" reason="Adjacent"/>
+    <disable_collisions link1="head1_y_link" link2="head2_p_link" reason="Adjacent"/>
+    <disable_collisions link1="head1_y_link" link2="head_camera_link" reason="Never"/>
+    <disable_collisions link1="head1_y_link" link2="knee_p_link" reason="Never"/>
+    <disable_collisions link1="head1_y_link" link2="l_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="head1_y_link" link2="l_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="head1_y_link" link2="l_arm3_shoulder_y_link" reason="Never"/>
+    <disable_collisions link1="head1_y_link" link2="lb_wheel_link" reason="Never"/>
+    <disable_collisions link1="head1_y_link" link2="lf_wheel_link" reason="Never"/>
+    <disable_collisions link1="head1_y_link" link2="r_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="head1_y_link" link2="r_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="head1_y_link" link2="r_arm3_shoulder_y_link" reason="Never"/>
+    <disable_collisions link1="head1_y_link" link2="rb_wheel_link" reason="Never"/>
+    <disable_collisions link1="head1_y_link" link2="rf_wheel_link" reason="Never"/>
+    <disable_collisions link1="head1_y_link" link2="trunk_link" reason="Adjacent"/>
+    <disable_collisions link1="head1_y_link" link2="waist1_p_link" reason="Never"/>
+    <disable_collisions link1="head1_y_link" link2="waist2_y_link" reason="Never"/>
+    <disable_collisions link1="head2_p_link" link2="head_camera_link" reason="Adjacent"/>
+    <disable_collisions link1="head2_p_link" link2="knee_p_link" reason="Never"/>
+    <disable_collisions link1="head2_p_link" link2="l_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="head2_p_link" link2="l_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="head2_p_link" link2="lb_wheel_link" reason="Never"/>
+    <disable_collisions link1="head2_p_link" link2="r_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="head2_p_link" link2="r_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="head2_p_link" link2="rb_wheel_link" reason="Never"/>
+    <disable_collisions link1="head2_p_link" link2="trunk_link" reason="Never"/>
+    <disable_collisions link1="head2_p_link" link2="waist1_p_link" reason="Never"/>
+    <disable_collisions link1="head2_p_link" link2="waist2_y_link" reason="Never"/>
+    <disable_collisions link1="head_camera_link" link2="knee_p_link" reason="Never"/>
+    <disable_collisions link1="head_camera_link" link2="l_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="head_camera_link" link2="l_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="head_camera_link" link2="l_arm3_shoulder_y_link" reason="Never"/>
+    <disable_collisions link1="head_camera_link" link2="l_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="head_camera_link" link2="lb_wheel_link" reason="Never"/>
+    <disable_collisions link1="head_camera_link" link2="lf_wheel_link" reason="Never"/>
+    <disable_collisions link1="head_camera_link" link2="r_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="head_camera_link" link2="r_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="head_camera_link" link2="r_arm3_shoulder_y_link" reason="Never"/>
+    <disable_collisions link1="head_camera_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="head_camera_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="head_camera_link" link2="rb_wheel_link" reason="Never"/>
+    <disable_collisions link1="head_camera_link" link2="rf_wheel_link" reason="Never"/>
+    <disable_collisions link1="head_camera_link" link2="trunk_link" reason="Never"/>
+    <disable_collisions link1="head_camera_link" link2="waist1_p_link" reason="Never"/>
+    <disable_collisions link1="head_camera_link" link2="waist2_y_link" reason="Never"/>
+    <disable_collisions link1="knee_p_link" link2="l_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="knee_p_link" link2="l_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="knee_p_link" link2="lb_wheel_link" reason="Never"/>
+    <disable_collisions link1="knee_p_link" link2="lf_wheel_link" reason="Never"/>
+    <disable_collisions link1="knee_p_link" link2="r_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="knee_p_link" link2="r_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="knee_p_link" link2="rb_wheel_link" reason="Never"/>
+    <disable_collisions link1="knee_p_link" link2="rf_wheel_link" reason="Never"/>
+    <disable_collisions link1="knee_p_link" link2="waist1_p_link" reason="Adjacent"/>
+    <disable_collisions link1="knee_p_link" link2="waist2_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="l_arm2_shoulder_r_link" reason="Adjacent"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="l_arm3_shoulder_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="l_arm4_elbow_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="l_arm5_wrist_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="l_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="r_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="r_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="r_arm3_shoulder_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="r_arm4_elbow_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="r_arm5_wrist_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="r_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="r_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="rb_wheel_link" reason="Never"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="rf_wheel_link" reason="Never"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="trunk_link" reason="Adjacent"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="waist1_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm1_shoulder_p_link" link2="waist2_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="l_arm3_shoulder_y_link" reason="Adjacent"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="l_arm4_elbow_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="l_arm5_wrist_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="l_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="l_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="l_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="l_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="r_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="r_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="r_arm3_shoulder_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="r_arm4_elbow_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="r_arm5_wrist_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="r_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="r_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="rb_wheel_link" reason="Never"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="rf_wheel_link" reason="Never"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="waist1_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm2_shoulder_r_link" link2="waist2_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_arm4_elbow_p_link" reason="Adjacent"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_arm5_wrist_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_arm7_wrist_r_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_hand_palm_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_index_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="l_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="r_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="r_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="r_arm3_shoulder_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="r_arm4_elbow_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="r_arm5_wrist_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="waist1_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm3_shoulder_y_link" link2="waist2_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_arm5_wrist_y_link" reason="Adjacent"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_arm7_wrist_r_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_hand_palm_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_index_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="l_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="r_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="r_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="r_arm3_shoulder_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm4_elbow_p_link" link2="r_arm4_elbow_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="l_arm6_wrist_p_link" reason="Adjacent"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="l_arm7_wrist_r_link" reason="Default"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="l_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="l_hand_palm_link" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="l_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="l_index_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="l_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="l_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="l_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="l_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="l_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="l_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="l_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="l_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="l_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="l_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="l_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="r_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="r_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="l_arm5_wrist_y_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="l_arm7_wrist_r_link" reason="Adjacent"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="l_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="l_hand_palm_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="l_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="l_index_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="l_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="l_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="l_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="l_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="l_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="l_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="l_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="l_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="l_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="l_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="l_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="r_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="r_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="r_index_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm6_wrist_p_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm7_wrist_r_link" link2="l_arm_force_sensor_link" reason="Adjacent"/>
+    <disable_collisions link1="l_arm7_wrist_r_link" link2="l_hand_palm_link" reason="Default"/>
+    <disable_collisions link1="l_arm7_wrist_r_link" link2="l_index_mcp_link" reason="Default"/>
+    <disable_collisions link1="l_arm7_wrist_r_link" link2="l_middle_mcp_link" reason="Default"/>
+    <disable_collisions link1="l_arm7_wrist_r_link" link2="l_pinky_mcp_link" reason="Default"/>
+    <disable_collisions link1="l_arm7_wrist_r_link" link2="l_ring_mcp_link" reason="Default"/>
+    <disable_collisions link1="l_arm7_wrist_r_link" link2="l_thumb_cmc_p_link" reason="Default"/>
+    <disable_collisions link1="l_arm7_wrist_r_link" link2="l_thumb_cmc_y_link" reason="Default"/>
+    <disable_collisions link1="l_arm7_wrist_r_link" link2="l_wrist_camera1_color_frame" reason="Default"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="l_hand_palm_link" reason="Adjacent"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="l_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="l_index_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="l_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="l_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="l_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="l_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="l_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="l_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="l_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="l_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="l_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="l_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="l_wrist_camera1_color_frame" reason="Default"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="r_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="r_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="r_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="r_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="r_index_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_arm_force_sensor_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_hand_palm_link" link2="l_index_mcp_link" reason="Adjacent"/>
+    <disable_collisions link1="l_hand_palm_link" link2="l_middle_mcp_link" reason="Adjacent"/>
+    <disable_collisions link1="l_hand_palm_link" link2="l_pinky_mcp_link" reason="Adjacent"/>
+    <disable_collisions link1="l_hand_palm_link" link2="l_ring_mcp_link" reason="Adjacent"/>
+    <disable_collisions link1="l_hand_palm_link" link2="l_thumb_cmc_p_link" reason="Default"/>
+    <disable_collisions link1="l_hand_palm_link" link2="l_thumb_cmc_y_link" reason="Adjacent"/>
+    <disable_collisions link1="l_hand_palm_link" link2="l_wrist_camera1_color_frame" reason="Adjacent"/>
+    <disable_collisions link1="l_hand_palm_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="l_index_pip_link" reason="Adjacent"/>
+    <disable_collisions link1="l_index_mcp_link" link2="l_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="l_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="l_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="l_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="l_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="l_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="l_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="l_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="l_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="l_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="r_arm4_elbow_p_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="r_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="r_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="r_index_pip_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_mcp_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="l_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="l_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="l_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="l_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="l_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="l_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="l_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="l_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="r_arm5_wrist_y_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="r_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="r_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="r_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_index_pip_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="l_middle_pip_link" reason="Adjacent"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="l_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="l_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="l_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="l_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="l_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="l_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="l_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="l_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="r_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="r_index_pip_link" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_middle_mcp_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="l_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="l_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="l_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="l_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="l_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="l_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="r_arm5_wrist_y_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="r_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="r_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="r_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="r_index_pip_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_middle_pip_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_pinky_mcp_link" link2="l_pinky_pip_link" reason="Adjacent"/>
+    <disable_collisions link1="l_pinky_mcp_link" link2="l_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_mcp_link" link2="l_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_mcp_link" link2="l_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_mcp_link" link2="l_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_mcp_link" link2="l_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_mcp_link" link2="l_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_mcp_link" link2="l_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_pinky_mcp_link" link2="r_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_mcp_link" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_mcp_link" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_mcp_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_mcp_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_mcp_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_mcp_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_mcp_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_mcp_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="l_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="l_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="l_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="l_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="l_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="l_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="l_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="r_arm5_wrist_y_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="r_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="r_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_pinky_pip_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_ring_mcp_link" link2="l_ring_pip_link" reason="Adjacent"/>
+    <disable_collisions link1="l_ring_mcp_link" link2="l_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_ring_mcp_link" link2="l_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_ring_mcp_link" link2="l_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_ring_mcp_link" link2="l_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_ring_mcp_link" link2="l_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_ring_mcp_link" link2="r_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="l_ring_mcp_link" link2="r_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="l_ring_mcp_link" link2="r_index_pip_link" reason="Never"/>
+    <disable_collisions link1="l_ring_mcp_link" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_ring_mcp_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_ring_mcp_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_ring_mcp_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_ring_mcp_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_ring_mcp_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_ring_mcp_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_ring_mcp_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="l_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="l_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="l_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="l_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="l_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="r_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="r_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="r_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="r_index_pip_link" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_ring_pip_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_p_link" link2="l_thumb_cmc_y_link" reason="Adjacent"/>
+    <disable_collisions link1="l_thumb_cmc_p_link" link2="l_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_p_link" link2="l_thumb_mcp_link" reason="Adjacent"/>
+    <disable_collisions link1="l_thumb_cmc_p_link" link2="l_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_p_link" link2="r_arm3_shoulder_y_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_p_link" link2="r_arm5_wrist_y_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_p_link" link2="r_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_p_link" link2="r_index_pip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_p_link" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_p_link" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_p_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_p_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_p_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_p_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_p_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="l_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="l_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="l_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="r_arm4_elbow_p_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="r_arm5_wrist_y_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="r_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="r_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="r_index_pip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_cmc_y_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_ip_link" link2="l_thumb_mcp_link" reason="Adjacent"/>
+    <disable_collisions link1="l_thumb_ip_link" link2="l_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_thumb_ip_link" link2="r_arm5_wrist_y_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_ip_link" link2="r_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_ip_link" link2="r_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_ip_link" link2="r_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_ip_link" link2="r_index_pip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_ip_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_ip_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_ip_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_ip_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_ip_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_ip_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_ip_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_ip_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_thumb_ip_link" link2="rf_wheel_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_mcp_link" link2="l_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_thumb_mcp_link" link2="r_arm5_wrist_y_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_mcp_link" link2="r_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_mcp_link" link2="r_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_mcp_link" link2="r_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_mcp_link" link2="r_index_pip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_mcp_link" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_mcp_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_mcp_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_mcp_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_mcp_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_mcp_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_mcp_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_thumb_mcp_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="l_thumb_mcp_link" link2="rb_wheel_link" reason="Never"/>
+    <disable_collisions link1="l_wrist_camera1_color_frame" link2="r_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="l_wrist_camera1_color_frame" link2="r_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="l_wrist_camera1_color_frame" link2="r_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="l_wrist_camera1_color_frame" link2="r_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="l_wrist_camera1_color_frame" link2="r_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_wrist_camera1_color_frame" link2="r_index_pip_link" reason="Never"/>
+    <disable_collisions link1="l_wrist_camera1_color_frame" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_wrist_camera1_color_frame" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="l_wrist_camera1_color_frame" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_wrist_camera1_color_frame" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="l_wrist_camera1_color_frame" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_wrist_camera1_color_frame" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="l_wrist_camera1_color_frame" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="l_wrist_camera1_color_frame" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="l_wrist_camera1_color_frame" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="l_wrist_camera1_color_frame" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="l_wrist_camera1_color_frame" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="lb_wheel_link" link2="lf_wheel_link" reason="Never"/>
+    <disable_collisions link1="lb_wheel_link" link2="r_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="lb_wheel_link" link2="r_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="lb_wheel_link" link2="rb_wheel_link" reason="Never"/>
+    <disable_collisions link1="lb_wheel_link" link2="rf_wheel_link" reason="Never"/>
+    <disable_collisions link1="lb_wheel_link" link2="waist1_p_link" reason="Never"/>
+    <disable_collisions link1="lb_wheel_link" link2="waist2_y_link" reason="Never"/>
+    <disable_collisions link1="lf_wheel_link" link2="r_arm1_shoulder_p_link" reason="Never"/>
+    <disable_collisions link1="lf_wheel_link" link2="r_arm2_shoulder_r_link" reason="Never"/>
+    <disable_collisions link1="lf_wheel_link" link2="rb_wheel_link" reason="Never"/>
+    <disable_collisions link1="lf_wheel_link" link2="rf_wheel_link" reason="Never"/>
+    <disable_collisions link1="lf_wheel_link" link2="waist1_p_link" reason="Never"/>
+    <disable_collisions link1="lf_wheel_link" link2="waist2_y_link" reason="Never"/>
+    <disable_collisions link1="r_arm1_shoulder_p_link" link2="r_arm2_shoulder_r_link" reason="Adjacent"/>
+    <disable_collisions link1="r_arm1_shoulder_p_link" link2="r_arm3_shoulder_y_link" reason="Never"/>
+    <disable_collisions link1="r_arm1_shoulder_p_link" link2="r_arm4_elbow_p_link" reason="Never"/>
+    <disable_collisions link1="r_arm1_shoulder_p_link" link2="r_arm5_wrist_y_link" reason="Never"/>
+    <disable_collisions link1="r_arm1_shoulder_p_link" link2="r_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="r_arm1_shoulder_p_link" link2="trunk_link" reason="Adjacent"/>
+    <disable_collisions link1="r_arm1_shoulder_p_link" link2="waist1_p_link" reason="Never"/>
+    <disable_collisions link1="r_arm1_shoulder_p_link" link2="waist2_y_link" reason="Never"/>
+    <disable_collisions link1="r_arm2_shoulder_r_link" link2="r_arm3_shoulder_y_link" reason="Adjacent"/>
+    <disable_collisions link1="r_arm2_shoulder_r_link" link2="r_arm4_elbow_p_link" reason="Never"/>
+    <disable_collisions link1="r_arm2_shoulder_r_link" link2="r_arm5_wrist_y_link" reason="Never"/>
+    <disable_collisions link1="r_arm2_shoulder_r_link" link2="r_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="r_arm2_shoulder_r_link" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm2_shoulder_r_link" link2="waist1_p_link" reason="Never"/>
+    <disable_collisions link1="r_arm2_shoulder_r_link" link2="waist2_y_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_arm4_elbow_p_link" reason="Adjacent"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_arm5_wrist_y_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_arm7_wrist_r_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_hand_palm_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_index_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="waist1_p_link" reason="Never"/>
+    <disable_collisions link1="r_arm3_shoulder_y_link" link2="waist2_y_link" reason="Never"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_arm5_wrist_y_link" reason="Adjacent"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_arm6_wrist_p_link" reason="Never"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_arm7_wrist_r_link" reason="Never"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_hand_palm_link" reason="Never"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_index_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm4_elbow_p_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="r_arm5_wrist_y_link" link2="r_arm6_wrist_p_link" reason="Adjacent"/>
+    <disable_collisions link1="r_arm5_wrist_y_link" link2="r_arm7_wrist_r_link" reason="Default"/>
+    <disable_collisions link1="r_arm5_wrist_y_link" link2="r_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="r_arm5_wrist_y_link" link2="r_hand_palm_link" reason="Never"/>
+    <disable_collisions link1="r_arm5_wrist_y_link" link2="r_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm5_wrist_y_link" link2="r_index_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm5_wrist_y_link" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm5_wrist_y_link" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm5_wrist_y_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm5_wrist_y_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm5_wrist_y_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm5_wrist_y_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm5_wrist_y_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="r_arm5_wrist_y_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="r_arm5_wrist_y_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="r_arm5_wrist_y_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm5_wrist_y_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="r_arm6_wrist_p_link" link2="r_arm7_wrist_r_link" reason="Adjacent"/>
+    <disable_collisions link1="r_arm6_wrist_p_link" link2="r_arm_force_sensor_link" reason="Never"/>
+    <disable_collisions link1="r_arm6_wrist_p_link" link2="r_hand_palm_link" reason="Never"/>
+    <disable_collisions link1="r_arm6_wrist_p_link" link2="r_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm6_wrist_p_link" link2="r_index_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm6_wrist_p_link" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm6_wrist_p_link" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm6_wrist_p_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm6_wrist_p_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm6_wrist_p_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm6_wrist_p_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm6_wrist_p_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="r_arm6_wrist_p_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="r_arm6_wrist_p_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="r_arm6_wrist_p_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm6_wrist_p_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="r_arm7_wrist_r_link" link2="r_arm_force_sensor_link" reason="Adjacent"/>
+    <disable_collisions link1="r_arm7_wrist_r_link" link2="r_hand_palm_link" reason="Default"/>
+    <disable_collisions link1="r_arm7_wrist_r_link" link2="r_index_mcp_link" reason="Default"/>
+    <disable_collisions link1="r_arm7_wrist_r_link" link2="r_middle_mcp_link" reason="Default"/>
+    <disable_collisions link1="r_arm7_wrist_r_link" link2="r_pinky_mcp_link" reason="Default"/>
+    <disable_collisions link1="r_arm7_wrist_r_link" link2="r_ring_mcp_link" reason="Default"/>
+    <disable_collisions link1="r_arm7_wrist_r_link" link2="r_thumb_cmc_p_link" reason="Default"/>
+    <disable_collisions link1="r_arm7_wrist_r_link" link2="r_thumb_cmc_y_link" reason="Default"/>
+    <disable_collisions link1="r_arm7_wrist_r_link" link2="r_wrist_camera1_color_frame" reason="Default"/>
+    <disable_collisions link1="r_arm_force_sensor_link" link2="r_hand_palm_link" reason="Adjacent"/>
+    <disable_collisions link1="r_arm_force_sensor_link" link2="r_index_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm_force_sensor_link" link2="r_index_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm_force_sensor_link" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm_force_sensor_link" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm_force_sensor_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm_force_sensor_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm_force_sensor_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm_force_sensor_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="r_arm_force_sensor_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="r_arm_force_sensor_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="r_arm_force_sensor_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="r_arm_force_sensor_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_arm_force_sensor_link" link2="r_wrist_camera1_color_frame" reason="Default"/>
+    <disable_collisions link1="r_hand_palm_link" link2="r_index_mcp_link" reason="Adjacent"/>
+    <disable_collisions link1="r_hand_palm_link" link2="r_middle_mcp_link" reason="Adjacent"/>
+    <disable_collisions link1="r_hand_palm_link" link2="r_pinky_mcp_link" reason="Adjacent"/>
+    <disable_collisions link1="r_hand_palm_link" link2="r_ring_mcp_link" reason="Adjacent"/>
+    <disable_collisions link1="r_hand_palm_link" link2="r_thumb_cmc_p_link" reason="Default"/>
+    <disable_collisions link1="r_hand_palm_link" link2="r_thumb_cmc_y_link" reason="Adjacent"/>
+    <disable_collisions link1="r_hand_palm_link" link2="r_wrist_camera1_color_frame" reason="Adjacent"/>
+    <disable_collisions link1="r_index_mcp_link" link2="r_index_pip_link" reason="Adjacent"/>
+    <disable_collisions link1="r_index_mcp_link" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_index_mcp_link" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="r_index_mcp_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_index_mcp_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="r_index_mcp_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_index_mcp_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="r_index_mcp_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="r_index_mcp_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="r_index_mcp_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_index_mcp_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="r_index_pip_link" link2="r_middle_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_index_pip_link" link2="r_middle_pip_link" reason="Never"/>
+    <disable_collisions link1="r_index_pip_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_index_pip_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="r_index_pip_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_index_pip_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="r_index_pip_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="r_index_pip_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="r_middle_mcp_link" link2="r_middle_pip_link" reason="Adjacent"/>
+    <disable_collisions link1="r_middle_mcp_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_middle_mcp_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="r_middle_mcp_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_middle_mcp_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="r_middle_mcp_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="r_middle_mcp_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="r_middle_mcp_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_middle_mcp_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="r_middle_pip_link" link2="r_pinky_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_middle_pip_link" link2="r_pinky_pip_link" reason="Never"/>
+    <disable_collisions link1="r_middle_pip_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_middle_pip_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="r_middle_pip_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="r_middle_pip_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="r_pinky_mcp_link" link2="r_pinky_pip_link" reason="Adjacent"/>
+    <disable_collisions link1="r_pinky_mcp_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_pinky_mcp_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="r_pinky_mcp_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="r_pinky_mcp_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="r_pinky_mcp_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="r_pinky_mcp_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_pinky_mcp_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="r_pinky_pip_link" link2="r_ring_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_pinky_pip_link" link2="r_ring_pip_link" reason="Never"/>
+    <disable_collisions link1="r_pinky_pip_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="r_pinky_pip_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="r_pinky_pip_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="r_pinky_pip_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_pinky_pip_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="r_ring_mcp_link" link2="r_ring_pip_link" reason="Adjacent"/>
+    <disable_collisions link1="r_ring_mcp_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="r_ring_mcp_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="r_ring_mcp_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="r_ring_mcp_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_ring_mcp_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="r_ring_pip_link" link2="r_thumb_cmc_p_link" reason="Never"/>
+    <disable_collisions link1="r_ring_pip_link" link2="r_thumb_cmc_y_link" reason="Never"/>
+    <disable_collisions link1="r_ring_pip_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="r_ring_pip_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_ring_pip_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="r_thumb_cmc_p_link" link2="r_thumb_cmc_y_link" reason="Adjacent"/>
+    <disable_collisions link1="r_thumb_cmc_p_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="r_thumb_cmc_p_link" link2="r_thumb_mcp_link" reason="Adjacent"/>
+    <disable_collisions link1="r_thumb_cmc_p_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="r_thumb_cmc_y_link" link2="r_thumb_ip_link" reason="Never"/>
+    <disable_collisions link1="r_thumb_cmc_y_link" link2="r_thumb_mcp_link" reason="Never"/>
+    <disable_collisions link1="r_thumb_cmc_y_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="r_thumb_ip_link" link2="r_thumb_mcp_link" reason="Adjacent"/>
+    <disable_collisions link1="r_thumb_ip_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="r_thumb_mcp_link" link2="r_wrist_camera1_color_frame" reason="Never"/>
+    <disable_collisions link1="rb_wheel_link" link2="rf_wheel_link" reason="Never"/>
+    <disable_collisions link1="rb_wheel_link" link2="waist1_p_link" reason="Never"/>
+    <disable_collisions link1="rb_wheel_link" link2="waist2_y_link" reason="Never"/>
+    <disable_collisions link1="rf_wheel_link" link2="waist1_p_link" reason="Never"/>
+    <disable_collisions link1="rf_wheel_link" link2="waist2_y_link" reason="Never"/>
+    <disable_collisions link1="trunk_link" link2="waist1_p_link" reason="Never"/>
+    <disable_collisions link1="trunk_link" link2="waist2_y_link" reason="Adjacent"/>
+    <disable_collisions link1="waist1_p_link" link2="waist2_y_link" reason="Adjacent"/>
+</robot>

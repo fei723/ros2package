@@ -1,0 +1,137 @@
+# default:
+#   damping: 0.003
+#   friction: 0.2
+# change_log_250224:
+#   damping set to 21.75
+#   friction set to 3.48
+rf_wheel_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.0
+rb_wheel_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.0
+
+lf_wheel_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.0
+lb_wheel_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.0
+
+#### leg ####
+ankle_p_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+knee_p_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+#### waist ####
+waist1_p_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+waist2_y_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+#### head ####
+head1_y_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+head2_p_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+#### left arm ####
+l_arm1_shoulder_p_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+l_arm2_shoulder_r_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+l_arm3_shoulder_y_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+l_arm4_elbow_p_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+l_arm5_wrist_y_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+l_arm6_wrist_p_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+l_arm7_wrist_r_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+# l_end_effector:
+#   dynamic:
+#     damping: 1.0
+#     friction: 0.1
+
+#### right arm ####
+r_arm1_shoulder_p_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+r_arm2_shoulder_r_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+r_arm3_shoulder_y_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+r_arm4_elbow_p_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+r_arm5_wrist_y_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+r_arm6_wrist_p_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+
+r_arm7_wrist_r_joint:
+  dynamic:
+    damping: 1.0
+    friction: 0.1
+# r_end_effector:
+#   dynamic:
+#     damping: 1.0
+#     friction: 0.1

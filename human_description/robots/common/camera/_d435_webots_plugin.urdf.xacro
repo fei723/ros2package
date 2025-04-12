@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="deg_to_rad" value="0.01745329251994329577" />
+
+    <xacro:macro name="sensor_d435_webots_plugin"
+        params="sensor_name:=camera parent">
+        <webots>
+            <device reference="${sensor_name}_link" type="Camera">
+                <ros>
+                    <updateRate>60</updateRate>
+                    <topicName>/${sensor_name}/color/image_raw</topicName>
+                    <frameName>${sensor_name}_link</frameName>
+                    <enabled>true</enabled>
+                    <alwaysOn>true</alwaysOn>
+                </ros>
+            </device>
+            <plugin type="webots_ros2_control::Ros2Control" />
+        </webots>
+    </xacro:macro>
+
+</robot>

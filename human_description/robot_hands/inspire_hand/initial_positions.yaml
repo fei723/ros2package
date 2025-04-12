@@ -1,0 +1,27 @@
+# Default initial positions for GR1T2's ros2_control fake system
+
+initial_positions:
+  l_thumb_mcp_yaw: 0.0
+  l_thumb_mcp_pitch: 0.0
+  l_thumb_pip: 0.0
+  l_thumb_dip: 0.0
+  l_index_mcp: 0.0
+  l_index_dip: 0.0
+  l_middle_mcp: 0.0
+  l_middle_dip: 0.0
+  l_pinky_mcp: 0.0
+  l_pinky_dip: 0.0
+  l_ring_mcp: 0.0
+  l_ring_dip: 0.0
+  r_thumb_mcp_yaw: 0.0
+  r_thumb_mcp_pitch: 0.0
+  r_thumb_pip: 0.0
+  r_thumb_dip: 0.0
+  r_index_mcp: 0.0
+  r_index_dip: 0.0
+  r_middle_mcp: 0.0
+  r_middle_dip: 0.0
+  r_pinky_mcp: 0.0
+  r_pinky_dip: 0.0
+  r_ring_mcp: 0.0
+  r_ring_dip: 0.0

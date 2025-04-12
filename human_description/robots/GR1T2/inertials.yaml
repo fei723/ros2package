@@ -1,0 +1,488 @@
+#### base ####
+base_link:
+  inertia:
+    xx: "0.04109"
+    xy: -6E-6
+    xz: "-0.001996"
+    yy: "0.01336"
+    yz: -9E-6
+    zz: "0.04269"
+  mass: "3.96"
+  origin:
+    rpy: 0 0 0
+    xyz: -0.06032 -9.9E-5 -0.008574
+
+#### left leg ####
+l_hip_roll_link:
+  inertia:
+    xx: "0.001575"
+    xy: 4e-6
+    xz: -6e-6
+    yy: "0.002478"
+    yz: -9e-6
+    zz: "0.002575"
+  mass: "1.47"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.001095 2.4e-5 0.001761
+
+l_hip_yaw_link:
+  inertia:
+    xx: "0.02003"
+    xy: "-0.00165"
+    xz: "0.000145"
+    yy: "0.02123"
+    yz: "0.005516"
+    zz: "0.01146"
+  mass: "3.47"
+  origin:
+    rpy: 0 0 0
+    xyz: -0.000705 0.0384 -0.1103
+
+l_hip_pitch_link:
+  inertia:
+    xx: "0.09287"
+    xy: "0.000089"
+    xz: "0.001262"
+    yy: "0.08956"
+    yz: "-0.001832"
+    zz: "0.02835"
+  mass: "8.35"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.001387 -0.02832 -0.0640
+
+l_knee_pitch_link:
+  inertia:
+    xx: "0.01079"
+    xy: -7e-6
+    xz: "-0.000149"
+    yy: "0.01068"
+    yz: "-0.000146"
+    zz: "0.001262"
+  mass: "1.76"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.001482 -0.00080 -0.1154
+
+l_ankle_pitch_link:
+  inertia:
+    xx: "0.000852"
+    xy: 1E-6
+    xz: "0.000323"
+    yy: "0.005248"
+    yz: -1E-6
+    zz: "0.005643"
+  mass: "1.13"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.0367 0.00031 -0.03643
+
+l_ankle_roll_link:
+  inertia:
+    xx: "0.000852"
+    xy: 1E-6
+    xz: "0.000323"
+    yy: "0.005248"
+    yz: -1E-6
+    zz: "0.005643"
+  mass: "1.13"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.0367 0.00031 -0.03643
+
+#### right leg ####
+r_hip_roll_link:
+  inertia:
+    xx: "0.001572"
+    xy: "1.2e-5"
+    xz: -5e-6
+    yy: "0.002502"
+    yz: 6e-6
+    zz: "0.002594"
+  mass: "1.47"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.001319 -9.8e-5 0.001752
+
+r_hip_yaw_link:
+  inertia:
+    xx: "0.01912"
+    xy: "-5.8e-5"
+    xz: "0.0000146"
+    yy: "0.02124"
+    yz: "-0.005568"
+    zz: "0.01149"
+  mass: "3.47"
+  origin:
+    rpy: 0 0 0
+    xyz: -0.000705 -0.03841 -0.1104
+
+r_hip_pitch_link:
+  inertia:
+    xx: "0.09315"
+    xy: 9e-5
+    xz: "0.001548"
+    yy: "0.08956"
+    yz: "-0.001825"
+    zz: "0.028"
+  mass: "8.35"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.001386 0.02815 -0.06399
+
+r_knee_pitch_link:
+  inertia:
+    xx: "0.01075"
+    xy: 7e-6
+    xz: "-8.7e-5"
+    yy: "0.01063"
+    yz: "0.00014"
+    zz: "0.001242"
+  mass: "1.76"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.001486 0.000785 -0.1152
+
+r_ankle_pitch_link:
+  inertia:
+    xx: "0.000852"
+    xy: -1E-6
+    xz: "0.000332"
+    yy: "0.005248"
+    yz: "0"
+    zz: "0.005675"
+  mass: "1.13"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.0370 -0.000306 -0.03642
+
+r_ankle_roll_link:
+  inertia:
+    xx: "0.000852"
+    xy: -1E-6
+    xz: "0.000332"
+    yy: "0.005248"
+    yz: "0"
+    zz: "0.005675"
+  mass: "1.13"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.0370 -0.000306 -0.03642
+
+#### waist ####
+waist_yaw_link:
+  inertia:
+    xx: "0.003573"
+    xy: "1.476E-05"
+    xz: "5.805E-05"
+    yy: "0.0031429"
+    yz: "0.00039781"
+    zz: "0.0023119"
+  mass: "1.66"
+  origin:
+    rpy: 0 0 0
+    xyz: -0.00152 -0.00691 0.05223
+
+waist_pitch_link:
+  inertia:
+    xx: "0.0046064"
+    xy: "-2.297E-05"
+    xz: "-0.00026084"
+    yy: "0.0045722"
+    yz: "-0.00024591"
+    zz: "0.0018747"
+  mass: "1.54"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.004581 -0.004697 0.04034
+
+waist_roll_link:
+  inertia:
+    xx: "0.00100959"
+    xy: "4.9E-7"
+    xz: "9.99E-5"
+    yy: "1.30981E-3"
+    yz: "-5.3E-7"
+    zz: "1.16922E-3"
+  mass: "0.96"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.00823 0.00004 0.01227
+
+torso_link:
+  inertia:
+    xx: "0.04082"
+    xy: -2e-6
+    xz: "-0.00047"
+    yy: "0.03729"
+    yz: "-1.4e-5"
+    zz: "0.03397"
+  mass: "5.67"
+  origin:
+    rpy: 0 0 0
+    xyz: -0.01325 0.000292 0.009517
+
+#### head ####
+neck_roll_link:
+  inertia:
+    xx: "4.3E-7"
+    xy: "0"
+    xz: "0"
+    yy: "4.4E-7"
+    yz: "0"
+    zz: "7.2E-7"
+  mass: "0.01"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.00425 0 0
+
+neck_pitch_link:
+  inertia:
+    xx: "2.509E-05"
+    xy: "0"
+    xz: "-1.3E-06"
+    yy: "1.707E-05"
+    yz: "0"
+    zz: "2.462E-05"
+  mass: "0.06"
+  origin:
+    rpy: 0 0 0
+    xyz: -0.0021765 -4.1784E-07 0.017509
+
+neck_yaw_link:
+  inertia:
+    xx: "7.54439E-3"
+    xy: "7.210E-5"
+    xz: "9.5183E-4"
+    yy: "0.01013433"
+    yz: "5.051E-5"
+    zz: "5.65975E-3"
+  mass: "1.58"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.02710 -0.00206 0.09577
+
+#### left arm ####
+l_shoulder_pitch_link:
+  inertia:
+    xx: "2.04209E-3"
+    xy: "-1.0845E-4"
+    xz: "-5.7E-6"
+    yy: "5.02E-4"
+    yz: "-2.88E-6"
+    zz: "1.98176E-3"
+  mass: "0.82"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.0033 0.05361 -0.00011
+
+l_shoulder_roll_link:
+  inertia:
+    xx: "0.0010175"
+    xy: "8.5E-07"
+    xz: "-2.686E-05"
+    yy: "0.00080346"
+    yz: "0.00031013"
+    zz: "0.00056524"
+  mass: "0.61"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.005026 0.01740 -0.02398
+
+l_elbow_yaw_link:
+  inertia:
+    xx: "0.0035571"
+    xy: "-1.6E-07"
+    xz: "-7.1E-07"
+    yy: "0.003544"
+    yz: "4.560E-05"
+    zz: "0.00026034"
+  mass: "0.54"
+  origin:
+    rpy: 0 0 0
+    xyz: -1.7E-5 -0.0002 -0.08761
+
+l_elbow_pitch_link:
+  inertia:
+    xx: "0.00029558"
+    xy: 2E-08
+    xz: 7E-08
+    yy: "0.000287"
+    yz: "-5.014E-05"
+    zz: "0.00011171"
+  mass: "0.33"
+  origin:
+    rpy: 0 0 0
+    xyz: 0 0.008102 -0.02528
+
+l_wrist_yaw_link:
+  inertia:
+    xx: "0.0026215"
+    xy: "1.29E-06"
+    xz: "6.12E-06"
+    yy: "0.0025491"
+    yz: "-1.585E-05"
+    zz: "0.00049784"
+  mass: "0.99"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.00044 0.00196 -0.07313
+
+l_wrist_roll_link:
+  inertia:
+    xx: "1.1E-5"
+    xy: "0"
+    xz: "0"
+    yy: 2E-5
+    yz: -1E-6
+    zz: "2.1E-5"
+  mass: "0.055"
+  origin:
+    rpy: 0 0 0
+    xyz: 0 0.005104 -0.008485
+
+l_wrist_pitch_link:
+  inertia:
+    xx: "1.1E-5"
+    xy: "0"
+    xz: "0"
+    yy: 2E-5
+    yz: -1E-6
+    zz: "2.1E-5"
+  mass: "0.055"
+  origin:
+    rpy: 0 0 0
+    xyz: 0 0.005104 -0.008485
+
+# l_end_effector_link:
+#   origin:
+#     xyz: 0.0597131221 -0.0410294666 -0.0101692726
+#     rpy: 0 0 0
+#   mass: 1.8170376524
+#   inertia:
+#     xx: 0.005412333594383447
+#     xy: 0.006193456360285834
+#     xz: 0.0014219289306117652
+#     yy: 0.014058329545509979
+#     yz: -0.0013140753741120031
+#     zz: 0.016080817924212554
+
+#### right arm ####
+r_shoulder_pitch_link:
+  inertia:
+    xx: "0.0020452"
+    xy: "0.00011066"
+    xz: "-3.5E-07"
+    yy: "0.00050607"
+    yz: "-3.27E-06"
+    zz: "0.0019775"
+  mass: "0.82"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.00338 -0.05364 0.00021
+
+r_shoulder_roll_link:
+  inertia:
+    xx: "0.0010174"
+    xy: "-8.4E-07"
+    xz: "-2.687E-05"
+    yy: "0.0008033"
+    yz: "-0.00031043"
+    zz: "0.00056542"
+  mass: "0.61"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.004503 -0.0174 -0.02398
+
+r_elbow_yaw_link:
+  inertia:
+    xx: "0.0035706"
+    xy: 3E-08
+    xz: 7E-08
+    yy: "0.0035441"
+    yz: "-4.555E-05"
+    zz: "0.00026029"
+  mass: "0.54"
+  origin:
+    rpy: 0 0 0
+    xyz: -1E-5 0.0002 -0.08761
+
+r_elbow_pitch_link:
+  inertia:
+    xx: "0.00029558"
+    xy: 2E-08
+    xz: -7E-08
+    yy: "0.000287"
+    yz: "5.014E-05"
+    zz: "0.000112"
+  mass: "0.33"
+  origin:
+    rpy: 0 0 0
+    xyz: 0 -0.008102 -0.02528
+
+r_wrist_yaw_link:
+  inertia:
+    xx: "0.0025979"
+    xy: "3.47E-06"
+    xz: "2.86E-06"
+    yy: "0.0025255"
+    yz: "1.62E-05"
+    zz: "0.00049776"
+  mass: "0.99"
+  origin:
+    rpy: 0 0 0
+    xyz: 0.00047 -0.00196 -0.07239
+
+r_wrist_roll_link:
+  inertia:
+    xx: "1.1E-5"
+    xy: "0"
+    xz: "0"
+    yy: 2E-5
+    yz: -1E-6
+    zz: "2.1E-5"
+  mass: "0.055"
+  origin:
+    rpy: 0 0 0
+    xyz: 0 0.005104 -0.008485
+
+r_wrist_pitch_link:
+  inertia:
+    xx: "1.1E-5"
+    xy: "0"
+    xz: "0"
+    yy: 2E-5
+    yz: -1E-6
+    zz: "2.1E-5"
+  mass: "0.055"
+  origin:
+    rpy: 0 0 0
+    xyz: 0 0.005104 -0.008485
+
+# r_end_effector_link:
+#   origin:
+#     xyz: 0.0597131221 -0.0410294666 -0.0101692726
+#     rpy: 0 0 0
+#   mass: 1.8170376524
+#   inertia:
+#     xx: 0.005412333594383447
+#     xy: 0.006193456360285834
+#     xz: 0.0014219289306117652
+#     yy: 0.014058329545509979
+#     yz: -0.0013140753741120031
+#     zz: 0.016080817924212554
+
+#### sensors ####
+pelvis_imu_frame:
+  inertia:
+    xx: "1.125E-05"
+    xy: "0"
+    xz: "8.8E-07"
+    yy: "1.67E-05"
+    yz: "0"
+    zz: "1.983E-05"
+  mass: "0.05"
+  origin:
+    rpy: 0 0 0
+    xyz: -0.062133 -1.5129E-06 -0.003126

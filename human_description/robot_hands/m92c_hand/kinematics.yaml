@@ -1,0 +1,347 @@
+#### left hand ####
+l_hand_palm_fixed_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0099
+    z: -0.0525
+    roll: -3.1415926
+    pitch: 0.0
+    yaw: 1.5707963
+    axis: 0 0 1
+
+l_thumb_cmc_y_joint:
+  kinematic:
+    x: -0.021
+    y: 0.02025
+    z: 0.03885
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 0 1
+l_thumb_cmc_p_joint:
+  kinematic:
+    x: 0.011
+    y: 0.0
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+l_thumb_mcp_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.05572
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+l_thumb_ip_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.02305
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+
+l_thumb_tip_joint:
+  kinematic:
+    x: 0.031
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
+
+l_index_mcp_joint:
+  kinematic:
+    x: -0.00227
+    y: 0.02766
+    z: 0.11556
+    roll: -0.05236
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+l_index_pip_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.0325
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+
+l_index_tip_joint:
+  kinematic:
+    x: 0.038
+    y: -0.0038
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
+
+l_middle_mcp_joint:
+  kinematic:
+    x: -0.00227
+    y: 0.00675
+    z: 0.1161
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+l_middle_pip_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.0325
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+
+l_middle_tip_joint:
+  kinematic:
+    x: 0.045
+    y: -0.0032
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
+
+l_ring_mcp_joint:
+  kinematic:
+    x: -0.00227
+    y: -0.01395
+    z: 0.11541
+    roll: 0.06108
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+l_ring_pip_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.0325
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+
+l_ring_tip_joint:
+  kinematic:
+    x: 0.038
+    y: -0.0038
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
+
+l_pinky_mcp_joint:
+  kinematic:
+    x: -0.00227
+    y: -0.03431
+    z: 0.11361
+    roll: 0.12211
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+l_pinky_pip_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.0325
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+
+l_pinky_tip_joint:
+  kinematic:
+    x: 0.031
+    y: -0.007
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
+
+#### right hand ####
+r_hand_palm_fixed_joint:
+  kinematic:
+    x: 0.0
+    y: -0.0099
+    z: -0.0525
+    roll: -3.1415926
+    pitch: 0.0
+    yaw: 1.5707963
+    axis: 0 0 1
+
+r_thumb_cmc_y_joint:
+  kinematic:
+    x: 0.021
+    y: 0.02025
+    z: 0.03885
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 0 1
+r_thumb_cmc_p_joint:
+  kinematic:
+    x: 0.011
+    y: 0.0
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+r_thumb_mcp_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.05572
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+r_thumb_ip_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.02305
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+
+r_thumb_tip_joint:
+  kinematic:
+    x: 0.031
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
+
+r_index_mcp_joint:
+  kinematic:
+    x: 0.00227
+    y: 0.02766
+    z: 0.11556
+    roll: -0.05236
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+r_index_pip_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.0325
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+
+r_index_tip_joint:
+  kinematic:
+    x: 0.038
+    y: -0.0038
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
+
+r_middle_mcp_joint:
+  kinematic:
+    x: 0.00227
+    y: 0.00675
+    z: 0.1161
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+r_middle_pip_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.0325
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+
+r_middle_tip_joint:
+  kinematic:
+    x: 0.045
+    y: -0.0032
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
+
+r_ring_mcp_joint:
+  kinematic:
+    x: 0.00227
+    y: -0.01395
+    z: 0.11541
+    roll: 0.06108
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+r_ring_pip_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.0325
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+
+r_ring_tip_joint:
+  kinematic:
+    x: 0.038
+    y: -0.0038
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
+
+r_pinky_mcp_joint:
+  kinematic:
+    x: 0.00227
+    y: -0.03431
+    z: 0.11361
+    roll: 0.12211
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+r_pinky_pip_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.0325
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 1 0
+
+r_pinky_tip_joint:
+  kinematic:
+    x: 0.031
+    y: -0.007
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"

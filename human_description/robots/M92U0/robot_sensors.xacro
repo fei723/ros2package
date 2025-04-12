@@ -1,0 +1,363 @@
+<?xml version="1.0"?>
+<!-- Xacro for GR1T2 -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!--                   -->
+    <!-- Imported elements -->
+    <!--                   -->
+    <xacro:include filename="$(find human_description)/robots/common/utils.xacro" />
+    <xacro:include filename="$(find human_description)/robots/common/camera/_d435i.urdf.xacro" />
+
+    <xacro:macro name="robot_sensors"
+        params="
+        robot_id
+        description_pkg:='human_description'
+        ros2_control_plugin:='gazebo'
+        connected_to:='base_footprint'
+        xyz:='0 0 0'
+        rpy:='0 0 0'
+        inertials
+        kinematics
+        sensors_config
+        with_sc:=false
+        use_nominal_extrinsics:='true'
+        ">
+
+        <xacro:property name="gazebo"
+            value="$(eval 'true' if ros2_control_plugin == 'gazebo' else 'false')" />
+
+        <xacro:property name="head_sensor_connected_to" value="head2_p_link" />
+        <xacro:property name="trunk_sensor_connected_to" value="trunk_link" />
+
+        <xacro:property name="head_camera_1_1" value="head_front_left_fisheye_color" />
+        <xacro:property name="head_camera_1_2" value="head_front_left_fisheye_color_optical" />
+        <xacro:property name="head_camera_name_1" value="head_front_left_fisheye" />
+
+        <xacro:property name="head_camera_2_1" value="head_front_right_fisheye_color" />
+        <xacro:property name="head_camera_2_2" value="head_front_right_fisheye_color_optical" />
+        <xacro:property name="head_camera_name_2" value="head_front_right_fisheye" />
+
+        <xacro:property name="head_camera_3_1" value="head_left_fisheye_color" />
+        <xacro:property name="head_camera_3_2" value="head_left_fisheye_color_optical" />
+        <xacro:property name="head_camera_name_3" value="head_left_fisheye" />
+
+
+        <xacro:property name="head_camera_4_1" value="head_right_fisheye_color" />
+        <xacro:property name="head_camera_4_2" value="head_right_fisheye_color_optical" />
+        <xacro:property name="head_camera_name_4" value="head_right_fisheye" />
+
+        <xacro:property name="head_camera_5" value="head_realsense" />
+
+        <xacro:property name="head_imu" value="head_imu" />
+
+        <xacro:property name="trunk_imu" value="trunk_imu" />
+        <xacro:property name="trunk_camera" value="trunk_realsense" />
+
+
+        <xacro:property name="arm_force_sensor" value="arm_force_sensor" />
+
+        <xacro:property name="wrist_sensor_connected_to" value="hand_palm_link" />
+
+        <xacro:property name="wrist_camera1_1" value="wrist_camera1_color" />
+        <xacro:property name="wrist_camera1_2" value="wrist_camera1_color_optical" />
+        <xacro:property name="wrist_camera1_name" value="wrist_camera1" />
+
+
+        <xacro:property name="wrist_camera2_1" value="wrist_camera2_color" />
+        <xacro:property name="wrist_camera2_2" value="wrist_camera2_color_optical" />
+        <xacro:property name="wrist_camera2_name" value="wrist_camera2" />
+
+
+        <!-- camera -->
+        <xacro:dummy-link name="${head_camera_1_1}_frame" />
+        <xacro:robot-joint joint_name="${head_camera_1_1}_joint"
+            joint_type="fixed"
+            parent="${head_sensor_connected_to}"
+            child="${head_camera_1_1}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:dummy-link name="${head_camera_1_2}_frame" />
+        <xacro:robot-joint joint_name="${head_camera_1_2}_joint"
+            joint_type="fixed"
+            parent="${head_camera_1_1}_frame"
+            child="${head_camera_1_2}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+            <xacro:robot-sensor-camera
+                sensor_name="${head_camera_1_1}"
+                parent="${head_camera_1_1}_frame"
+                sensors_config="${sensors_config}"
+                gazebo="${gazebo}"
+                frame_id="${head_camera_1_2}_frame"
+                topic_name="/${head_camera_name_1}/color/image_raw"
+            />
+        </xacro:unless>
+
+
+        <xacro:dummy-link name="${head_camera_2_1}_frame" />
+        <xacro:robot-joint joint_name="${head_camera_2_1}_joint"
+            joint_type="fixed"
+            parent="${head_sensor_connected_to}"
+            child="${head_camera_2_1}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:dummy-link name="${head_camera_2_2}_frame" />
+        <xacro:robot-joint joint_name="${head_camera_2_2}_joint"
+            joint_type="fixed"
+            parent="${head_camera_2_1}_frame"
+            child="${head_camera_2_2}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+            <xacro:robot-sensor-camera
+                sensor_name="${head_camera_2_1}"
+                parent="${head_camera_2_1}_frame"
+                sensors_config="${sensors_config}"
+                gazebo="${gazebo}"
+                frame_id="${head_camera_2_2}_frame"
+                topic_name="/${head_camera_name_2}/color/image_raw"
+            />
+        </xacro:unless>
+
+        <xacro:dummy-link name="${head_camera_3_1}_frame" />
+        <xacro:robot-joint joint_name="${head_camera_3_1}_joint"
+            joint_type="fixed"
+            parent="${head_sensor_connected_to}"
+            child="${head_camera_3_1}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:dummy-link name="${head_camera_3_2}_frame" />
+        <xacro:robot-joint joint_name="${head_camera_3_2}_joint"
+            joint_type="fixed"
+            parent="${head_camera_3_1}_frame"
+            child="${head_camera_3_2}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+            <xacro:robot-sensor-camera
+                sensor_name="${head_camera_3_1}"
+                parent="${head_camera_3_1}_frame"
+                sensors_config="${sensors_config}"
+                gazebo="${gazebo}"
+                frame_id="${head_camera_3_2}_frame"
+                topic_name="/${head_camera_name_3}/color/image_raw"
+            />
+        </xacro:unless>
+
+        <xacro:dummy-link name="${head_camera_4_1}_frame" />
+        <xacro:robot-joint joint_name="${head_camera_4_1}_joint"
+            joint_type="fixed"
+            parent="${head_sensor_connected_to}"
+            child="${head_camera_4_1}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:dummy-link name="${head_camera_4_2}_frame" />
+        <xacro:robot-joint joint_name="${head_camera_4_2}_joint"
+            joint_type="fixed"
+            parent="${head_camera_4_1}_frame"
+            child="${head_camera_4_2}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+            <xacro:robot-sensor-camera
+                sensor_name="${head_camera_4_1}"
+                parent="${head_camera_4_1}_frame"
+                sensors_config="${sensors_config}"
+                gazebo="${gazebo}"
+                frame_id="${head_camera_4_2}_frame"
+                topic_name="/${head_camera_name_4}/color/image_raw"
+            />
+        </xacro:unless>
+
+        <xacro:dummy-link name="${head_camera_5}_frame" />
+        <xacro:robot-joint joint_name="${head_camera_5}_joint"
+            joint_type="fixed"
+            parent="${head_sensor_connected_to}"
+            child="${head_camera_5}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:sensor_d435i parent="${head_camera_5}_frame" name="head_camera"
+            use_nominal_extrinsics="${use_nominal_extrinsics}">
+            <origin xyz="0 0 0" rpy="0 0 0" />
+        </xacro:sensor_d435i>
+
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+            <xacro:robot-sensor-d435
+                camera_name="head_camera"
+                sensors_config="${sensors_config}"
+                gazebo="${gazebo}"
+            />
+        </xacro:unless>
+
+        <xacro:dummy-link name="${trunk_camera}_frame" />
+        <xacro:robot-joint joint_name="${trunk_camera}_joint"
+            joint_type="fixed"
+            parent="${trunk_sensor_connected_to}"
+            child="${trunk_camera}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:sensor_d435i parent="${trunk_camera}_frame" name="trunk_camera"
+            use_nominal_extrinsics="${use_nominal_extrinsics}">
+            <origin xyz="0 0 0" rpy="0 0 0" />
+        </xacro:sensor_d435i>
+
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+            <xacro:robot-sensor-d435
+                camera_name="trunk_camera"
+                sensors_config="${sensors_config}"
+                gazebo="${gazebo}"
+            />
+        </xacro:unless>
+
+        <xacro:robot-link name="l_${wrist_camera1_1}_frame"
+            material_name="metal"
+            gazebo="${gazebo}"
+            mesh_scale="${mesh_scale}" />
+        <xacro:robot-joint joint_name="l_${wrist_camera1_1}_joint"
+            joint_type="fixed"
+            parent="l_${wrist_sensor_connected_to}"
+            child="l_${wrist_camera1_1}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:dummy-link name="l_${wrist_camera1_2}_frame" />
+        <xacro:robot-joint joint_name="l_${wrist_camera1_2}_joint"
+            joint_type="fixed"
+            parent="l_${wrist_camera1_1}_frame"
+            child="l_${wrist_camera1_2}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+            <xacro:robot-sensor-camera
+                sensor_name="l_${wrist_camera1_1}"
+                parent="l_${wrist_camera1_1}_frame"
+                sensors_config="${sensors_config}"
+                gazebo="${gazebo}"
+                frame_id="l_${wrist_camera1_2}_frame"
+                topic_name="/l_${wrist_camera1_name}/color/image_raw"
+            />
+        </xacro:unless>
+
+        <xacro:dummy-link name="l_${wrist_camera2_1}_frame" />
+        <xacro:robot-joint joint_name="l_${wrist_camera2_1}_joint"
+            joint_type="fixed"
+            parent="l_${wrist_camera1_2}_frame"
+            child="l_${wrist_camera2_1}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:dummy-link name="l_${wrist_camera2_2}_frame" />
+        <xacro:robot-joint joint_name="l_${wrist_camera2_2}_joint"
+            joint_type="fixed"
+            parent="l_${wrist_camera2_1}_frame"
+            child="l_${wrist_camera2_2}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+            <xacro:robot-sensor-camera
+                sensor_name="l_${wrist_camera2_1}"
+                parent="l_${wrist_camera2_1}_frame"
+                sensors_config="${sensors_config}"
+                gazebo="${gazebo}"
+                frame_id="l_${wrist_camera2_2}_frame"
+                topic_name="/l_${wrist_camera2_name}/color/image_raw"
+            />
+        </xacro:unless>
+
+        <xacro:robot-link name="r_${wrist_camera1_1}_frame"
+            material_name="metal"
+            gazebo="${gazebo}"
+            mesh_scale="${mesh_scale}" />
+        <xacro:robot-joint joint_name="r_${wrist_camera1_1}_joint"
+            joint_type="fixed"
+            parent="r_${wrist_sensor_connected_to}"
+            child="r_${wrist_camera1_1}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:dummy-link name="r_${wrist_camera1_2}_frame" />
+        <xacro:robot-joint joint_name="r_${wrist_camera1_2}_joint"
+            joint_type="fixed"
+            parent="r_${wrist_camera1_1}_frame"
+            child="r_${wrist_camera1_2}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+            <xacro:robot-sensor-camera
+                sensor_name="r_${wrist_camera1_1}"
+                parent="r_${wrist_camera1_1}_frame"
+                sensors_config="${sensors_config}"
+                gazebo="${gazebo}"
+                frame_id="r_${wrist_camera1_2}_frame"
+                topic_name="/r_${wrist_camera1_name}/color/image_raw"
+            />
+        </xacro:unless>
+
+        <xacro:dummy-link name="r_${wrist_camera2_1}_frame" />
+        <xacro:robot-joint joint_name="r_${wrist_camera2_1}_joint"
+            joint_type="fixed"
+            parent="r_${wrist_camera1_2}_frame"
+            child="r_${wrist_camera2_1}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:dummy-link name="r_${wrist_camera2_2}_frame" />
+        <xacro:robot-joint joint_name="r_${wrist_camera2_2}_joint"
+            joint_type="fixed"
+            parent="r_${wrist_camera2_1}_frame"
+            child="r_${wrist_camera2_2}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:unless value="${ros2_control_plugin == 'isaac'}">
+            <xacro:robot-sensor-camera
+                sensor_name="r_${wrist_camera2_1}"
+                parent="r_${wrist_camera2_1}_frame"
+                sensors_config="${sensors_config}"
+                gazebo="${gazebo}"
+                frame_id="r_${wrist_camera2_2}_frame"
+                topic_name="/r_${wrist_camera2_name}/color/image_raw"
+            />
+        </xacro:unless>
+
+        <!-- IMU -->
+        <xacro:dummy-link name="${head_imu}_frame" />
+        <xacro:robot-joint joint_name="${head_imu}_joint"
+            joint_type="fixed"
+            parent="${head_sensor_connected_to}"
+            child="${head_imu}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:robot-sensor-imu
+            sensor_name="head_imu"
+            sensor_id="head_imu"
+            parent="head_imu_frame"
+        />
+
+        <xacro:dummy-link name="${trunk_imu}_frame" />
+        <xacro:robot-joint joint_name="${trunk_imu}_joint"
+            joint_type="fixed"
+            parent="${trunk_sensor_connected_to}"
+            child="${trunk_imu}_frame"
+            kinematics="${kinematics}" />
+
+        <xacro:robot-sensor-imu
+            sensor_name="trunk_imu"
+            sensor_id="trunk_imu"
+            parent="trunk_imu_frame"
+        />
+
+        <!-- ARM FTS-->
+
+        <xacro:robot-sensor-force-torque
+            sensor_name="l_arm_fts"
+            sensor_id="l_arm_force_torque"
+            parent="l_${arm_force_sensor}_link"
+            sensor_frame="l_arm_force_torque"
+        />
+
+        <xacro:robot-sensor-force-torque
+            sensor_name="r_arm_fts"
+            sensor_id="r_arm_force_torque"
+            parent="r_${arm_force_sensor}_link"
+            sensor_frame="r_arm_force_torque"
+        />
+    </xacro:macro>
+
+</robot>

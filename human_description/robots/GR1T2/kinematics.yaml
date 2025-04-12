@@ -1,0 +1,366 @@
+#### left leg ####
+l_hip_roll_joint:
+  kinematic:
+    x: -0.031635
+    y: 0.105
+    z: -0.0276
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: 1 0 0
+
+l_hip_yaw_joint:
+  kinematic:
+    x: 0.033135
+    y: 0
+    z: 0.00075
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: 0 0 1
+
+l_hip_pitch_joint:
+  kinematic:
+    x: 0
+    y: 0.0223
+    z: -0.14027
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: 0 1 0
+
+l_knee_pitch_joint:
+  kinematic:
+    x: 0
+    y: -0.019512
+    z: -0.36
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: 0 1 0
+
+l_ankle_pitch_joint:
+  kinematic:
+    x: 0
+    y: -0.00125
+    z: -0.34
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: 0 1 0
+
+l_ankle_roll_joint:
+  kinematic:
+    x: 0
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "1 0 0"
+
+#### right leg ####
+r_hip_roll_joint:
+  kinematic:
+    x: -0.031635
+    y: -0.105
+    z: -0.0276
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: 1 0 0
+
+r_hip_yaw_joint:
+  kinematic:
+    x: 0.033135
+    y: 0
+    z: 0.00075
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: 0 0 1
+
+r_hip_pitch_joint:
+  kinematic:
+    x: 0
+    y: -0.0223
+    z: -0.14027
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: 0 1 0
+
+r_knee_pitch_joint:
+  kinematic:
+    x: 0
+    y: 0.019512
+    z: -0.36
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: 0 1 0
+
+r_ankle_pitch_joint:
+  kinematic:
+    x: 0
+    y: 0.00125
+    z: -0.34
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: 0 1 0
+
+r_ankle_roll_joint:
+  kinematic:
+    x: 0
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "1 0 0"
+
+#### waist ####
+waist_yaw_joint:
+  kinematic:
+    x: 0
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: 0 0 1
+
+waist_pitch_joint:
+  kinematic:
+    x: 0
+    y: 0
+    z: 0.0869
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: 0 1 0
+
+waist_roll_joint:
+  kinematic:
+    x: 0.00525
+    y: -0.0005
+    z: 0.081
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "1 0 0"
+
+torso_fixed_joint:
+  kinematic:
+    x: -0.00225
+    y: 0.00057443
+    z: 0.16035
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
+
+#### head ####
+neck_roll_joint:
+  kinematic:
+    x: 0.002
+    y: 0.0005184
+    z: 0.14465
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: 1 0 0
+
+neck_pitch_joint:
+  kinematic:
+    x: 0
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: 0 1 0
+
+neck_yaw_joint:
+  kinematic:
+    x: 0
+    y: 0
+    z: 0.0513
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
+
+#### left arm ####
+l_shoulder_pitch_joint:
+  kinematic:
+    x: 0
+    y: 0.10128
+    z: 0.046651
+    roll: 0.43275
+    pitch: 0
+    yaw: 0
+    axis: "0 1 0"
+
+l_shoulder_roll_joint:
+  kinematic:
+    x: 0
+    y: 0.0951
+    z: 0
+    roll: -0.43275
+    pitch: 0
+    yaw: 0
+    axis: "1 0 0"
+
+l_elbow_yaw_joint:
+  kinematic:
+    x: 0
+    y: 0.04
+    z: -0.0709
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
+
+l_elbow_pitch_joint:
+  kinematic:
+    x: 0
+    y: 0.0010503
+    z: -0.1786
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 1 0"
+
+l_wrist_yaw_joint:
+  kinematic:
+    x: 0
+    y: 0
+    z: -0.05945
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
+
+l_wrist_roll_joint:
+  kinematic:
+    x: 0
+    y: 0
+    z: -0.19115
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "1 0 0"
+
+l_wrist_pitch_joint:
+  kinematic:
+    x: 0
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 1 0"
+
+l_end_effector_fixed_joint:
+  kinematic:
+    x: 0
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
+
+#### right arm ####
+r_shoulder_pitch_joint:
+  kinematic:
+    x: 0
+    y: -0.10128
+    z: 0.046651
+    roll: -0.43275
+    pitch: 0
+    yaw: 0
+    axis: "0 1 0"
+
+r_shoulder_roll_joint:
+  kinematic:
+    x: 0
+    y: -0.09515
+    z: 0
+    roll: 0.43275
+    pitch: 0
+    yaw: 0
+    axis: "1 0 0"
+
+r_elbow_yaw_joint:
+  kinematic:
+    x: 0
+    y: -0.04
+    z: -0.0709
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
+
+r_elbow_pitch_joint:
+  kinematic:
+    x: 0
+    y: -0.0010503
+    z: -0.1786
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 1 0"
+
+r_wrist_yaw_joint:
+  kinematic:
+    x: 0
+    y: 0
+    z: -0.05945
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
+
+r_wrist_roll_joint:
+  kinematic:
+    x: 0
+    y: 0
+    z: -0.19115
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "1 0 0"
+
+r_wrist_pitch_joint:
+  kinematic:
+    x: 0
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 1 0"
+
+r_end_effector_fixed_joint:
+  kinematic:
+    x: 0
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
+
+#### sensors ####
+pelvis_imu:
+  kinematic:
+    x: 0
+    y: 0
+    z: -0.0595999999999995
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "0 0 1"
