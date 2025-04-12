@@ -1,0 +1,204 @@
+base_link_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.874
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 0 1
+hip_roll_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: -0.115
+    roll: 1.5708
+    pitch: 0.0002056
+    yaw: 1.5708
+    axis: 0 0 1
+
+hip_roll_axis_fixed_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: 0 0 1
+
+hip_yaw_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.0835
+    roll: -1.5707963267949
+    pitch: 0.0
+    yaw: 0.000205601491495962
+    axis: 0 0 1
+
+hip_yaw_axis_fixed_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: 0 0 1
+
+hip_pitch_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: -0.122575880574935
+    roll: -1.5707963267949
+    pitch: 0.0
+    yaw: -1.5707963267949
+    axis: 0 0 1
+
+hip_pitch_axis_fixed_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: 0 0 1
+
+knee_pitch_joint:
+  kinematic:
+    x: 0.0
+    y: 0.29
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 1.5707963267949
+    axis: 0 0 1
+ankle_pitch_joint:
+  kinematic:
+    x: 0.339999999999999
+    y: 0.0
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 0 1
+ankle_roll_joint:
+  kinematic:
+    x: 0.023
+    y: 0.0
+    z: 0.0
+    roll: 1.57079632679495
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 0 1
+hip_l_motor_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: -0.12258
+    roll: -1.5708
+    pitch: 0.0
+    yaw: -1.5708
+    axis: 0 0 1
+hip_r_motor_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: -0.12258
+    roll: -1.5708
+    pitch: 0.0
+    yaw: -1.5708
+    axis: 0 0 1
+knee_f_linkage_joint:
+  kinematic:
+    x: -0.036705
+    y: -0.0098351
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: -2.8798
+    axis: 0 0 1
+knee_b_linkage_joint:
+  kinematic:
+    x: -0.036705
+    y: -0.0098351
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: -2.8798
+    axis: 0 0 1
+ankle_l_motor_joint:
+  kinematic:
+    x: 0.066376
+    y: -0.01434
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: -0.21277
+    axis: 0 0 1
+ankle_r_motor_joint:
+  kinematic:
+    x: 0.14527
+    y: -0.010206
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: -0.070138
+    axis: 0 0 1
+ankle_l_linkage_pitch_joint:
+  kinematic:
+    x: 0.022
+    y: 0.045
+    z: 0.05
+    roll: -1.5708
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 0 1
+ankle_l_linkage_roll_joint:
+  kinematic:
+    x: -0.014412
+    y: 0.0041591
+    z: 0.0
+    roll: -1.5708
+    pitch: 0.0
+    yaw: 2.8606
+    axis: 0 0 1
+ankle_r_linkage_pitch_joint:
+  kinematic:
+    x: 0.022
+    y: -0.045
+    z: 0.05
+    roll: -1.5708
+    pitch: 0.0
+    yaw: 0.0
+    axis: 0 0 1
+ankle_r_linkage_roll_joint:
+  kinematic:
+    x: -0.013978
+    y: 0.0054417
+    z: 0.0
+    roll: -1.5708
+    pitch: 0.0
+    yaw: 2.7703
+    axis: 0 0 1
+foot_heel_fixedjoint:
+  kinematic:
+    x: 0.083
+    y: 0.0
+    z: -0.026617
+    roll: 3.1416
+    pitch: -1.5668
+    yaw: -3.1416
+    axis: 0 0 1
+foot_forefoot_fixedjoint:
+  kinematic:
+    x: 0.083
+    y: 0.0
+    z: 0.1698
+    roll: 3.1416
+    pitch: -1.5668
+    yaw: -3.1416
+    axis: 0 0 1

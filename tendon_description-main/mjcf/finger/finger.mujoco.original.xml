@@ -1,0 +1,99 @@
+<mujoco model="tendon">
+  <compiler angle="radian" meshdir="../meshes/finger/visual/" texturedir="../textures/"/>
+  <option timestep="0.001"/>
+  <worldbody>
+    <body name="base_link">
+      <body name="base_site1_link" pos="-0.03 0 0.43">
+        <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="1e-05" diaginertia="1.25e-10 8.33333e-11 8.33333e-11"/>
+        <geom name="base_site1_link_vis" size="0.005" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1"/>
+        <geom name="base_site1_link_col" size="0.005" rgba="1 1 1 1"/>
+      </body>
+      <body name="tendon_link" pos="-0.03 0 0.3" quat="0.707107 0 -0.707107 0">
+        <inertial pos="-0.025 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.5" diaginertia="0.000225 0.000216667 0.000216667"/>
+        <joint name="tendon_joint" pos="0 0 0" axis="1 0 0" type="slide" range="-0.01 0.10472" actuatorfrcrange="-100 100" damping="0.003" frictionloss="0.2"/>
+        <geom name="tendon_link_vis" size="0.03 0.025" pos="-0.025 0 0" quat="0.707107 0 0.707107 0" type="cylinder" contype="0" conaffinity="0" group="1" density="0" rgba="0.2 0.2 0.5 1"/>
+        <geom name="tendon_link_col" size="0.03 0.025" pos="-0.025 0 0" quat="0.707107 0 0.707107 0" type="cylinder" rgba="0.2 0.2 0.5 1"/>
+        <body name="tendon_site1_link">
+          <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="1e-05" diaginertia="1.25e-10 8.33333e-11 8.33333e-11"/>
+          <geom name="tendon_site1_link_vis" size="0.005" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1"/>
+          <geom name="tendon_site1_link_col" size="0.005" rgba="1 1 1 1"/>
+        </body>
+      </body>
+      <body name="mcp_link" pos="0 0 0.4" quat="0.707107 0 0 0.707107">
+        <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.1" diaginertia="2e-05 1.75e-05 1.75e-05"/>
+        <joint name="mcp_joint" pos="0 0 0" axis="1 0 0" range="-0.174533 1.13446" actuatorfrcrange="-10 10" damping="0.003" frictionloss="0.2"/>
+        <geom name="mcp_link_vis" size="0.02 0.015" quat="0.707107 0 0.707107 0" type="cylinder" contype="0" conaffinity="0" group="1" density="0" rgba="0 0.8 0 0.7"/>
+        <geom name="mcp_link_col" size="0.02 0.015" quat="0.707107 0 0.707107 0" type="cylinder" rgba="0 0.8 0 0.7"/>
+        <body name="mcp_bar_linkage_link" quat="0.707107 0.707107 0 0">
+          <inertial pos="0 0 0.05" mass="0.1" diaginertia="8.58333e-05 8.58333e-05 5e-06"/>
+          <geom name="mcp_bar_linkage_link_part1_vis" size="0.01 0.05" pos="0 0 0.05" type="cylinder" contype="0" conaffinity="0" group="1" density="0" rgba="0.9 1 0 0.7"/>
+          <geom name="mcp_bar_linkage_link_part2_vis" size="0.01" pos="0 0 0.1" contype="0" conaffinity="0" group="1" density="0" rgba="0.9 1 0 0.7"/>
+          <geom name="mcp_bar_linkage_link_part3_vis" size="0.01" contype="0" conaffinity="0" group="1" density="0" rgba="0.9 1 0 0.7"/>
+          <geom name="mcp_bar_linkage_link_part1_col" size="0.01 0.05" pos="0 0 0.05" type="cylinder" rgba="0.9 1 0 0.7"/>
+          <geom name="mcp_bar_linkage_link_part2_col" size="0.01" pos="0 0 0.1" rgba="0.9 1 0 0.7"/>
+          <geom name="mcp_bar_linkage_link_part3_col" size="0.01" rgba="0.9 1 0 0.7"/>
+        </body>
+        <body name="mcp_site1_link" pos="0 -0.02 0.03" quat="0.707107 0 0 -0.707107">
+          <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="1e-05" diaginertia="1.25e-10 8.33333e-11 8.33333e-11"/>
+          <geom name="mcp_site1_link_vis" size="0.005" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1"/>
+          <geom name="mcp_site1_link_col" size="0.005" rgba="1 1 1 1"/>
+        </body>
+        <body name="pip_link" pos="0 -0.1 0">
+          <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.1" diaginertia="2e-05 1.75e-05 1.75e-05"/>
+          <joint name="pip_joint" pos="0 0 0" axis="1 0 0" range="-0.174533 1.13446" actuatorfrcrange="-10 10" damping="0.003" frictionloss="0.2"/>
+          <geom name="pip_link_vis" size="0.02 0.015" quat="0.707107 0 0.707107 0" type="cylinder" contype="0" conaffinity="0" group="1" density="0" rgba="0 0.8 0 0.7"/>
+          <geom name="pip_link_col" size="0.02 0.015" quat="0.707107 0 0.707107 0" type="cylinder" rgba="0 0.8 0 0.7"/>
+          <body name="pip_bar_linkage_link" quat="0.707107 0.707107 0 0">
+            <inertial pos="0 0 0.05" mass="0.1" diaginertia="8.58333e-05 8.58333e-05 5e-06"/>
+            <geom name="pip_bar_linkage_link_part1_vis" size="0.01 0.05" pos="0 0 0.05" type="cylinder" contype="0" conaffinity="0" group="1" density="0" rgba="0.9 1 0 0.7"/>
+            <geom name="pip_bar_linkage_link_part2_vis" size="0.01" pos="0 0 0.1" contype="0" conaffinity="0" group="1" density="0" rgba="0.9 1 0 0.7"/>
+            <geom name="pip_bar_linkage_link_part3_vis" size="0.01" contype="0" conaffinity="0" group="1" density="0" rgba="0.9 1 0 0.7"/>
+            <geom name="pip_bar_linkage_link_part1_col" size="0.01 0.05" pos="0 0 0.05" type="cylinder" rgba="0.9 1 0 0.7"/>
+            <geom name="pip_bar_linkage_link_part2_col" size="0.01" pos="0 0 0.1" rgba="0.9 1 0 0.7"/>
+            <geom name="pip_bar_linkage_link_part3_col" size="0.01" rgba="0.9 1 0 0.7"/>
+          </body>
+          <body name="pip_site1_link" pos="0 -0.03 0.01" quat="0.707107 0 0 -0.707107">
+            <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="1e-05" diaginertia="1.25e-10 8.33333e-11 8.33333e-11"/>
+            <geom name="pip_site1_link_vis" size="0.005" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1"/>
+            <geom name="pip_site1_link_col" size="0.005" rgba="1 1 1 1"/>
+          </body>
+          <body name="pip_site2_link" pos="0 -0.05 0.02" quat="0.707107 0 0 -0.707107">
+            <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="1e-05" diaginertia="1.25e-10 8.33333e-11 8.33333e-11"/>
+            <geom name="pip_site2_link_vis" size="0.005" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1"/>
+            <geom name="pip_site2_link_col" size="0.005" rgba="1 1 1 1"/>
+          </body>
+          <body name="pip_site3_link" pos="0 0 0.03" quat="0.707107 0 0 -0.707107">
+            <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="1e-05" diaginertia="1.25e-10 8.33333e-11 8.33333e-11"/>
+            <geom name="pip_site3_link_vis" size="0.005" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1"/>
+            <geom name="pip_site3_link_col" size="0.005" rgba="1 1 1 1"/>
+          </body>
+          <body name="dip_link" pos="0 -0.1 0">
+            <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.1" diaginertia="2e-05 1.75e-05 1.75e-05"/>
+            <joint name="dip_joint" pos="0 0 0" axis="1 0 0" range="-0.174533 1.13446" actuatorfrcrange="-10 10" damping="0.003" frictionloss="0.2"/>
+            <geom name="dip_link_vis" size="0.02 0.015" quat="0.707107 0 0.707107 0" type="cylinder" contype="0" conaffinity="0" group="1" density="0" rgba="0 0.8 0 0.7"/>
+            <geom name="dip_link_col" size="0.02 0.015" quat="0.707107 0 0.707107 0" type="cylinder" rgba="0 0.8 0 0.7"/>
+            <body name="dip_bar_linkage_link" quat="0.707107 0.707107 0 0">
+              <inertial pos="0 0 0.05" mass="0.1" diaginertia="8.58333e-05 8.58333e-05 5e-06"/>
+              <geom name="dip_bar_linkage_link_part1_vis" size="0.01 0.05" pos="0 0 0.05" type="cylinder" contype="0" conaffinity="0" group="1" density="0" rgba="0.9 1 0 0.7"/>
+              <geom name="dip_bar_linkage_link_part2_vis" size="0.01" pos="0 0 0.1" contype="0" conaffinity="0" group="1" density="0" rgba="0.9 1 0 0.7"/>
+              <geom name="dip_bar_linkage_link_part3_vis" size="0.01" contype="0" conaffinity="0" group="1" density="0" rgba="0.9 1 0 0.7"/>
+              <geom name="dip_bar_linkage_link_part1_col" size="0.01 0.05" pos="0 0 0.05" type="cylinder" rgba="0.9 1 0 0.7"/>
+              <geom name="dip_bar_linkage_link_part2_col" size="0.01" pos="0 0 0.1" rgba="0.9 1 0 0.7"/>
+              <geom name="dip_bar_linkage_link_part3_col" size="0.01" rgba="0.9 1 0 0.7"/>
+            </body>
+            <body name="dip_site1_link" pos="0 -0.03 0.01" quat="0.707107 0 0 -0.707107">
+              <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="1e-05" diaginertia="1.25e-10 8.33333e-11 8.33333e-11"/>
+              <geom name="dip_site1_link_vis" size="0.005" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1"/>
+              <geom name="dip_site1_link_col" size="0.005" rgba="1 1 1 1"/>
+            </body>
+            <body name="dip_site2_link" pos="0 0 0.03" quat="0.707107 0 0 -0.707107">
+              <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="1e-05" diaginertia="1.25e-10 8.33333e-11 8.33333e-11"/>
+              <geom name="dip_site2_link_vis" size="0.005" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1"/>
+              <geom name="dip_site2_link_col" size="0.005" rgba="1 1 1 1"/>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

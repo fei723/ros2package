@@ -1,0 +1,40 @@
+#### left hand ####
+tendon_joint:
+  limit:
+    lower: -0.02
+    upper: 0.10471976
+    velocity: 0.8
+    effort: 100
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 0.01
+
+mcp_joint:
+  limit:
+    lower: -30.0
+    upper: 65.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+pip_joint:
+  limit:
+    lower: -30.0
+    upper: 65.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0
+
+dip_joint:
+  limit:
+    lower: -30.0
+    upper: 65.0
+    velocity: 0.8
+    effort: 10
+    k_position: 121.0
+    k_velocity: 540.0
+    safety_margin: 3.0

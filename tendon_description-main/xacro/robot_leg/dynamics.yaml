@@ -1,0 +1,64 @@
+hip_roll_joint:
+  dynamic:
+    damping: 1.3
+    friction: 20.65
+hip_yaw_joint:
+  dynamic:
+    damping: 1.3
+    friction: 20.65
+hip_pitch_joint:
+  dynamic:
+    damping: 0.1
+    friction: 0.1
+knee_pitch_joint:
+  dynamic:
+    damping: 0.1
+    friction: 0.1
+ankle_pitch_joint:
+  dynamic:
+    damping: 0.1
+    friction: 0.1
+ankle_roll_joint:
+  dynamic:
+    damping: 0.1
+    friction: 0.1
+hip_l_motor_joint:
+  dynamic:
+    damping: 1.3
+    friction: 20.65
+hip_r_motor_joint:
+  dynamic:
+    damping: 1.3
+    friction: 20.65
+knee_f_linkage_joint:
+  dynamic:
+    damping: 0.1
+    friction: 0.1
+knee_b_linkage_joint:
+  dynamic:
+    damping: 0.1
+    friction: 0.1
+ankle_l_motor_joint:
+  dynamic:
+    damping: 1.3
+    friction: 20.65
+ankle_r_motor_joint:
+  dynamic:
+    damping: 1.3
+    friction: 20.65
+ankle_l_linkage_pitch_joint:
+  dynamic:
+    damping: 0.1
+    friction: 0.1
+ankle_l_linkage_roll_joint:
+  dynamic:
+    damping: 0.1
+    friction: 0.1
+ankle_r_linkage_pitch_joint:
+  dynamic:
+    damping: 0.1
+    friction: 0.1
+ankle_r_linkage_roll_joint:
+  dynamic:
+    damping: 0.1
+    friction: 0.1

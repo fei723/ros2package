@@ -1,0 +1,40 @@
+# This config file is used by ros2_control
+controller_manager:
+  ros__parameters:
+    update_rate: 300 # Hz
+    cycle_time_error_threshold: 0.03
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    simple_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    tendon_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+simple_controller:
+  ros__parameters:
+    joints:
+      - mcp_joint
+      - pip_joint
+      - dip_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    open_loop_control: true
+    allow_partial_joints_goal: true
+
+tendon_controller:
+  ros__parameters:
+    joints:
+      - tendon_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    open_loop_control: true
+    allow_partial_joints_goal: true

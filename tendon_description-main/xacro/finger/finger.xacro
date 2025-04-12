@@ -1,0 +1,312 @@
+<?xml version="1.0"?>
+<!-- Xacro for GR1T2 -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!--                   -->
+    <!-- Imported elements -->
+    <!--                   -->
+    <xacro:include filename="$(find tendon_description)/xacro/common/utils.xacro" />
+
+
+    <xacro:macro name="robot_finger"
+        params="robot_id description_pkg:='tendon_description' prefix:='' connected_to:='base_link' 
+      joint_limits
+      inertials
+      kinematics
+      dynamics mesh_scale:='1 1 1' joint_fixed:=false with_sc:=false ros2_control_plugin:='fake' 
+  ">
+        <xacro:property name="gazebo"
+            value="$(eval 'true' if ros2_control_plugin == 'gazebo' else 'false')" />
+
+        <xacro:if value="${joint_fixed}">
+            <xacro:property name="joint_type"
+                value="fixed" />
+        </xacro:if>
+        <xacro:unless value="${joint_fixed}">
+            <xacro:property name="joint_type"
+                value="revolute" />
+        </xacro:unless>
+        <xacro:property name="joint0_1"
+            value="base_site1" />
+        <xacro:property name="joint1_0"
+            value="tendon" />
+        <xacro:property name="joint1_1"
+            value="tendon_site1" />
+
+
+        <xacro:property name="joint2_0"
+            value="mcp" />
+        <xacro:property name="joint2_1"
+            value="mcp_bar_linkage" />
+        <xacro:property name="joint2_2"
+            value="mcp_site1" />
+
+        <xacro:property name="joint3_0"
+            value="pip" />
+        <xacro:property name="joint3_1"
+            value="pip_bar_linkage" />
+        <xacro:property name="joint3_2"
+            value="pip_site1" />
+        <xacro:property name="joint3_3"
+            value="pip_site2" />
+        <xacro:property name="joint3_4"
+            value="pip_site3" />
+
+
+        <xacro:property name="joint4_0"
+            value="dip" />
+        <xacro:property name="joint4_1"
+            value="dip_bar_linkage" />
+
+
+        <xacro:property name="joint4_2"
+            value="dip_site1" />
+        <xacro:property name="joint4_3"
+            value="dip_site2" />
+
+        <xacro:unless value="${not connected_to}">
+            <link name="${connected_to}">
+            </link>
+        </xacro:unless>
+
+
+        <xacro:sphere-link name="${joint0_1}_link"
+            prefix="${prefix}"
+            radius="0.005"
+            material_name="white"
+            gazebo="${gazebo}" />
+        <xacro:robot-joint joint_name="${prefix}${joint0_1}_joint"
+            joint_type="fixed"
+            parent="${connected_to}"
+            child="${prefix}${joint0_1}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            dynamics="${dynamics}" />
+
+        <!-- tendon -->
+        <xacro:cylinder-link name="${joint1_0}_link"
+            prefix="${prefix}"
+            xyz="-0.025 0. 0. "
+            rpy="0. 1.5707963 0."
+            radius="0.03"
+            length="0.05"
+            material_name="purple"
+            gazebo="${gazebo}"
+            mass="0.5" />
+        <xacro:robot-joint joint_name="${prefix}${joint1_0}_joint"
+            joint_type="prismatic"
+            parent="${connected_to}"
+            child="${prefix}${joint1_0}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            dynamics="${dynamics}" />
+
+        <xacro:sphere-link name="${joint1_1}_link"
+            prefix="${prefix}"
+            radius="0.005"
+            material_name="white"
+            gazebo="${gazebo}" />
+        <xacro:robot-joint joint_name="${prefix}${joint1_1}_joint"
+            joint_type="fixed"
+            parent="${prefix}${joint1_0}_link"
+            child="${prefix}${joint1_1}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            dynamics="${dynamics}" />
+
+        <!-- mcp -->
+        <xacro:cylinder-link name="${joint2_0}_link"
+            prefix="${prefix}"
+            xyz="0 0 0 "
+            rpy="0 1.5707964 0"
+            radius="0.02"
+            length="0.03"
+            material_name="green"
+            alpha="0.7"
+            gazebo="${gazebo}"
+            mass="0.1" />
+        <xacro:robot-joint joint_name="${prefix}${joint2_0}_joint"
+            joint_type="${joint_type}"
+            parent="${connected_to}"
+            child="${prefix}${joint2_0}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            dynamics="${dynamics}" />
+
+        <xacro:capsule-link name="${joint2_1}_link"
+            prefix="${prefix}"
+            xyz="0 0 0.05 "
+            rpy="0 0 0"
+            direction="z"
+            radius="0.01"
+            length="0.1"
+            material_name="yellow"
+            alpha="0.7"
+            gazebo="${gazebo}"
+            mass="0.1" />
+        <xacro:robot-joint joint_name="${prefix}${joint2_1}_fixed_joint"
+            joint_type="fixed"
+            parent="${prefix}${joint2_0}_link"
+            child="${prefix}${joint2_1}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            dynamics="${dynamics}" />
+
+        <xacro:sphere-link name="${joint2_2}_link"
+            prefix="${prefix}"
+            radius="0.005"
+            material_name="white"
+            gazebo="${gazebo}" />
+        <xacro:robot-joint joint_name="${prefix}${joint2_2}_joint"
+            joint_type="fixed"
+            parent="${prefix}${joint2_0}_link"
+            child="${prefix}${joint2_2}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            dynamics="${dynamics}" />
+
+
+        <!-- pip -->
+        <xacro:cylinder-link name="${joint3_0}_link"
+            prefix="${prefix}"
+            xyz="0 0 0 "
+            rpy="0 1.5707964 0"
+            radius="0.02"
+            length="0.03"
+            material_name="green"
+            alpha="0.7"
+            gazebo="${gazebo}"
+            mass="0.1" />
+        <xacro:robot-joint joint_name="${prefix}${joint3_0}_joint"
+            joint_type="${joint_type}"
+            parent="${prefix}${joint2_0}_link"
+            child="${prefix}${joint3_0}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            dynamics="${dynamics}" />
+
+
+        <xacro:capsule-link name="${joint3_1}_link"
+            prefix="${prefix}"
+            xyz="0 0 0.05 "
+            rpy="0 0 0"
+            direction="z"
+            radius="0.01"
+            length="0.1"
+            material_name="yellow"
+            alpha="0.7"
+            gazebo="${gazebo}"
+            mass="0.1" />
+        <xacro:robot-joint joint_name="${prefix}${joint3_1}_fixed_joint"
+            joint_type="fixed"
+            parent="${prefix}${joint3_0}_link"
+            child="${prefix}${joint3_1}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            dynamics="${dynamics}" />
+
+        <xacro:sphere-link name="${joint3_2}_link"
+            prefix="${prefix}"
+            radius="0.005"
+            material_name="white"
+            gazebo="${gazebo}" />
+        <xacro:robot-joint joint_name="${prefix}${joint3_2}_joint"
+            joint_type="fixed"
+            parent="${prefix}${joint3_0}_link"
+            child="${prefix}${joint3_2}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            dynamics="${dynamics}" />
+
+        <xacro:sphere-link name="${joint3_3}_link"
+            prefix="${prefix}"
+            radius="0.005"
+            material_name="white"
+            gazebo="${gazebo}" />
+        <xacro:robot-joint joint_name="${prefix}${joint3_3}_joint"
+            joint_type="fixed"
+            parent="${prefix}${joint3_0}_link"
+            child="${prefix}${joint3_3}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            dynamics="${dynamics}" />
+
+        <xacro:sphere-link name="${joint3_4}_link"
+            prefix="${prefix}"
+            radius="0.005"
+            material_name="white"
+            gazebo="${gazebo}" />
+        <xacro:robot-joint joint_name="${prefix}${joint3_4}_joint"
+            joint_type="fixed"
+            parent="${prefix}${joint3_0}_link"
+            child="${prefix}${joint3_4}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            dynamics="${dynamics}" />
+
+        <!-- dip -->
+        <xacro:cylinder-link name="${joint4_0}_link"
+            prefix="${prefix}"
+            xyz="0 0 0"
+            rpy="0 1.5707964 0"
+            radius="0.02"
+            length="0.03"
+            material_name="green"
+            alpha="0.7"
+            gazebo="${gazebo}"
+            mass="0.1" />
+        <xacro:robot-joint joint_name="${prefix}${joint4_0}_joint"
+            joint_type="${joint_type}"
+            parent="${prefix}${joint3_0}_link"
+            child="${prefix}${joint4_0}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            dynamics="${dynamics}" />
+
+        <xacro:capsule-link name="${joint4_1}_link"
+            prefix="${prefix}"
+            xyz="0 0 0.05 "
+            rpy="0 0 0"
+            direction="z"
+            radius="0.01"
+            length="0.1"
+            material_name="yellow"
+            alpha="0.7"
+            gazebo="${gazebo}"
+            mass="0.1" />
+        <xacro:robot-joint joint_name="${prefix}${joint4_1}_fixed_joint"
+            joint_type="fixed"
+            parent="${prefix}${joint4_0}_link"
+            child="${prefix}${joint4_1}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            dynamics="${dynamics}" />
+
+        <xacro:sphere-link name="${joint4_2}_link"
+            prefix="${prefix}"
+            radius="0.005"
+            material_name="white"
+            gazebo="${gazebo}" />
+        <xacro:robot-joint joint_name="${prefix}${joint4_2}_joint"
+            joint_type="fixed"
+            parent="${prefix}${joint4_0}_link"
+            child="${prefix}${joint4_2}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            dynamics="${dynamics}" />
+
+        <xacro:sphere-link name="${joint4_3}_link"
+            prefix="${prefix}"
+            radius="0.005"
+            material_name="white"
+            gazebo="${gazebo}" />
+        <xacro:robot-joint joint_name="${prefix}${joint4_3}_joint"
+            joint_type="fixed"
+            parent="${prefix}${joint4_0}_link"
+            child="${prefix}${joint4_3}_link"
+            joint_limits="${joint_limits}"
+            kinematics="${kinematics}"
+            dynamics="${dynamics}" />
+
+    </xacro:macro>
+</robot>

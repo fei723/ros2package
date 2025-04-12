@@ -1,0 +1,17 @@
+initial_positions:
+  hip_roll: 0.0
+  hip_yaw: 0.0
+  hip_pitch: 0.0
+  knee_pitch: 0.0
+  ankle_pitch: 0.0
+  ankle_roll: 0.0
+  hip_l_motor: 0.0
+  hip_r_motor: 0.0
+  knee_f_linkage: 0.0
+  knee_b_linkage: 0.0
+  ankle_l_motor: 0.0
+  ankle_r_motor: 0.0
+  ankle_l_linkage_pitch: 0.0
+  ankle_l_linkage_roll: 0.0
+  ankle_r_linkage_pitch: 0.0
+  ankle_r_linkage_roll: 0.0

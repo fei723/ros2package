@@ -1,0 +1,150 @@
+#### left hand ####
+tendon_joint:
+  kinematic:
+    x: -0.03
+    y: 0.0
+    z: 0.3
+    roll: 0
+    pitch: -1.5707963
+    yaw: 0
+    axis: "1 0 0"
+
+mcp_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.4
+    roll: 0
+    pitch: 0
+    yaw: 1.5707964
+    axis: "1 0 0"
+
+mcp_bar_linkage_fixed_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    roll: 1.5707964
+    pitch: 0
+    yaw: 0
+    axis: "1 0 0"
+
+pip_joint:
+  kinematic:
+    x: 0
+    y: -0.1
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "1 0 0"
+
+pip_bar_linkage_fixed_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    roll: 1.5707964
+    pitch: 0
+    yaw: 0
+    axis: "1 0 0"
+
+dip_joint:
+  kinematic:
+    x: 0
+    y: -0.1
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "1 0 0"
+
+dip_bar_linkage_fixed_joint:
+  kinematic:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    roll: 1.5707964
+    pitch: 0
+    yaw: 0
+    axis: "1 0 0"
+
+base_site1_joint:
+  kinematic:
+    x: -0.03
+    y: 0
+    z: 0.43
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "1 0 0"
+
+tendon_site1_joint:
+  kinematic:
+    x: 0
+    y: 0
+    z: 0
+    roll: 0
+    pitch: 0
+    yaw: 0
+    axis: "1 0 0"
+
+mcp_site1_joint:
+  kinematic:
+    x: 0
+    y: -0.02
+    z: 0.03
+    roll: 0
+    pitch: 0
+    yaw: -1.5707964
+    axis: "1 0 0"
+
+pip_site1_joint:
+  kinematic:
+    x: 0
+    y: -0.03
+    z: 0.01
+    roll: 0
+    pitch: 0
+    yaw: -1.5707964
+    axis: "1 0 0"
+
+pip_site2_joint:
+  kinematic:
+    x: 0
+    y: -0.05
+    z: 0.02
+    roll: 0
+    pitch: 0
+    yaw: -1.5707964
+    axis: "1 0 0"
+
+pip_site3_joint:
+  kinematic:
+    x: 0
+    y: 0
+    z: 0.03
+    roll: 0
+    pitch: 0
+    yaw: -1.5707964
+    axis: "1 0 0"
+
+dip_site1_joint:
+  kinematic:
+    x: 0
+    y: -0.03
+    z: 0.01
+    roll: 0
+    pitch: 0
+    yaw: -1.5707964
+    axis: "1 0 0"
+
+dip_site2_joint:
+  kinematic:
+    x: 0
+    y: 0
+    z: 0.03
+    roll: 0
+    pitch: 0
+    yaw: -1.5707964
+    axis: "1 0 0"

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"
+    name="tendon">
+    <xacro:include filename="$(find tendon_description)/xacro/common/utils.xacro" />
+    <xacro:include filename="$(find tendon_description)/xacro/common/robot_simulation.xacro" />
+    <xacro:include filename="$(find tendon_description)/xacro/finger/finger.xacro" />
+    <xacro:include filename="$(find tendon_description)/xacro/finger/finger_arguments.xacro" />
+    <xacro:include filename="$(find tendon_description)/xacro/finger/finger.ros2_control.xacro" />
+
+    <xacro:property name="ros2_controller_parameters"
+        default="$(find tendon_description)/config/$(arg robot_id)/ros2_controllers.yaml" />
+
+    <xacro:robot_finger connected_to="$(arg connection)"
+        robot_id="$(arg robot_id)"
+        inertials="${xacro.load_yaml('$(find tendon_description)/xacro/finger/inertials.yaml')}"
+        joint_limits="${xacro.load_yaml('$(find tendon_description)/xacro/finger/joint_limits.yaml')}"
+        kinematics="${xacro.load_yaml('$(find tendon_description)/xacro/finger/kinematics.yaml')}"
+        dynamics="${xacro.load_yaml('$(find tendon_description)/xacro/finger/dynamics.yaml')}"
+        prefix="$(arg prefix)"
+        description_pkg="$(arg description_pkg)"
+        with_sc="$(arg with_sc)"
+        ros2_control_plugin="$(arg ros2_control_plugin)">
+    </xacro:robot_finger>
+
+
+    <xacro:finger_ros2_control plugin="$(arg ros2_control_plugin)"
+        name="finger_system"
+        command_interface="$(arg  command_interface)"
+        transmission_type="$(arg transmission_type)"
+        initial_positions="${xacro.load_yaml('$(find tendon_description)/xacro/finger/initial_positions.yaml')}" />
+
+
+    <xacro:if value="$(arg ros2_control)">
+        <xacro:if value="${'ign' in '$(arg ros2_control_plugin)'}">
+            <xacro:ign_ros2_control controller_parameters="${ros2_controller_parameters}" />
+        </xacro:if>
+
+        <xacro:if value="${'gazebo' in '$(arg ros2_control_plugin)'}">
+            <xacro:gazebo_ros2_control controller_parameters="${ros2_controller_parameters}" />
+        </xacro:if>
+
+        <xacro:if value="${'mujoco' in '$(arg ros2_control_plugin)'}">
+            <xacro:mujoco_ros2_control robot_id="$(arg robot_id)"
+                controller_parameters="${ros2_controller_parameters}" />
+        </xacro:if>
+
+        <xacro:if value="${'webots' in '$(arg ros2_control_plugin)'}">
+            <xacro:webots_ros2_control controller_parameters="${ros2_controller_parameters}" />
+        </xacro:if>
+    </xacro:if>
+</robot>

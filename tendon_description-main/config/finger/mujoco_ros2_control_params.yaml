@@ -1,0 +1,60 @@
+/mujoco_ros2_control:
+  ros__parameters:
+    actuator_pid_gains:
+      mcp_actuator:
+        antiwindup: false
+        d: 5.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 100.0
+      pip_actuator:
+        antiwindup: false
+        d: 5.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 100.0
+      dip_actuator:
+        antiwindup: false
+        d: 5.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 100.0
+      tendon_actuator:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0
+    joint_pid_gains:
+      mcp_joint:
+        antiwindup: false
+        d: 5.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 100.0
+      pip_joint:
+        antiwindup: false
+        d: 5.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 100.0
+      dip_joint:
+        antiwindup: false
+        d: 5.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 100.0
+      tendon_joint:
+        antiwindup: false
+        d: 50.0
+        i: 0.0
+        i_clamp_max: 1.0
+        i_clamp_min: -1.0
+        p: 10000.0

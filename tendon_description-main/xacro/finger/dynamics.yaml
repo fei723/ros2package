@@ -1,0 +1,25 @@
+#### left hand ####
+l_hand_palm:
+  dynamic:
+    damping: 0.003
+    friction: 0.2
+
+tendon_joint:
+  dynamic:
+    damping: 0.003
+    friction: 0.2
+
+mcp_joint:
+  dynamic:
+    damping: 0.003
+    friction: 0.2
+
+pip_joint:
+  dynamic:
+    damping: 0.003
+    friction: 0.2
+
+dip_joint:
+  dynamic:
+    damping: 0.003
+    friction: 0.2

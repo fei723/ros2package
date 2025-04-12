@@ -1,0 +1,63 @@
+<mujoco model="Tendon scene">
+  <include file="finger.mujoco.xml" />
+  <!-- <include file="finger.mujoco.original.xml" /> -->
+
+  <!-- <statistic center="0 0 1" extent="1.8" /> -->
+  <option gravity="0 0 -9.81" timestep="0.002" />
+
+  <extension>
+    <plugin plugin="mujoco_ros2_control::MujocoRos2ControlPlugin" />
+  </extension>
+
+  <visual>
+    <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0" />
+    <rgba haze="0.15 0.25 0.35 1" />
+    <global azimuth="160" elevation="-20" />
+  </visual>
+
+  <default>
+    <!-- <geom contype="1" conaffinity="1" solref="0.015 1" solimp="0.95 0.99 0.003" condim="3" /> -->
+    <geom condim="3" conaffinity="1" contype="1" />
+    <!-- <joint frictionloss="0.1" /> -->
+    <joint limited="true" stiffness="0.1" armature="0.1" damping="0.1" />
+    <motor ctrllimited="true" ctrlrange="-100.0 100.0" />
+  </default>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512"
+      height="3072" />
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4"
+      rgb2="0.1 0.2 0.3"
+      markrgb="0.8 0.8 0.8" width="300" height="300" />
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5"
+      reflectance="0.2" />
+  </asset>
+
+  <worldbody>
+    <light pos="0 0 3.5" dir="0 0 -1" directional="true" />
+    <geom name="floor" size="0 0 0.05" type="plane" material="groundplane" />
+    <plugin plugin="mujoco_ros2_control::MujocoRos2ControlPlugin" />
+  </worldbody>
+
+  <tendon>
+    <spatial range="0 .33" limited="true" width=".002" rgba=".95 .3 .3 1">
+      <site site="tendon_site1" />
+      <site site="base_site1" />
+      <geom geom="mcp_link_col" />
+      <site site="mcp_site1" />
+
+      <pulley divisor="2" />
+      <site site="mcp_site1" />
+      <geom geom="pip_link_col" sidesite="pip_site3" />
+      <site site="pip_site1" />
+
+      <pulley divisor="2" />
+      <site site="mcp_site1" />
+      <geom geom="pip_link_col" sidesite="pip_site3" />
+      <site site="pip_site2" />
+      <geom geom="dip_link_col" sidesite="dip_site1" />
+      <site site="dip_site1" />
+    </spatial>
+  </tendon>
+
+</mujoco>

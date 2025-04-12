@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Name for the robot -->
+  <xacro:arg name="robot_id" default="finger" />
+
+  <!-- End-effector id" -->
+  <xacro:arg name="connection" default="base_link" />
+
+  <!-- Should self-collision be enabled? -->
+  <xacro:arg name="with_sc" default="false" />
+
+  <xacro:arg name="prefix" default="" />
+
+  <!-- Should fake sensors be used? -->
+  <xacro:arg name="description_pkg" default="tendon_description" />
+
+  <xacro:arg name="ros2_control_plugin" default="mujoco" />
+
+  <xacro:arg name="ros2_control" default="true" />
+
+  <xacro:arg name="command_interface" default="['position', 'velocity']" />
+
+  <xacro:arg name="transmission_type" default="simple" />
+
+</robot>

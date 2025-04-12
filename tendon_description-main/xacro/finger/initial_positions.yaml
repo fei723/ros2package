@@ -1,0 +1,7 @@
+# Default initial positions for GR1T2's ros2_control fake system
+
+initial_positions:
+  tendon: 0.0
+  mcp: 0.0
+  pip: 0.0
+  dip: 0.0
