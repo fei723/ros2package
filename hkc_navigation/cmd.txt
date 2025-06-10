@@ -1,0 +1,10 @@
+colcon build --symlink-install
+
+
+source   
+
+
+ros2 launch hkc_navigation slam_and_nav_bringup.launch.py
+
+
+rviz2

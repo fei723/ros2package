@@ -1,0 +1,7 @@
+image: zhanting.png
+resolution: 0.05
+origin: [14.424999486282472, 5.925000153109425,3.1415]
+# origin: [0.0, 0.0,0.0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
